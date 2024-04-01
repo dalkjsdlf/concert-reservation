@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.hpp.concertreservation.ConcertReservationApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-04-01T12:55:46" hostname="choeyeonhoui-MacBookAir.local" time="0.434">
+  <properties/>
+  <testcase name="contextLoads()" classname="io.hpp.concertreservation.ConcertReservationApplicationTests" time="0.434"/>
+  <system-out><![CDATA[21:55:46.284 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.hpp.concertreservation.ConcertReservationApplicationTests]: ConcertReservationApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:55:46.335 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.hpp.concertreservation.ConcertReservationApplication for test class io.hpp.concertreservation.ConcertReservationApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2024-04-01T21:55:46.592+09:00  INFO 66004 --- [concert-reservation] [    Test worker] i.h.c.ConcertReservationApplicationTests : Starting ConcertReservationApplicationTests using Java 17.0.5 with PID 66004 (started by choeyeonho in /Users/choeyeonho/workspace/StudyProjects/01_JustStudy/concert-reservation)
+2024-04-01T21:55:46.593+09:00  INFO 66004 --- [concert-reservation] [    Test worker] i.h.c.ConcertReservationApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2024-04-01T21:55:46.804+09:00  INFO 66004 --- [concert-reservation] [    Test worker] i.h.c.ConcertReservationApplicationTests : Started ConcertReservationApplicationTests in 0.376 seconds (process running for 0.96)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
