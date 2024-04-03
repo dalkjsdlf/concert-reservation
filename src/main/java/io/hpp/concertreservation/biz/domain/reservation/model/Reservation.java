@@ -1,6 +1,6 @@
 package io.hpp.concertreservation.biz.domain.reservation.model;
 
-import io.hpp.concertreservation.biz.domain.payment.enumclass.PayType;
+import io.hpp.concertreservation.common.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +14,7 @@ import java.util.Objects;
 @Getter
 @Table
 @Entity
-public class Reservation {
+public class Reservation{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

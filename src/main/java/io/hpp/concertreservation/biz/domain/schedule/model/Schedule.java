@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.domain.schedule.model;
 
+import io.hpp.concertreservation.common.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
