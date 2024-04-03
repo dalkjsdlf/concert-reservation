@@ -11,4 +11,6 @@ public interface ISeatReader {
     List<Seat> readSeatsByScheduleId(Long scheduleId);
 
     Optional<Seat> readSeatBySeatNoAndScheduleId(Long seatNo, Long scheduleId);
+
+    Optional<Seat> readSeatBySeatId(Long seatId);
 }

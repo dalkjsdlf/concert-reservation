@@ -28,4 +28,9 @@ public class SeatReader implements ISeatReader {
     public Optional<Seat> readSeatBySeatNoAndScheduleId(Long seatNo, Long scheduleId) {
         return seatCoreRepository.findBySeatNoAndScheduleId(seatNo, scheduleId);
     }
+
+    @Override
+    public Optional<Seat> readSeatBySeatId(Long seatId) {
+        return seatCoreRepository.findById(seatId);
+    }
 }

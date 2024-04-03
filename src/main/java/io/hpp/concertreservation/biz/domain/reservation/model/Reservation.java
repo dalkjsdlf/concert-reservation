@@ -55,7 +55,7 @@ public class Reservation{
         this.paymentYn = paymentYn;
     }
 
-    public Reservation of(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn){
+    public static Reservation of(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn){
         return new Reservation(userId, scheduleId, reserveDate, numOfSeats, totalPrice, paymentYn);
     }
 
