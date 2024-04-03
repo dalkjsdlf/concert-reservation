@@ -1,6 +1,5 @@
 package io.hpp.concertreservation.biz.domain.reservation.model;
 
-import io.hpp.concertreservation.common.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +26,7 @@ public class Reservation{
 
     @Setter
     @Column(nullable = false)
-    private Long concertId;
+    private Long scheduleId;
 
     @Setter
     @Column(nullable = false)
@@ -47,17 +46,17 @@ public class Reservation{
 
     protected Reservation() {};
 
-    private Reservation(Long userId, Long concertId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn) {
+    private Reservation(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn) {
         this.userId = userId;
-        this.concertId = concertId;
+        this.scheduleId = scheduleId;
         this.reserveDate = reserveDate;
         this.numOfSeats = numOfSeats;
         this.totalPrice = totalPrice;
         this.paymentYn = paymentYn;
     }
 
-    public Reservation of(Long userId, Long concertId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn){
-        return new Reservation(userId, concertId, reserveDate, numOfSeats, totalPrice, paymentYn);
+    public Reservation of(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn){
+        return new Reservation(userId, scheduleId, reserveDate, numOfSeats, totalPrice, paymentYn);
     }
 
     @Override

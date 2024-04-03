@@ -2,18 +2,20 @@ package io.hpp.concertreservation.biz.domain.schedule.repository;
 
 import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertInfoCoreRepository;
 import io.hpp.concertreservation.biz.domain.concert.model.ConcertInfo;
+import io.hpp.concertreservation.biz.domain.schedule.infrastructure.ScheduleCoreRepository;
+import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ScheduleWriter implements IScheduleWriter {
 
-    private final ConcertInfoCoreRepository concertInfoCoreRepository;
+    private final ScheduleCoreRepository scheduleInfoCoreRepository;
 
-    public ScheduleWriter(@Autowired ConcertInfoCoreRepository concertInfoCoreRepository) {
-        this.concertInfoCoreRepository = concertInfoCoreRepository;
+    public ScheduleWriter(@Autowired ScheduleCoreRepository scheduleInfoCoreRepository) {
+        this.scheduleInfoCoreRepository = scheduleInfoCoreRepository;
     }
 
     @Override
-    public ConcertInfo writeConcert(ConcertInfo concertInfo) {
-        return concertInfoCoreRepository.save(concertInfo);
+    public Schedule writeSchedule(Schedule schedule) {
+        return scheduleInfoCoreRepository.save(schedule);
     }
 }

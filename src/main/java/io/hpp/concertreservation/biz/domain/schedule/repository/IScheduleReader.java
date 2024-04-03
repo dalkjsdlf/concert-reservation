@@ -10,4 +10,6 @@ import java.util.Optional;
 @Component
 public interface IScheduleReader {
     List<Schedule> readConcertsByConcertId(Long concertId);
+
+    Optional<Schedule> readByScheduleId(Long scheduleId);
 }

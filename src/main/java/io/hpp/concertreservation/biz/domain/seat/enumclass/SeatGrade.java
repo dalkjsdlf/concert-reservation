@@ -1,23 +1,26 @@
-package io.hpp.concertreservation.biz.domain.userpayment.enumclass;
+package io.hpp.concertreservation.biz.domain.seat.enumclass;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Getter;
+import io.hpp.concertreservation.biz.domain.userpayment.enumclass.PayMethod;
 
-@Getter
-public enum TransactionType {
-    CHARGE("charge"),
-    USE("use"),;
+public enum SeatGrade {
+    VIP("VIP"),
+    R("R"),
+    S("S"),
+    A("A"),
+
+    ;
 
     private final String value;
 
-    TransactionType(String value) {
+    SeatGrade(String value) {
         this.value = value;
     }
 
     @JsonCreator
-    public static TransactionType from(String value) {
-        for (TransactionType status : TransactionType.values()) {
+    public static SeatGrade from(String value) {
+        for (SeatGrade status : SeatGrade.values()) {
             if (status.getValue().equals(value)) {
                 return status;
             }

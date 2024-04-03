@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.domain.seat.model;
 
+import io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade;
 import io.hpp.concertreservation.common.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,7 +28,8 @@ public class Seat {
 
     @Setter
     @Column(nullable = false)
-    private String seatGrade;
+    @Enumerated(EnumType.STRING)
+    private SeatGrade seatGrade;
 
     @Setter
     @Column(nullable = false)
@@ -38,7 +40,8 @@ public class Seat {
     private Long reserveId;
 
     protected Seat(){}
-    private Seat(Long sheduleId, Long seatNo, String seatGrade, Long price, Long reserveId) {
+
+    private Seat(Long sheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId) {
         this.sheduleId = sheduleId;
         this.seatNo = seatNo;
         this.seatGrade = seatGrade;
@@ -46,7 +49,7 @@ public class Seat {
         this.reserveId = reserveId;
     }
 
-    public static Seat of(Long sheduleId, Long seatNo, String seatGrade, Long price, Long reserveId){
+    public static Seat of(Long sheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId){
         return new Seat(sheduleId, seatNo, seatGrade, price, reserveId);
     }
 

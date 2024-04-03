@@ -5,10 +5,12 @@ import io.hpp.concertreservation.biz.domain.concert.model.ConcertInfo;
 import io.hpp.concertreservation.biz.domain.schedule.infrastructure.ScheduleCoreRepository;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ScheduleReader implements IScheduleReader {
 
     private final ScheduleCoreRepository scheduleCoreRepository;
@@ -22,5 +24,11 @@ public class ScheduleReader implements IScheduleReader {
     public List<Schedule> readConcertsByConcertId(Long concertId) {
         return scheduleCoreRepository.findByConcertId(concertId);
     }
+
+    @Override
+    public Optional<Schedule> readByScheduleId(Long scheduleId) {
+        return scheduleCoreRepository.findById(scheduleId);
+    }
+
 
 }
