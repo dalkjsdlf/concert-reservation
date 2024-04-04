@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface IReservationService {
 
-    public Reservation reserveConcert(List<Long> seatId);
+    void reserveConcert(Long scheduleId, Long userId);
+
+    void cancelReserveConcert(Long reserveId);
 }

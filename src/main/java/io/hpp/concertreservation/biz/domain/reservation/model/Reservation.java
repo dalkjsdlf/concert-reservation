@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.domain.reservation.model;
 
+import io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +35,7 @@ public class Reservation{
 
     @Setter
     @Column(nullable = false)
-    private Long numOfSeats;
+    private Integer numOfSeats;
 
     @Setter
     @Column(nullable = false)
@@ -42,21 +43,22 @@ public class Reservation{
 
     @Setter
     @Column(nullable = false, length = 1)
-    private String paymentYn;
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 
     protected Reservation() {};
 
-    private Reservation(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn) {
+    private Reservation(Long userId, Long scheduleId, LocalDateTime reserveDate, Integer numOfSeats, Long totalPrice, PaymentStatus status) {
         this.userId = userId;
         this.scheduleId = scheduleId;
         this.reserveDate = reserveDate;
         this.numOfSeats = numOfSeats;
         this.totalPrice = totalPrice;
-        this.paymentYn = paymentYn;
+        this.status = status;
     }
 
-    public static Reservation of(Long userId, Long scheduleId, LocalDateTime reserveDate, Long numOfSeats, Long totalPrice, String paymentYn){
-        return new Reservation(userId, scheduleId, reserveDate, numOfSeats, totalPrice, paymentYn);
+    public static Reservation of(Long userId, Long scheduleId, LocalDateTime reserveDate, Integer numOfSeats, Long totalPrice, PaymentStatus status){
+        return new Reservation(userId, scheduleId, reserveDate, numOfSeats, totalPrice, status);
     }
 
     @Override

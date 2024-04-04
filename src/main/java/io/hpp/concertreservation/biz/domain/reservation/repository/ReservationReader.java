@@ -29,4 +29,9 @@ public class ReservationReader implements IReservationReader{
     public Optional<Reservation> readReservationByScheduleId(Long scheduleId) {
         return coreRepository.findByScheduleId(scheduleId);
     }
+
+    @Override
+    public Optional<Reservation> readReservationById(Long reserveId) {
+        return coreRepository.findById(reserveId);
+    }
 }

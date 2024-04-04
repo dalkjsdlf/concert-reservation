@@ -11,4 +11,7 @@ public interface IReservationReader {
     List<Reservation> readReservationsByUserId(Long userId);
 
     Optional<Reservation> readReservationByScheduleId(Long scheduleId);
+    Optional<Reservation> readReservationById(Long reserveId);
+
+
 }

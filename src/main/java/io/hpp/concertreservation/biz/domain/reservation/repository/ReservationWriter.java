@@ -21,4 +21,10 @@ public class ReservationWriter implements IReservationWriter{
     public Reservation save(Reservation reservation) {
         return coreRepository.save(reservation);
     }
+
+    @Override
+    public Reservation delete(Long reserveId) {
+        coreRepository.deleteById(reserveId);
+        return null;
+    }
 }
