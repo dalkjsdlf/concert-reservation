@@ -13,4 +13,5 @@ https://thoracic-catamaran-22f.notion.site/Project-Milestone-29339f9c0e114750a5a
 ## notion url
 https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?pvs=4
 
-
+# ERD 문서
+https://docs.google.com/spreadsheets/d/1e9shUt3W9EZJkTWvr0DhWvEWt-dqtzZtSHX_7lYtHao/edit#gid=0
