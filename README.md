@@ -21,6 +21,8 @@ https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?
 ### 콘서트예매
 ![콘서트예매시퀀스 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/d95810a8-56c8-4494-8e84-842254bafa12)
 
+### 예약결제
+![예약결제 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/5bf52465-cadc-4b87-9be6-3177032457eb)
 
 
 ## ✔ ERD 문서
