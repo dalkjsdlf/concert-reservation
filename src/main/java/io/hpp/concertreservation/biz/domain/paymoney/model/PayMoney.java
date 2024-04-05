@@ -1,7 +1,7 @@
 package io.hpp.concertreservation.biz.domain.paymoney.model;
 
+import io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod;
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +11,6 @@ import java.util.Objects;
 @Table
 @Entity
 public class PayMoney {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -22,14 +20,20 @@ public class PayMoney {
     @Setter
     private Long balance;
 
+    @Column
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private PayMethod payMethod;
+
     protected PayMoney(){};
 
-    private PayMoney(Long balance) {
+    private PayMoney(Long balance,PayMethod payMethod) {
         this.balance = balance;
+        this.payMethod = payMethod;
     }
 
-    public static PayMoney of(Long balance){
-        return new PayMoney(balance);
+    public static PayMoney of(Long balance,PayMethod payMethod){
+        return new PayMoney(balance, payMethod);
     }
 
     @Override

@@ -25,46 +25,6 @@ public class PayMoneyService implements IPayMoneyService {
         this.seatReader = seatReader;
     }
 
-    @Override
-    public void useMoney(PayMoneyRequestDto useDto) {
-
-        PayMethod payMethod = useDto.getPayMethod();
-        Long userId         = useDto.getUserId();
-        Long price          = useDto.getPrice();
-        Long reserveId      = useDto.getReserveId();
-
-        Optional<Reservation> optReservation = reservationReader.readReservationById(reserveId);
-        Reservation reservation = optReservation.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_RESERVATION));
-
-        Long totalPrice = reservation.getTotalPrice();
-
-        Optional<UserPayment> optUserPayment = userPaymentReader.readByUserIdAndPayMethod(userId, payMethod);
-        UserPayment userPayment = optUserPayment.orElseThrow(()->new ReservationException(ReservationErrorResult.NOT_ENOUGH_MONEY));
-
-        Long result = userPayment.getBalance() - totalPrice;
-
-        if(result < 0){
-            throw new ReservationException(ReservationErrorResult.NOT_ENOUGH_MONEY);
-        }
-
-        /*
-        * 차감된 잔액 세팅
-        * **/
-        userPayment.setBalance(result);
-
-
-//        UserPayment userPayment = null;
-//        if(optUserPayment.isPresent()){
-//            userPayment = optUserPayment.get();
-//        }else{
-//            userPayment = UserPayment.of(
-//                    userId,
-//
-//            )
-//        }
-
-
-    }
 
     @Override
     public void chargeMoney(PayMoneyRequestDto chargeDto) {

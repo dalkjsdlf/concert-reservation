@@ -2,7 +2,7 @@ package io.hpp.concertreservation.biz.domain.payment.service;
 
 import io.hpp.concertreservation.biz.api.paymoney.dto.PayMoneyRequestDto;
 
-public interface IUserPaymentService {
+public interface IPaymentService {
 
     //금액
     //사용자Id

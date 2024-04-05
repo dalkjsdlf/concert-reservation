@@ -11,5 +11,7 @@ public interface IPayMoneyReader {
 
     Optional<PayMoney> readById(Long userPaymentId);
     Optional<PayMoney> readByUserIdAndPayMethod(Long userId, PayMethod payMethod);
-    List<PayMoney> readByUserId(Long userId);
+
+    //List<PayMoney> readByUserId(Long userId);
+
 }

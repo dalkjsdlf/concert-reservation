@@ -28,8 +28,8 @@ public class PayMoneyReader implements IPayMoneyReader {
         return paymentCoreRepository.findByUserIdAndPayMethod(userId, payMethod);
     }
 
-    @Override
-    public List<PayMoney> readByUserId(Long userId) {
-        return paymentCoreRepository.findByUserId(userId);
-    }
+//    @Override
+//    public List<PayMoney> readByUserId(Long userId) {
+//        return paymentCoreRepository.findByUserId(userId);
+//    }
 }
