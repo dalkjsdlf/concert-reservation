@@ -31,3 +31,5 @@ https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?
 ## ✔ ERD 문서
 ![concertreservation_erd](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/42efbad8-f0a9-4179-a9e2-38748982057b)
 
+## MockAPI
+src/api/도메인명
