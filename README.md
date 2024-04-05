@@ -19,7 +19,7 @@ https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?
 ## ✔ 시퀀스 다이어그램
 
 ### 대기열 처리
-![콘서트예매접근 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/679cfe7f-bb15-4140-8a65-18ae6329686a)
+![콘서트예매접근 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/bb77b4ba-c5b3-4522-9e84-01c5e90450a6)
 
 ### 콘서트예매
 ![콘서트예매시퀀스 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/d95810a8-56c8-4494-8e84-842254bafa12)
