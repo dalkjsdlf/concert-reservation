@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-04-05T05:17:24.174Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="ymgQ7l3pO_P6hDRYYZjR" version="24.2.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-05T06:13:08.331Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="tBsZXX2XWPRNj0tRE2bc" version="24.2.2" type="github">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="989" dy="538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1195" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -61,6 +61,18 @@
         <mxCell id="XITLdkzuaWW9dAgO7Yf1-5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="XITLdkzuaWW9dAgO7Yf1-4">
           <mxGeometry x="45" y="326" width="10" height="111" as="geometry" />
         </mxCell>
+        <mxCell id="XITLdkzuaWW9dAgO7Yf1-26" value="sumTotalAmount" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="XITLdkzuaWW9dAgO7Yf1-4" target="XITLdkzuaWW9dAgO7Yf1-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="356" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="79" y="356" />
+              <mxPoint x="79" y="386" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XITLdkzuaWW9dAgO7Yf1-25" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="XITLdkzuaWW9dAgO7Yf1-4">
+          <mxGeometry x="51" y="359" width="10" height="40" as="geometry" />
+        </mxCell>
         <mxCell id="XITLdkzuaWW9dAgO7Yf1-10" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="41" y="530" as="sourcePoint" />
@@ -115,11 +127,11 @@
         </mxCell>
         <mxCell id="XITLdkzuaWW9dAgO7Yf1-22" value="occupySeats(reservationId)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1">
           <mxGeometry x="0.0012" relative="1" as="geometry">
-            <mxPoint x="755" y="457" as="sourcePoint" />
+            <mxPoint x="755" y="490" as="sourcePoint" />
             <Array as="points">
-              <mxPoint x="570" y="457" />
+              <mxPoint x="570" y="490" />
             </Array>
-            <mxPoint x="570" y="457" as="targetPoint" />
+            <mxPoint x="570" y="490" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
