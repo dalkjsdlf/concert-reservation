@@ -1,10 +1,8 @@
 package io.hpp.concertreservation.biz.domain.concert.repository;
 
 import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertInfoCoreRepository;
-import io.hpp.concertreservation.biz.domain.concert.model.ConcertInfo;
+import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 public class ConcertInfoWriter implements IConcertInfoWriter{
 
@@ -15,7 +13,7 @@ public class ConcertInfoWriter implements IConcertInfoWriter{
     }
 
     @Override
-    public ConcertInfo writeConcert(ConcertInfo concertInfo) {
-        return concertInfoCoreRepository.save(concertInfo);
+    public Concert writeConcert(Concert concert) {
+        return concertInfoCoreRepository.save(concert);
     }
 }

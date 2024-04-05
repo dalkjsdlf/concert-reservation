@@ -1,7 +1,7 @@
 package io.hpp.concertreservation.biz.domain.concert.repository;
 
 import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertInfoCoreRepository;
-import io.hpp.concertreservation.biz.domain.concert.model.ConcertInfo;
+import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -16,12 +16,12 @@ public class ConcertInfoReader implements IConcertInfoReader{
     }
 
     @Override
-    public List<ConcertInfo> readAllConcerts() {
+    public List<Concert> readAllConcerts() {
         return concertInfoCoreRepository.findAll();
     }
 
     @Override
-    public Optional<ConcertInfo> readConcert(Long concertId) {
+    public Optional<Concert> readConcert(Long concertId) {
         return concertInfoCoreRepository.findById(concertId);
     }
 }

@@ -1,6 +1,6 @@
 package io.hpp.concertreservation.biz.domain.schedule.service;
 
-import io.hpp.concertreservation.biz.api.schedule.dto.ScheduleResponseDto;
+import io.hpp.concertreservation.biz.api.reservation.dto.dto.ScheduleResponseDto;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import io.hpp.concertreservation.biz.domain.schedule.repository.ScheduleReader;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;

@@ -2,7 +2,6 @@ package io.hpp.concertreservation.biz.domain.seat.enumclass;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.hpp.concertreservation.biz.domain.userpayment.enumclass.PayMethod;
 
 public enum SeatGrade {
     VIP("VIP"),

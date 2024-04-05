@@ -1,7 +1,5 @@
 package io.hpp.concertreservation.biz.domain.schedule.repository;
 
-import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertInfoCoreRepository;
-import io.hpp.concertreservation.biz.domain.concert.model.ConcertInfo;
 import io.hpp.concertreservation.biz.domain.schedule.infrastructure.ScheduleCoreRepository;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
