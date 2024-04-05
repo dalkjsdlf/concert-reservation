@@ -19,7 +19,8 @@ https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?
 ## ✔ 시퀀스 다이어그램
 
 ### 콘서트예매
-![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/d3ab6297-8425-40c7-be63-b89d33cc0dd2)
+![콘서트예매시퀀스 drawio](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/d95810a8-56c8-4494-8e84-842254bafa12)
+
 
 
 ## ✔ ERD 문서
