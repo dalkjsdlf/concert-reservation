@@ -14,6 +14,7 @@ https://thoracic-catamaran-22f.notion.site/Project-Milestone-29339f9c0e114750a5a
 https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?pvs=4
 
 ## 플로우차트
+![Uploading flowchart.png…]()
 
 
 ## ERD 문서
