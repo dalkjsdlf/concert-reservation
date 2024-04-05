@@ -16,6 +16,12 @@ https://thoracic-catamaran-22f.notion.site/API-2ae57d00a361458bbec85797d42c0712?
 ## 플로우차트
 ![flowchart](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/af791dda-1e62-4974-8c8f-ac2bb08a63b5)
 
+## ✔ 시퀀스 다이어그램
+
+### 콘서트예매
+![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/d3ab6297-8425-40c7-be63-b89d33cc0dd2)
+
+
 ## ERD 문서
 ![concertreservation_erd](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/42efbad8-f0a9-4179-a9e2-38748982057b)
 
