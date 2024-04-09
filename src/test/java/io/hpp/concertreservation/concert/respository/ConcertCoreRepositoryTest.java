@@ -17,7 +17,7 @@
 //@DataJpaTest
 //public class ConcertCoreRepositoryTest {
 //
-//    private ConcertCoreRepository concertCoreRepository;
+//    private ConcertCoreRepositoryTest concertCoreRepository;
 //
 //    public ConcertCoreRepositoryTest(@Autowired ConcertCoreRepository concertCoreRepository) {
 //        this.concertCoreRepository = concertCoreRepository;
