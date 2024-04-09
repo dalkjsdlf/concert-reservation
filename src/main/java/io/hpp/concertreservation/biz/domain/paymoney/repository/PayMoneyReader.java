@@ -1,20 +1,19 @@
 package io.hpp.concertreservation.biz.domain.paymoney.repository;
 
 import io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod;
-import io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPaymoneyCoreRepository;
+import io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPayMoneyCoreRepository;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
 public class PayMoneyReader implements IPayMoneyReader {
 
-    IPaymoneyCoreRepository paymentCoreRepository;
+    IPayMoneyCoreRepository paymentCoreRepository;
 
-    public PayMoneyReader(@Autowired IPaymoneyCoreRepository paymentCoreRepository) {
+    public PayMoneyReader(@Autowired IPayMoneyCoreRepository paymentCoreRepository) {
         this.paymentCoreRepository = paymentCoreRepository;
     }
 

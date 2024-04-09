@@ -9,7 +9,7 @@ public enum PayMethod {
     CARD("card"),
     POINT("point"),
 
-    PAY_MONEY("pay_money"),;
+    CASH("cash"),;
 
     private final String value;
 

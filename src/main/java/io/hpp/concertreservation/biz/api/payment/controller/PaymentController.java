@@ -23,7 +23,10 @@ public class PaymentController {
             @RequestHeader(USER_ID_HEADER) Long userId,
             @RequestBody PaymentRequestDto paymentRequestDto
             ){
-        return ResponseEntity.ok(new PaymentResponseDto(paymentRequestDto.getReservationid()));
+        return ResponseEntity.ok(PaymentResponseDto.
+                builder().
+                reservationid(paymentRequestDto.getReservationId()).
+                build());
     }
 
     /*
@@ -35,6 +38,9 @@ public class PaymentController {
             @RequestHeader(USER_ID_HEADER) Long userId,
             @RequestBody PaymentRequestDto paymentRequestDto
     ){
-        return ResponseEntity.ok(new PaymentResponseDto(paymentRequestDto.getReservationid()));
+        return ResponseEntity.ok(PaymentResponseDto.
+                builder().
+                reservationid(paymentRequestDto.getReservationId()).
+                build());
     }
 }

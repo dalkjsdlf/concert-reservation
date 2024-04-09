@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Builder
 public class SeatRequestDto {
 
-    private Long scheduleId;
-    private Long seatNo;
-    private Long reserveId;
-    private Long price;
+    private final Long scheduleId;
+    private final Long seatNo;
+    private final Long reserveId;
+    private final Long price;
 }

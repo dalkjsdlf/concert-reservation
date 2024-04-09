@@ -19,23 +19,9 @@ public class QSchedule extends EntityPathBase<Schedule> {
 
     public static final QSchedule schedule = new QSchedule("schedule");
 
-    public final io.hpp.concertreservation.common.entity.QAuditableFields _super = new io.hpp.concertreservation.common.entity.QAuditableFields(this);
-
     public final NumberPath<Long> concertId = createNumber("concertId", Long.class);
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
-
-    //inherited
-    public final StringPath createdBy = _super.createdBy;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
-
-    //inherited
-    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final DateTimePath<java.time.LocalDateTime> performDate = createDateTime("performDate", java.time.LocalDateTime.class);
 

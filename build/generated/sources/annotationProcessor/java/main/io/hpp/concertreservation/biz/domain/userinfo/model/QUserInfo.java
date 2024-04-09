@@ -19,21 +19,7 @@ public class QUserInfo extends EntityPathBase<UserInfo> {
 
     public static final QUserInfo userInfo = new QUserInfo("userInfo");
 
-    public final io.hpp.concertreservation.common.entity.QAuditableFields _super = new io.hpp.concertreservation.common.entity.QAuditableFields(this);
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
-
-    //inherited
-    public final StringPath createdBy = _super.createdBy;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
-
-    //inherited
-    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final StringPath userName = createString("userName");
 

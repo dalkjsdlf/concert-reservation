@@ -13,8 +13,6 @@ import java.util.Objects;
 @Table
 @Entity
 public class Payment {
-
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

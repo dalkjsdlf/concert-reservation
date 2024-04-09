@@ -1,15 +1,15 @@
 package io.hpp.concertreservation.biz.domain.paymoney.repository;
 
-import io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPaymoneyCoreRepository;
+import io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPayMoneyCoreRepository;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PayMoneyWriter implements IPayMoneyWriter {
-    private final IPaymoneyCoreRepository userPaymentCoreRepository;
+    private final IPayMoneyCoreRepository userPaymentCoreRepository;
 
-    public PayMoneyWriter(@Autowired IPaymoneyCoreRepository userPaymentCoreRepository) {
+    public PayMoneyWriter(@Autowired IPayMoneyCoreRepository userPaymentCoreRepository) {
         this.userPaymentCoreRepository = userPaymentCoreRepository;
     }
 

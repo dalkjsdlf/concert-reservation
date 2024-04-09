@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 public class ReservationRequestDto {
-
     private final Long scheduleId;
     private final Long reservationid;
 }

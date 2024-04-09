@@ -49,7 +49,12 @@ public class ReservationController {
             @RequestBody final ReservationRequestDto reservationRequestDto
     ){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ReservationResponseDto(reservationRequestDto.getScheduleId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ReservationResponseDto.
+                        builder().
+                        scheduleId(reservationRequestDto.getScheduleId()).
+                        build()
+        );
     }
 
     /*
@@ -61,6 +66,11 @@ public class ReservationController {
             @RequestHeader(USER_ID_HEADER) Long userId,
             @RequestBody final ReservationRequestDto reservationRequestDto
     ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ReservationResponseDto(reservationRequestDto.getScheduleId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ReservationResponseDto.
+                        builder().
+                        scheduleId(reservationRequestDto.getScheduleId()).
+                        build()
+        );
     }
 }

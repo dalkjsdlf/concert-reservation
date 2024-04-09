@@ -1,6 +1,6 @@
 package io.hpp.concertreservation;
 
-import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertInfoCoreRepository;
+import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertCoreRepository;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 public class ConcertCoreRepositoryTest {
 
-    private ConcertInfoCoreRepository concertInfoCoreRepository;
+    private ConcertCoreRepository concertCoreRepository;
 
-    public ConcertCoreRepositoryTest(@Autowired ConcertInfoCoreRepository concertInfoCoreRepository) {
-        this.concertInfoCoreRepository = concertInfoCoreRepository;
+    public ConcertCoreRepositoryTest(@Autowired ConcertCoreRepository concertCoreRepository) {
+        this.concertCoreRepository = concertCoreRepository;
     }
 
     @BeforeEach
@@ -30,7 +30,7 @@ public class ConcertCoreRepositoryTest {
                 "lee moon sea",
                 LocalDateTime.of(2024,3,2,0,0,0),
                 LocalDateTime.of(2024,4,2,0,0,0));
-        concertInfoCoreRepository.save(concert);
+        concertCoreRepository.save(concert);
     }
 
     @DisplayName("")
@@ -41,7 +41,7 @@ public class ConcertCoreRepositoryTest {
         // when
 
         // then
-        assertThat(concertInfoCoreRepository).isNotNull();
+        assertThat(concertCoreRepository).isNotNull();
     }
 
     @DisplayName("")
@@ -51,7 +51,7 @@ public class ConcertCoreRepositoryTest {
         Long concertId = 1L;
 
         // when
-        Optional<Concert> optResult = concertInfoCoreRepository.findById(concertId);
+        Optional<Concert> optResult = concertCoreRepository.findById(concertId);
         Concert result = optResult.orElseGet(null);
         // then
         assertThat(result).isNotNull();

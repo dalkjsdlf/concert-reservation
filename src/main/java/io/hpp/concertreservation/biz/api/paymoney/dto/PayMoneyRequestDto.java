@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 public class PayMoneyRequestDto {
-    Long userId;
-    PayMethod payMethod;
-    Long price;
-    Long reserveId;
+    private final Long userId;
+    private final PayMethod payMethod;
+    private final Long price;
+    private final Long reserveId;
 }
