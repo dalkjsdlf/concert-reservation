@@ -18,7 +18,7 @@ public class Seat {
 
     @Setter
     @Column(nullable = false)
-    private Long sheduleId;
+    private Long scheduleId;
 
     @Setter
     @Column(nullable = false)
@@ -39,16 +39,16 @@ public class Seat {
 
     protected Seat(){}
 
-    private Seat(Long sheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId) {
-        this.sheduleId = sheduleId;
+    private Seat(Long scheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId) {
+        this.scheduleId = scheduleId;
         this.seatNo = seatNo;
         this.seatGrade = seatGrade;
         this.price = price;
         this.reserveId = reserveId;
     }
 
-    public static Seat of(Long sheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId){
-        return new Seat(sheduleId, seatNo, seatGrade, price, reserveId);
+    public static Seat of(Long scheduleId, Long seatNo, SeatGrade seatGrade, Long price, Long reserveId){
+        return new Seat(scheduleId, seatNo, seatGrade, price, reserveId);
     }
 
     @Override

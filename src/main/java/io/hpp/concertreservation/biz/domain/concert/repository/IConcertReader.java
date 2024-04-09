@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public interface IConcertReader {
     List<Concert> readAllConcerts();
     Optional<Concert> readConcert(Long concertId);

@@ -25,6 +25,8 @@ public class QPayMoney extends EntityPathBase<PayMoney> {
 
     public final EnumPath<io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod> payMethod = createEnum("payMethod", io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod.class);
 
+    public final NumberPath<Long> userId = createNumber("userId", Long.class);
+
     public QPayMoney(String variable) {
         super(PayMoney.class, forVariable(variable));
     }

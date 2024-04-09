@@ -25,11 +25,11 @@ public class QSeat extends EntityPathBase<Seat> {
 
     public final NumberPath<Long> reserveId = createNumber("reserveId", Long.class);
 
+    public final NumberPath<Long> scheduleId = createNumber("scheduleId", Long.class);
+
     public final EnumPath<io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade> seatGrade = createEnum("seatGrade", io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade.class);
 
     public final NumberPath<Long> seatNo = createNumber("seatNo", Long.class);
-
-    public final NumberPath<Long> sheduleId = createNumber("sheduleId", Long.class);
 
     public QSeat(String variable) {
         super(Seat.class, forVariable(variable));

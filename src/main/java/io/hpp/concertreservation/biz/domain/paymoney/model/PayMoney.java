@@ -18,6 +18,10 @@ public class PayMoney {
 
     @Column
     @Setter
+    private Long userId;
+
+    @Column
+    @Setter
     private Long balance;
 
     @Column
