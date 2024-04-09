@@ -1,7 +1,6 @@
 package io.hpp.concertreservation.biz.domain.payment.model;
 
 import io.hpp.concertreservation.biz.domain.payment.enumclass.TransactionType;
-import io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

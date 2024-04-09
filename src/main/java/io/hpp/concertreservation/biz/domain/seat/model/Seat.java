@@ -1,11 +1,9 @@
 package io.hpp.concertreservation.biz.domain.seat.model;
 
 import io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade;
-import io.hpp.concertreservation.common.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Objects;
 
