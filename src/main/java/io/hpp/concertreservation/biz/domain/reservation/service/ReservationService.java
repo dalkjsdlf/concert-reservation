@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.domain.reservation.service;
 
+import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
 import io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 import io.hpp.concertreservation.biz.domain.reservation.repository.ReservationReader;
@@ -13,6 +14,7 @@ import io.hpp.concertreservation.common.exception.ReservationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,20 +42,29 @@ public class ReservationService implements IReservationService{
     }
 
     @Override
-    public void reserveConcert(Long scheduleId, Long userId) {
+    public ReservationResponseDto reserveConcert(Long scheduleId, List<Long> seatIds, Long userId) {
 
+        if(seatIds.isEmpty()){
+            throw new ReservationException(ReservationErrorResult.NO_SEAT_INPUT);
+        }
+
+        Long cmpScheduleId = 0L;
+
+        List<Seat> seats = new ArrayList<Seat>();
         // 스케쥴 ID로 좌석들조회
-
-        List<Seat> seats = seatReader.readSeatsByScheduleId(scheduleId);
-
-        seats.forEach(seat->{
+        for(Long seatId : seatIds){
+            Optional<Seat> optSeat = seatReader.readSeatBySeatId(seatId);
+            Seat seat = optSeat.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_SEAT));
             if(seat.getReserveId() != null){
                 throw new ReservationException(ReservationErrorResult.ALREADY_SEAT_RESERVED);
             }
-        });
 
-        if(seats.isEmpty()){
-            throw new ReservationException(ReservationErrorResult.NO_SEATS);
+            if(cmpScheduleId.compareTo(0L) == 0){
+                cmpScheduleId = seat.getScheduleId();
+            }else if(cmpScheduleId.compareTo(seat.getScheduleId()) != 0){
+                throw new ReservationException(ReservationErrorResult.WRONG_SEAT_INPUT);
+            }
+            seats.add(seat);
         }
 
         // 총 금액 계산
@@ -75,10 +86,12 @@ public class ReservationService implements IReservationService{
             seat.setReserveId(reservationId);
             seatWriter.writeSeat(seat);
         }
+
+        return savedReservation;
     }
 
     @Override
-    public void cancelReserveConcert(Long reserveId) {
+    public Reservation cancelReserveConcert(Long reserveId) {
         Optional<Reservation> optReservation = reservationReader.readReservationById(reserveId);
         Reservation reservation = optReservation.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_RESERVATION));
 
@@ -101,6 +114,10 @@ public class ReservationService implements IReservationService{
         });
 
         reservationWriter.delete(reserveId);
+    }
+
+    public List<Reservation> getReservationsByUserId(Long userId){
+        return reservationReader.readReservationsByUserId(userId);
     }
 
 
