@@ -1,6 +1,14 @@
 # concert-reservation
 항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
 
+## SWAGGER
+### 1)
+![스웨거 캡쳐1](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/10bc6b6d-2135-4ea0-aefb-79625b6bc36a)
+
+### 2)
+![스웨거 캡처2](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/0b67833b-59be-4d76-b48f-5a87781d424a)
+
+
 ## ✔ 기능명세
 ## notion url
 https://thoracic-catamaran-22f.notion.site/6b5a4ec795134cf9a80484b601effb61?pvs=4
