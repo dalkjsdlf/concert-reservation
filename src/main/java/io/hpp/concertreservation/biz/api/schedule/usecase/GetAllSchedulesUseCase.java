@@ -4,11 +4,13 @@ import io.hpp.concertreservation.biz.api.schedule.dto.ScheduleResponseDto;
 import io.hpp.concertreservation.biz.domain.schedule.component.ScheduleReader;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional(readOnly = true)
 public class GetAllSchedulesUseCase{
     private final ScheduleReader scheduleReader;
 

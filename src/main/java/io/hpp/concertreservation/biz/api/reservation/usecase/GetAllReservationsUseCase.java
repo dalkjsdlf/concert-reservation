@@ -10,11 +10,13 @@ import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Transactional(readOnly = true)
 public class GetAllReservationsUseCase{
     private final ReservationReader reservationReader;
     private final ScheduleReader scheduleReader;
@@ -27,6 +29,7 @@ public class GetAllReservationsUseCase{
         this.concertReader = concertReader;
         this.seatReader = seatReader;
     }
+
 
     public List<ReservationResponseDto> executor(Long userId){
         List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);

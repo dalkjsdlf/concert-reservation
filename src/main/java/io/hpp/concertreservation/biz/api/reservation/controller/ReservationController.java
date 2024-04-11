@@ -2,6 +2,8 @@ package io.hpp.concertreservation.biz.api.reservation.controller;
 
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationRequestDto;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
+import io.hpp.concertreservation.biz.api.reservation.usecase.GetAllReservationsUseCase;
+import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,14 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 @RequestMapping("/api/reservations")
 public class ReservationController {
 
+    private final ReserveConcertUseCase reserveConcertUseCase;
+    private final GetAllReservationsUseCase getAllReservationsUseCase;
+
+    public ReservationController(ReserveConcertUseCase reserveConcertUseCase, GetAllReservationsUseCase getAllReservationsUseCase) {
+        this.reserveConcertUseCase = reserveConcertUseCase;
+        this.getAllReservationsUseCase = getAllReservationsUseCase;
+    }
+
     /*
      * /api/reservations/status
      * */
@@ -24,6 +34,7 @@ public class ReservationController {
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
     ){
+
         return ResponseEntity.ok(new ArrayList<ReservationResponseDto>());
     }
 
@@ -35,6 +46,7 @@ public class ReservationController {
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
     ){
+        
         return ResponseEntity.ok(new ArrayList<ReservationResponseDto>());
     }
 

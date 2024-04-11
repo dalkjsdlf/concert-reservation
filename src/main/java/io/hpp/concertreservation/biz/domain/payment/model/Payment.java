@@ -22,6 +22,7 @@ public class Payment {
 
     @Setter
     @Column()
+    @Enumerated(EnumType.STRING)
     private TransactionType tranType;
 
     @Setter
@@ -30,21 +31,24 @@ public class Payment {
 
     @Setter
     @Column()
-    private LocalDateTime tran_date;
+    private LocalDateTime tranDate;
 
-
+    @Setter
+    @Column()
+    private Long reservationId;
 
     protected Payment(){};
 
-    private Payment(Long userId, TransactionType tranType, Long amount, LocalDateTime tran_date) {
-        this.userId = userId;
-        this.tranType = tranType;
-        this.amount = amount;
-        this.tran_date = tran_date;
+    private Payment(Long userId, TransactionType tranType, Long amount, LocalDateTime tranDate,Long reservationId) {
+        this.userId        = userId;
+        this.tranType      = tranType;
+        this.amount        = amount;
+        this.tranDate     = tranDate;
+        this.reservationId = reservationId;
     }
 
-    public static Payment of(Long userId, TransactionType tranType, Long amount, LocalDateTime tran_date){
-        return new Payment(userId, tranType, amount, tran_date);
+    public static Payment of(Long userId, TransactionType tranType, Long amount, LocalDateTime tranDate, Long reservationId){
+        return new Payment(userId, tranType, amount, tranDate, reservationId);
     }
 
     @Override

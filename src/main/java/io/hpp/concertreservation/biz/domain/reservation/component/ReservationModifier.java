@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.domain.reservation.component;
 
+import io.hpp.concertreservation.biz.domain.reservation.model.PaymentStatus;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationLoadRepository;
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationStoreRepository;
@@ -45,6 +46,24 @@ public class ReservationModifier{
          * 예약정보 삭제
          * */
         reservationStoreRepository.deleteById(reservationId);
+    }
+
+    public void payReservation(Reservation reservation){
+
+        /**
+         * #TODO 유효성 검증 로직 추가
+         * */
+
+
+        /**
+         *
+         * */
+        reservation.setStatus(PaymentStatus.COMPLETE);
+
+        /**
+         * 예약정보 저장
+         * */
+        reservationStoreRepository.save(reservation);
     }
 
 }

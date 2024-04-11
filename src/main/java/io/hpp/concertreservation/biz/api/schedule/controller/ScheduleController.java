@@ -12,13 +12,13 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_H
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 
 @RestController
-@RequestMapping("/api/concerts")
+@RequestMapping("/api/concerts/{concertId}")
 public class ScheduleController {
 
     /*
      * /api/concerts/{concertId}/schedules/
      * */
-    @GetMapping("{concertId}/schedules")
+    @GetMapping("schedules")
     public ResponseEntity<List<Schedule>> getAllSchedules(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
@@ -29,7 +29,7 @@ public class ScheduleController {
     /*
      * /api/concerts/{concertId}/schedules/{ScheduleId}
      * */
-    @GetMapping("{concertId}/schedules/{scheduleId}")
+    @GetMapping("schedules/{scheduleId}")
     public ResponseEntity<Schedule> getAllSchedules(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,

@@ -13,12 +13,14 @@ import io.hpp.concertreservation.biz.domain.seat.component.SeatSupportor;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
+@Transactional()
 public class ReserveConcertUseCase {
 
     private final SeatReader seatReader;

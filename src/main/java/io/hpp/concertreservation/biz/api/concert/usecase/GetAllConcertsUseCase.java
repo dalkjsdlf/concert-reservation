@@ -5,11 +5,13 @@ import io.hpp.concertreservation.biz.domain.concert.component.ConcertReader;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional(readOnly = true)
 public class GetAllConcertsUseCase {
 
     private final ConcertReader concertReader;

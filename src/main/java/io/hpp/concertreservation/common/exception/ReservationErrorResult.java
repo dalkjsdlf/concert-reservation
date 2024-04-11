@@ -21,7 +21,10 @@ public enum ReservationErrorResult {
     ALREADY_SEAT_RESERVED(HttpStatus.INTERNAL_SERVER_ERROR,"The seat is already reserved"),
     NO_RESERVATION(HttpStatus.INTERNAL_SERVER_ERROR,"No Reservation"),
     NOT_ENOUGH_MONEY(HttpStatus.BAD_REQUEST,"Not Enough Money"),
-    WRONG_SEAT_INPUT(HttpStatus.BAD_REQUEST,"Wrong seat input");
+    WRONG_SEAT_INPUT(HttpStatus.BAD_REQUEST,"Wrong seat input"),
+    FAIL_DELETE_NO_RESERVATION(HttpStatus.BAD_REQUEST,"Failed to delete caused by that cannot found reservation"),
+    NO_PAYMENT_HISTORY(HttpStatus.INTERNAL_SERVER_ERROR,"There is no payment histories"),
+    SEATS_DOES_NOT_HAVE_SAME_SCHEDULE_ID(HttpStatus.INTERNAL_SERVER_ERROR, "seats doesn't have the same scheduleId");
 
     private final HttpStatus httpStatus;
     private final String message;
