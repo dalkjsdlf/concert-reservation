@@ -2,8 +2,6 @@ package io.hpp.concertreservation.biz.api.payment.controller;
 
 import io.hpp.concertreservation.biz.api.payment.dto.PaymentRequestDto;
 import io.hpp.concertreservation.biz.api.payment.dto.PaymentResponseDto;
-import org.apache.coyote.Response;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

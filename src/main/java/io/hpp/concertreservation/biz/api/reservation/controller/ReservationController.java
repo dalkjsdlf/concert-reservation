@@ -2,17 +2,16 @@ package io.hpp.concertreservation.biz.api.reservation.controller;
 
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationRequestDto;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
-import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
+
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationController {

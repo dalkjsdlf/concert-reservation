@@ -9,7 +9,7 @@ import java.util.Objects;
 @Getter
 @Table
 @Entity
-public class UserInfo{
+public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

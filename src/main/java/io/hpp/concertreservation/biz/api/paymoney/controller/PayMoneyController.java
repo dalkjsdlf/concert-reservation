@@ -1,7 +1,8 @@
 package io.hpp.concertreservation.biz.api.paymoney.controller;
 
 import io.hpp.concertreservation.biz.api.paymoney.dto.PayMoneyResponseDto;
-import io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod;
+
+import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

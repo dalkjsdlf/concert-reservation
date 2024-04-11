@@ -1,7 +1,7 @@
 package io.hpp.concertreservation.biz.api.paymoney.dto;
 
 
-import io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod;
+import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

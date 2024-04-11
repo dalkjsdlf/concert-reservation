@@ -1,6 +1,5 @@
 package io.hpp.concertreservation.biz.domain.seat.model;
 
-import io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

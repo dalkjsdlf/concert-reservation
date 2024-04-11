@@ -1,6 +1,5 @@
 package io.hpp.concertreservation.biz.domain.paymoney.model;
 
-import io.hpp.concertreservation.biz.domain.paymoney.enumclass.PayMethod;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +30,7 @@ public class PayMoney {
 
     protected PayMoney(){};
 
-    private PayMoney(Long balance,PayMethod payMethod) {
+    private PayMoney(Long balance, PayMethod payMethod) {
         this.balance = balance;
         this.payMethod = payMethod;
     }

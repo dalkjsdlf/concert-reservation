@@ -16,8 +16,8 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 public class ConcertController {
 
     /*
-    * /api/concerts
-    * */
+     * /api/concerts
+     * */
     @GetMapping("")
     public ResponseEntity<List<Concert>> getAllConcerts(
             @RequestHeader(TOKEN_HEADER) String token,
