@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="스케쥴 정보 조회 테스트" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-04-10T23:39:29" hostname="choeyeonhoui-MacBookAir.local" time="0.027">
+  <properties/>
+  <testcase name="Not null 체크" classname="io.hpp.concertreservation.concert.respository.ScheduleCoreRepositoryTest" time="0.006"/>
+  <testcase name="[성공] ConcertId로 스케쥴들 조회하기" classname="io.hpp.concertreservation.concert.respository.ScheduleCoreRepositoryTest" time="0.02"/>
+  <system-out><![CDATA[2024-04-11T08:39:29.950+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [ScheduleCoreRepositoryTest]: using SpringBootContextLoader
+2024-04-11T08:39:29.954+09:00  INFO 34923 --- [concert-reservation] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [io.hpp.concertreservation.concert.respository.ScheduleCoreRepositoryTest]: ScheduleCoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-04-11T08:39:29.954+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using ContextCustomizerFactory implementations for test class [ScheduleCoreRepositoryTest]: [OverrideAutoConfigurationContextCustomizerFactory, ObservabilityContextCustomizerFactory, TypeExcludeFiltersContextCustomizerFactory, PropertyMappingContextCustomizerFactory, WebDriverContextCustomizerFactory, ImportsContextCustomizerFactory, ExcludeFilterContextCustomizerFactory, HttpGraphQlTesterContextCustomizerFactory, DuplicateJsonObjectContextCustomizerFactory, MockitoContextCustomizerFactory, TestRestTemplateContextCustomizerFactory, WebTestClientContextCustomizerFactory, MockServerContainerContextCustomizerFactory, DynamicPropertiesContextCustomizerFactory]
+2024-04-11T08:39:29.957+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using ContextCustomizers for test class [ScheduleCoreRepositoryTest]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, WebDriverContextCustomizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+2024-04-11T08:39:29.958+09:00  INFO 34923 --- [concert-reservation] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration io.hpp.concertreservation.ConcertReservationApplication for test class io.hpp.concertreservation.concert.respository.ScheduleCoreRepositoryTest
+2024-04-11T08:39:29.958+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using TestExecutionListeners for test class [ScheduleCoreRepositoryTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+2024-04-11T08:39:29.960+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:29.962+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:29.962+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.963+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.963+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.963+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.967+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:29.969+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:29.969+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.969+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.970+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.970+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:29.983+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.concert_id,
+        s1_0.perform_date 
+    from
+        schedule s1_0 
+    where
+        s1_0.concert_id=?
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.concert_id,
+        s1_0.perform_date 
+    from
+        schedule s1_0 
+    where
+        s1_0.concert_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

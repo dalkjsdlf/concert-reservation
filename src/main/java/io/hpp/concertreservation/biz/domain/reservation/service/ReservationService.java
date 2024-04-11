@@ -17,8 +17,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class ReservationService implements IReservationService{
+public class ReservationService{
 
     private final SeatReader seatReader;
 
@@ -41,7 +42,6 @@ public class ReservationService implements IReservationService{
         this.scheduleReader = scheduleReader;
     }
 
-    @Override
     public ReservationResponseDto reserveConcert(Long scheduleId, List<Long> seatIds, Long userId) {
 
         if(seatIds.isEmpty()){
@@ -87,11 +87,13 @@ public class ReservationService implements IReservationService{
             seatWriter.writeSeat(seat);
         }
 
-        return savedReservation;
+        return ReservationResponseDto.
+                builder().
+                scheduleId(savedReservation.getScheduleId()).
+                build();
     }
 
-    @Override
-    public Reservation cancelReserveConcert(Long reserveId) {
+    public ReservationResponseDto cancelReserveConcert(Long reserveId) {
         Optional<Reservation> optReservation = reservationReader.readReservationById(reserveId);
         Reservation reservation = optReservation.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_RESERVATION));
 
@@ -113,12 +115,43 @@ public class ReservationService implements IReservationService{
             seatWriter.writeSeat(seat);
         });
 
-        reservationWriter.delete(reserveId);
+        Reservation deletedReservation = reservationWriter.delete(reserveId);
+
+        return ReservationResponseDto.
+                builder().
+                scheduleId(deletedReservation.getScheduleId()).
+                userId(deletedReservation.getUserId()).
+                build();
     }
 
-    public List<Reservation> getReservationsByUserId(Long userId){
-        return reservationReader.readReservationsByUserId(userId);
+    public List<ReservationResponseDto> getReservationsByUserId(Long userId){
+
+        List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
+
+        return reservations.
+                stream().
+                map(reservation -> ReservationResponseDto.
+                        builder().
+                        scheduleId(reservation.getScheduleId()).
+
+                        build()).
+                collect(Collectors.toList());
     }
 
+
+    public List<ReservationResponseDto> getReservationsById(Long userId){
+
+        List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
+
+
+        return reservations.
+                stream().
+                map(reservation -> ReservationResponseDto.
+                        builder().
+                        scheduleId(reservation.getScheduleId()).
+
+                        build()).
+                collect(Collectors.toList());
+    }
 
 }

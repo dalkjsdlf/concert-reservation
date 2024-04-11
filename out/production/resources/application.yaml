@@ -1,0 +1,52 @@
+debug: true
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
+
+server:
+  port: 8500
+
+logging:
+  level:
+    io.hhp.speciallecture : debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.internal: trace
+
+spring:
+  application:
+    name: concert-reservation
+  datasource:
+    driver-class-name: org.h2.Driver
+    #url: 'jdbc:h2:mem:test'   # H2 DB ?? ?? (In-Memory Mode)
+    url: 'jdbc:h2:~/test'    # H2 DB ?? ?? (Embedded Mode)
+    username: sa        # H2 DB ?? ID (??? ??)
+    password:         # H2 DB ?? PW (??? ??)
+    #url: jdbc:mysql://localhost:3306/lecture
+    #username: dorris
+    #password: dusghchl3891
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        hibernate.default_batch_fetch_size: 100
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    #database: mysql
+  sql:
+    init:
+      mode: always
+  data:
+    rest:
+      base-path: /api
+      detection-strategy: annotated
+  thymeleaf3:
+    decoupled-logic: true
+
+
+

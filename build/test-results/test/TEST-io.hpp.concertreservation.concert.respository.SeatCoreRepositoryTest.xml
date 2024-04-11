@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="좌석 정보 테스트" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-04-10T23:39:30" hostname="choeyeonhoui-MacBookAir.local" time="0.041">
+  <properties/>
+  <testcase name="[성공] 박효신 콘서트 17시 콘서트 좌석 조회 : 예상 결과값 3" classname="io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest" time="0.012"/>
+  <testcase name="Not null 체크" classname="io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest" time="0.008"/>
+  <testcase name="[성공] 박효신 콘서트 21시 콘서트 좌석 조회 : 예상 결과값 2" classname="io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest" time="0.008"/>
+  <testcase name="[성공] reservationId update 테스트" classname="io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest" time="0.008"/>
+  <system-out><![CDATA[2024-04-11T08:39:29.988+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [SeatCoreRepositoryTest]: using SpringBootContextLoader
+2024-04-11T08:39:29.988+09:00  INFO 34923 --- [concert-reservation] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest]: SeatCoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-04-11T08:39:29.989+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using ContextCustomizerFactory implementations for test class [SeatCoreRepositoryTest]: [OverrideAutoConfigurationContextCustomizerFactory, ObservabilityContextCustomizerFactory, TypeExcludeFiltersContextCustomizerFactory, PropertyMappingContextCustomizerFactory, WebDriverContextCustomizerFactory, ImportsContextCustomizerFactory, ExcludeFilterContextCustomizerFactory, HttpGraphQlTesterContextCustomizerFactory, DuplicateJsonObjectContextCustomizerFactory, MockitoContextCustomizerFactory, TestRestTemplateContextCustomizerFactory, WebTestClientContextCustomizerFactory, MockServerContainerContextCustomizerFactory, DynamicPropertiesContextCustomizerFactory]
+2024-04-11T08:39:29.997+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using ContextCustomizers for test class [SeatCoreRepositoryTest]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, WebDriverContextCustomizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+2024-04-11T08:39:29.998+09:00  INFO 34923 --- [concert-reservation] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration io.hpp.concertreservation.ConcertReservationApplication for test class io.hpp.concertreservation.concert.respository.SeatCoreRepositoryTest
+2024-04-11T08:39:29.999+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] b.t.a.o.j.DataJpaTestContextBootstrapper : Using TestExecutionListeners for test class [SeatCoreRepositoryTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+2024-04-11T08:39:30.003+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.004+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.005+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.006+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.006+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.007+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.007+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.008+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.010+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.price,
+        s1_0.reserve_id,
+        s1_0.schedule_id,
+        s1_0.seat_grade,
+        s1_0.seat_no 
+    from
+        seat s1_0 
+    where
+        s1_0.schedule_id=?
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.price,
+        s1_0.reserve_id,
+        s1_0.schedule_id,
+        s1_0.seat_grade,
+        s1_0.seat_no 
+    from
+        seat s1_0 
+    where
+        s1_0.schedule_id=?
+2024-04-11T08:39:30.017+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.019+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.019+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.020+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.020+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.020+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.020+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.021+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.027+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.028+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.029+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.029+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.030+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.030+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.031+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.031+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.032+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.price,
+        s1_0.reserve_id,
+        s1_0.schedule_id,
+        s1_0.seat_grade,
+        s1_0.seat_no 
+    from
+        seat s1_0 
+    where
+        s1_0.schedule_id=?
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.price,
+        s1_0.reserve_id,
+        s1_0.schedule_id,
+        s1_0.seat_grade,
+        s1_0.seat_no 
+    from
+        seat s1_0 
+    where
+        s1_0.schedule_id=?
+2024-04-11T08:39:30.036+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert_info
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.037+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.037+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        schedule
+        (concert_id, perform_date, id) 
+    values
+        (?, ?, default)
+2024-04-11T08:39:30.038+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.038+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.038+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.039+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-11T08:39:30.039+09:00 DEBUG 34923 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        seat
+        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
