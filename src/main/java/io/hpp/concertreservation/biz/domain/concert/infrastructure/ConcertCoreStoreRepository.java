@@ -14,7 +14,7 @@ public class ConcertCoreStoreRepository implements IConcertStoreRepository {
     }
 
     @Override
-    public Concert writeConcert(Concert concert) {
+    public Concert saveConcert(Concert concert) {
         return concertJpaRepository.save(concert);
     }
 }

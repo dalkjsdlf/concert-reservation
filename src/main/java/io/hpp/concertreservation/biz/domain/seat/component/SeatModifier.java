@@ -1,8 +1,8 @@
 package io.hpp.concertreservation.biz.domain.seat.component;
 
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
-import io.hpp.concertreservation.biz.domain.userinfo.repository.ISeatLoadRepository;
-import io.hpp.concertreservation.biz.domain.userinfo.repository.ISeatStoreRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class SeatModifier{
         /*
          * 이미 있는 좌석에 대해서만 UPDATE 한다.
          * */
-        if(seatLoadRepository.readSeatBySeatId(seatId).isPresent()){
+        if(seatLoadRepository.findSeatBySeatId(seatId).isEmpty()){
             throw new ReservationException(ReservationErrorResult.NO_SEAT);
         }
 
@@ -55,7 +55,7 @@ public class SeatModifier{
          * 좌석에 예약ID 업데이트
          * */
         seat.setReserveId(reservationId);
-        seatStoreRepository.writeSeat(seat);
+        seatStoreRepository.saveSeat(seat);
     }
 
 }

@@ -20,7 +20,7 @@ public class ScheduleReader{
     }
 
     public List<Schedule> readSchedulesByConcertId(Long concertId) {
-        List<Schedule> schedules = scheduleLoadRepository.findConcertsByConcertId(concertId);
+        List<Schedule> schedules = scheduleLoadRepository.findSchedulesByConcertId(concertId);
 
         if(schedules.isEmpty()){
             throw new ReservationException(ReservationErrorResult.NO_SCHEDULE);

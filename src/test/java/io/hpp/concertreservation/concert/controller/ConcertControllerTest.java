@@ -2,18 +2,12 @@ package io.hpp.concertreservation.concert.controller;
 
 import com.google.gson.Gson;
 import io.hpp.concertreservation.biz.api.concert.controller.ConcertController;
-import io.hpp.concertreservation.biz.domain.concert.service.ConcertService;
-import io.hpp.concertreservation.biz.domain.concert.service.IConcertService;
+import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -32,12 +26,12 @@ public class ConcertControllerTest {
     private MockMvc mockMvc;
 
     private final ConcertController concertController;
-    private final IConcertService concertService;
+    private final GetConcertUseCase getConcertUseCase;
 
     public ConcertControllerTest(@Autowired ConcertController concertController,
-                                 @Autowired IConcertService concertService) {
+                                 @Autowired GetConcertUseCase getConcertUseCase) {
         this.concertController = concertController;
-        this.concertService = concertService;
+        this.getConcertUseCase = getConcertUseCase;
     }
 
     private Gson gson;

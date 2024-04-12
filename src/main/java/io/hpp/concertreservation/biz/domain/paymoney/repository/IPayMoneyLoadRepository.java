@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface IPayMoneyLoadRepository {
 
-    Optional<PayMoney> readById(Long userPaymentId);
-    Optional<PayMoney> readByUserIdAndPayMethod(Long userId, PayMethod payMethod);
+    Optional<PayMoney> findById(Long userPaymentId);
+    Optional<PayMoney> findByUserIdAndPayMethod(Long userId, PayMethod payMethod);
 
     //List<PayMoney> readByUserId(Long userId);
 

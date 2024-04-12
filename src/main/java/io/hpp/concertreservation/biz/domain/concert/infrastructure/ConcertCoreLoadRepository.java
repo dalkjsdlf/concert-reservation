@@ -18,12 +18,12 @@ public class ConcertCoreLoadRepository implements IConcertLoadRepository {
     }
 
     @Override
-    public List<Concert> readAllConcerts() {
+    public List<Concert> findAllConcerts() {
         return IConcertJpaRepository.findAll();
     }
 
     @Override
-    public Optional<Concert> readConcert(Long concertId) {
+    public Optional<Concert> findConcert(Long concertId) {
         return IConcertJpaRepository.findById(concertId);
     }
 }

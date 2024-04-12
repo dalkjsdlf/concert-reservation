@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IConcertLoadRepository {
-    List<Concert> readAllConcerts();
-    Optional<Concert> readConcert(Long concertId);
+    List<Concert> findAllConcerts();
+    Optional<Concert> findConcert(Long concertId);
 }

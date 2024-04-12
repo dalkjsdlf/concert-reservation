@@ -30,13 +30,14 @@ public class PayMoney {
 
     protected PayMoney(){};
 
-    private PayMoney(Long balance, PayMethod payMethod) {
+    private PayMoney(Long userId, Long balance, PayMethod payMethod) {
+        this.userId = userId;
         this.balance = balance;
         this.payMethod = payMethod;
     }
 
-    public static PayMoney of(Long balance,PayMethod payMethod){
-        return new PayMoney(balance, payMethod);
+    public static PayMoney of(Long userId, Long balance, PayMethod payMethod){
+        return new PayMoney(userId, balance, payMethod);
     }
 
     @Override

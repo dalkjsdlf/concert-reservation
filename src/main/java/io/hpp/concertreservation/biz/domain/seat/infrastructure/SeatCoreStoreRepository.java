@@ -1,7 +1,7 @@
 package io.hpp.concertreservation.biz.domain.seat.infrastructure;
 
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
-import io.hpp.concertreservation.biz.domain.userinfo.repository.ISeatStoreRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class SeatCoreStoreRepository implements ISeatStoreRepository {
     }
 
     @Override
-    public Seat writeSeat(Seat seat) {
+    public Seat saveSeat(Seat seat) {
         return seatJpaRepository.save(seat);
     }
 }

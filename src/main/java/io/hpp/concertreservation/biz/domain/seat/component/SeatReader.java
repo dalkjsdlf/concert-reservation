@@ -1,8 +1,7 @@
 package io.hpp.concertreservation.biz.domain.seat.component;
 
-import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
-import io.hpp.concertreservation.biz.domain.userinfo.repository.ISeatLoadRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 
@@ -21,7 +20,7 @@ public class SeatReader{
     }
 
     public List<Seat> readSeatsByScheduleId(Long scheduleId){
-        List<Seat> seats = seatLoadRepository.readSeatsByScheduleId(scheduleId);
+        List<Seat> seats = seatLoadRepository.findSeatsByScheduleId(scheduleId);
 
         if(seats.isEmpty()){
             throw new ReservationException(ReservationErrorResult.NO_SEATS);

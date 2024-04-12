@@ -1,6 +1,5 @@
 package io.hpp.concertreservation.biz.domain.concert.component;
 
-import io.hpp.concertreservation.biz.api.concert.dto.ConcertResponseDto;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
@@ -21,7 +20,7 @@ public class ConcertReader{
     }
 
     public List<Concert> readAllConcerts(){
-        List<Concert> concerts = concertLoadRepository.readAllConcerts();
+        List<Concert> concerts = concertLoadRepository.findAllConcerts();
 
         if(concerts.isEmpty()){
             throw new ReservationException(ReservationErrorResult.ANY_CONCERT_NOT_FOUND);
@@ -31,7 +30,7 @@ public class ConcertReader{
     }
     public Concert readConcertById(Long concertId){
 
-        Optional<Concert> optConcertInfo = concertLoadRepository.readConcert(concertId);
+        Optional<Concert> optConcertInfo = concertLoadRepository.findConcert(concertId);
         /**
          * 콘서트 조회시 찾지 못하면 발생
          * */

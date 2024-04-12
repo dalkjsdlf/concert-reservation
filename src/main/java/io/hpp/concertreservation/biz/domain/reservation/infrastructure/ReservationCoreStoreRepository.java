@@ -14,7 +14,7 @@ public class ReservationCoreStoreRepository implements IReservationStoreReposito
     }
 
     @Override
-    public Reservation save(Reservation reservation) {
+    public Reservation saveReservation(Reservation reservation) {
         return reservationJpaRepository.save(reservation);
     }
 

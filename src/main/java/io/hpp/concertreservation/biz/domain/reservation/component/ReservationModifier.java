@@ -30,7 +30,7 @@ public class ReservationModifier{
         /**
          * 예약정보 저장
          * */
-        return reservationStoreRepository.save(reservation);
+        return reservationStoreRepository.saveReservation(reservation);
     }
 
     public void removeReservation(Long reservationId){
@@ -38,7 +38,7 @@ public class ReservationModifier{
         /**
          * #TODO 유효성 검증 로직 추가
          * */
-        if(reservationLoadRepository.readReservationById(reservationId).isPresent() == false){
+        if(reservationLoadRepository.findReservationById(reservationId).isPresent() == false){
             throw new ReservationException(ReservationErrorResult.FAIL_DELETE_NO_RESERVATION);
         }
 
@@ -63,7 +63,7 @@ public class ReservationModifier{
         /**
          * 예약정보 저장
          * */
-        reservationStoreRepository.save(reservation);
+        reservationStoreRepository.saveReservation(reservation);
     }
 
 }

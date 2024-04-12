@@ -19,12 +19,12 @@ public class PayMoneyCoreLoadRepository implements IPayMoneyLoadRepository {
     }
 
     @Override
-    public Optional<PayMoney> readById(Long userPaymentId) {
+    public Optional<PayMoney> findById(Long userPaymentId) {
         return payMoneyJpaRepository.findById(userPaymentId);
     }
 
     @Override
-    public Optional<PayMoney> readByUserIdAndPayMethod(Long userId, PayMethod payMethod) {
+    public Optional<PayMoney> findByUserIdAndPayMethod(Long userId, PayMethod payMethod) {
         return payMoneyJpaRepository.findByUserIdAndPayMethod(userId, payMethod);
     }
 }

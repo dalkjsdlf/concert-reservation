@@ -14,7 +14,7 @@ public class PayMoneyCoreStoreRepository implements IPayMoneyStoreRespository {
     }
 
     @Override
-    public PayMoney writeUserPayment(PayMoney userPayment) {
+    public PayMoney savePayMoney(PayMoney userPayment) {
         return payMoneyJpaRepository.save(userPayment);
     }
 }

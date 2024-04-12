@@ -14,6 +14,6 @@ public class PaymentModifier {
     }
 
     public void addPaymentHistory(Payment payment){
-        paymentStoreRepository.save(payment);
+        paymentStoreRepository.savePayment(payment);
     }
 }

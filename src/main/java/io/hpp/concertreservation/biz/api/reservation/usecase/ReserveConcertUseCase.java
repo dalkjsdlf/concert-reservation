@@ -26,20 +26,16 @@ public class ReserveConcertUseCase {
     private final SeatReader seatReader;
     private final SeatSupportor seatSupportor;
 
-    private final ReservationCreator reservationCreator;
-
     private final SeatModifier seatModifier;
 
     private final ReservationModifier reservationModifier;
 
     public ReserveConcertUseCase(@Autowired SeatReader seatReader,
                                  @Autowired SeatSupportor seatSupportor,
-                                 @Autowired ReservationCreator reservationCreator,
                                  @Autowired SeatModifier seatModifier,
                                  @Autowired ReservationModifier reservationModifier) {
         this.seatReader = seatReader;
         this.seatSupportor = seatSupportor;
-        this.reservationCreator = reservationCreator;
         this.seatModifier = seatModifier;
         this.reservationModifier = reservationModifier;
     }

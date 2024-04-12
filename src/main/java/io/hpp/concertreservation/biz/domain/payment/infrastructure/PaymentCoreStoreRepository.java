@@ -14,7 +14,7 @@ public class PaymentCoreStoreRepository implements IPaymentStoreRepository {
         this.paymentJpaRepository = paymentJpaRepository;
     }
 
-    public Payment save(Payment payment){
+    public Payment savePayment(Payment payment){
         return paymentJpaRepository.save(payment);
     }
 }

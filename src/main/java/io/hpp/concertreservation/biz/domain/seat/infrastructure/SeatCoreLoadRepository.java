@@ -1,7 +1,7 @@
 package io.hpp.concertreservation.biz.domain.seat.infrastructure;
 
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
-import io.hpp.concertreservation.biz.domain.userinfo.repository.ISeatLoadRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,17 +18,17 @@ public class SeatCoreLoadRepository implements ISeatLoadRepository {
     }
 
     @Override
-    public List<Seat> readSeatsByScheduleId(Long scheduleId) {
+    public List<Seat> findSeatsByScheduleId(Long scheduleId) {
         return seatJpaRepository.findByScheduleId(scheduleId);
     }
 
     @Override
-    public Optional<Seat> readSeatBySeatNoAndScheduleId(Long seatNo, Long scheduleId) {
+    public Optional<Seat> findSeatBySeatNoAndScheduleId(Long seatNo, Long scheduleId) {
         return seatJpaRepository.findBySeatNoAndScheduleId(seatNo, scheduleId);
     }
 
     @Override
-    public Optional<Seat> readSeatBySeatId(Long seatId) {
+    public Optional<Seat> findSeatBySeatId(Long seatId) {
         return seatJpaRepository.findById(seatId);
     }
 }

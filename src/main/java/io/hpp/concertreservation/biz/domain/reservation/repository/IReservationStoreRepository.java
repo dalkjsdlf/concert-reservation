@@ -4,7 +4,7 @@ import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 
 public interface IReservationStoreRepository {
 
-    public Reservation save(Reservation reservation);
+    public Reservation saveReservation(Reservation reservation);
 
     void deleteById(Long reserveId);
 

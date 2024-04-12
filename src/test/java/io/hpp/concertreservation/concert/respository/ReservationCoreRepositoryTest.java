@@ -1,20 +1,25 @@
 package io.hpp.concertreservation.concert.respository;
 
-import io.hpp.concertreservation.biz.domain.concert.infrastructure.ConcertCoreRepository;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
-import io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus;
-import io.hpp.concertreservation.biz.domain.reservation.infrastructure.ReservationCoreRepository;
+import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
+import io.hpp.concertreservation.biz.domain.reservation.model.PaymentStatus;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
-import io.hpp.concertreservation.biz.domain.schedule.infrastructure.ScheduleCoreRepository;
+import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationLoadRepository;
+import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationStoreRepository;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
-import io.hpp.concertreservation.biz.domain.seat.enumclass.SeatGrade;
-import io.hpp.concertreservation.biz.domain.seat.infrastructure.SeatCoreRepository;
+import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleLoadRepository;
+import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleStoreRepository;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
+import io.hpp.concertreservation.biz.domain.seat.model.SeatGrade;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
+import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,24 +38,37 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 테스트3 입력된 예약 정보 사용자 ID로 조회하기
  * */
 @DisplayName("예약 DB 테스트")
-@DataJpaTest
+@SpringBootTest
+@Transactional
+@ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
 public class ReservationCoreRepositoryTest {
 
-    private final ScheduleCoreRepository scheduleCoreRepository;
-    private final ConcertCoreRepository concertCoreRepository;
 
-    private final SeatCoreRepository seatCoreRepository;
+    private final IScheduleLoadRepository scheduleLoadRepository;
+    private final IScheduleStoreRepository scheduleStoreRepository;
+    private final IConcertStoreRepository concertStoreRepository;
 
-    private final ReservationCoreRepository reservationCoreRepository;
+    private final ISeatStoreRepository seatStoreRepository;
+    private final ISeatLoadRepository seatLoadRepository;
 
-    public ReservationCoreRepositoryTest(@Autowired ScheduleCoreRepository scheduleCoreRepository,
-                                         @Autowired ConcertCoreRepository concertCoreRepository,
-                                         @Autowired SeatCoreRepository seatCoreRepository,
-                                         @Autowired ReservationCoreRepository reservationCoreRepository) {
-        this.scheduleCoreRepository = scheduleCoreRepository;
-        this.concertCoreRepository  = concertCoreRepository;
-        this.seatCoreRepository     = seatCoreRepository;
-        this.reservationCoreRepository = reservationCoreRepository;
+    private IReservationLoadRepository reservationLoadRepository;
+
+    private IReservationStoreRepository reservationStoreRepository;
+
+    public ReservationCoreRepositoryTest(@Autowired IScheduleLoadRepository scheduleLoadRepository,
+                                         @Autowired IScheduleStoreRepository scheduleStoreRepository,
+                                         @Autowired IConcertStoreRepository concertStoreRepository,
+                                         @Autowired ISeatStoreRepository seatStoreRepository,
+                                         @Autowired ISeatLoadRepository seatLoadRepository,
+                                         @Autowired IReservationLoadRepository reservationLoadRepository,
+                                         @Autowired IReservationStoreRepository reservationStoreRepository) {
+        this.scheduleLoadRepository = scheduleLoadRepository;
+        this.scheduleStoreRepository = scheduleStoreRepository;
+        this.concertStoreRepository = concertStoreRepository;
+        this.seatStoreRepository = seatStoreRepository;
+        this.seatLoadRepository = seatLoadRepository;
+        this.reservationLoadRepository = reservationLoadRepository;
+        this.reservationStoreRepository = reservationStoreRepository;
     }
 
     private Long phsConcertScheduleId = 0L;
@@ -68,7 +86,7 @@ public class ReservationCoreRepositoryTest {
                 LocalDateTime.of(2023,12,24,0,0,0),
                 LocalDateTime.of(2023,12,25,0,0,0));
 
-        Concert savedPhsConcert = concertCoreRepository.save(phsConcert);
+        Concert savedPhsConcert = concertStoreRepository.saveConcert(phsConcert);
         Long phsConcertId   = savedPhsConcert.getId();
 
         /**
@@ -77,12 +95,12 @@ public class ReservationCoreRepositoryTest {
         Schedule phsSchedule1 = Schedule.of(
                 phsConcertId,
                 LocalDateTime.of(2023,12,24,17,0,0));
-        scheduleCoreRepository.save(phsSchedule1);
+        scheduleStoreRepository.saveSchedule(phsSchedule1);
 
         Schedule phsSchedule2 = Schedule.of(
                 phsConcertId,
                 LocalDateTime.of(2023,12,24,21,0,0));
-        scheduleCoreRepository.save(phsSchedule2);
+        scheduleStoreRepository.saveSchedule(phsSchedule2);
         phsConcertScheduleId       = phsSchedule1.getId();
         phsConcertSecondScheduleId = phsSchedule2.getId();
         /**
@@ -96,11 +114,11 @@ public class ReservationCoreRepositoryTest {
         Seat seat4 = Seat.of(phsConcertSecondScheduleId,1L, SeatGrade.VIP,250000L,-1L);
         Seat seat5 = Seat.of(phsConcertSecondScheduleId,2L, SeatGrade.R,120000L,-1L);
 
-        seatCoreRepository.save(seat1);
-        seatCoreRepository.save(seat2);
-        seatCoreRepository.save(seat3);
-        seatCoreRepository.save(seat4);
-        seatCoreRepository.save(seat5);
+        seatStoreRepository.saveSeat(seat1);
+        seatStoreRepository.saveSeat(seat2);
+        seatStoreRepository.saveSeat(seat3);
+        seatStoreRepository.saveSeat(seat4);
+        seatStoreRepository.saveSeat(seat5);
     }
 
     @DisplayName("Not null 체크")
@@ -111,10 +129,16 @@ public class ReservationCoreRepositoryTest {
         // when
 
         // then
-        assertThat(concertCoreRepository).isNotNull();
-        assertThat(scheduleCoreRepository).isNotNull();
-        assertThat(seatCoreRepository).isNotNull();
-        assertThat(reservationCoreRepository).isNotNull();
+
+        assertThat(scheduleLoadRepository).isNotNull();
+        assertThat(scheduleStoreRepository).isNotNull();
+        assertThat(concertStoreRepository).isNotNull();
+        assertThat(seatStoreRepository).isNotNull();
+        assertThat(seatLoadRepository).isNotNull();
+        assertThat(reservationLoadRepository).isNotNull();
+        assertThat(reservationStoreRepository).isNotNull();
+
+
     }
 
     @DisplayName("[성공] 박효신 24일 17시 공연 1번 좌석 예약 정보 입력")
@@ -132,7 +156,7 @@ public class ReservationCoreRepositoryTest {
                 PaymentStatus.WAIT);
 
         // when
-        Reservation result = reservationCoreRepository.save(reservation);
+        Reservation result = reservationStoreRepository.saveReservation(reservation);
 
         // then
         assertThat(result).isNotNull();
@@ -160,11 +184,11 @@ public class ReservationCoreRepositoryTest {
                 240000L,
                 PaymentStatus.WAIT);
 
-        reservationCoreRepository.save(reservation);
-        reservationCoreRepository.save(reservation2);
+        reservationStoreRepository.saveReservation(reservation);
+        reservationStoreRepository.saveReservation(reservation2);
 
         // when
-        List<Reservation> reservations = reservationCoreRepository.findByUserId(userId);
+        List<Reservation> reservations = reservationLoadRepository.findReservationsByUserId(userId);
 
         // then
         assertThat(reservations.size()).isEqualTo(2);

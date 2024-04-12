@@ -18,17 +18,17 @@ public class ReservationCoreLoadRepository implements IReservationLoadRepository
     }
 
     @Override
-    public List<Reservation> readReservationsByUserId(Long userId) {
+    public List<Reservation> findReservationsByUserId(Long userId) {
         return reservationJpaRepository.findByUserId(userId);
     }
 
     @Override
-    public Optional<Reservation> readReservationByScheduleId(Long scheduleId) {
+    public Optional<Reservation> findReservationByScheduleId(Long scheduleId) {
         return reservationJpaRepository.findByScheduleId(scheduleId);
     }
 
     @Override
-    public Optional<Reservation> readReservationById(Long reserveId) {
+    public Optional<Reservation> findReservationById(Long reserveId) {
         return reservationJpaRepository.findById(reserveId);
     }
 }

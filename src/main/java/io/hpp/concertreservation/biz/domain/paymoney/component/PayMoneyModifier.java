@@ -1,0 +1,69 @@
+package io.hpp.concertreservation.biz.domain.paymoney.component;
+
+import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
+import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
+import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyLoadRepository;
+import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyStoreRespository;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+@Component
+public class PayMoneyModifier {
+
+    private final IPayMoneyStoreRespository payMoneyStoreRespository;
+
+    private final IPayMoneyLoadRepository payMoneyLoadRepository;
+
+    private final PayMoneyValidator payMoneyValidator;
+
+    public PayMoneyModifier(IPayMoneyStoreRespository payMoneyStoreRespository, IPayMoneyLoadRepository payMoneyLoadRepository, PayMoneyValidator payMoneyValidator) {
+        this.payMoneyStoreRespository = payMoneyStoreRespository;
+        this.payMoneyLoadRepository = payMoneyLoadRepository;
+        this.payMoneyValidator = payMoneyValidator;
+    }
+
+    public void charge(Long userId, PayMethod payMethod,Long amount) {
+        Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
+
+        PayMoney payMoney = optPayMoney.orElseGet(null);
+
+        if(optPayMoney.isEmpty()){
+            payMoney = PayMoney.of(userId, amount, payMethod);
+        }
+
+        payMoneyStoreRespository.savePayMoney(payMoney);
+    }
+
+    public void use(Long userId, PayMethod payMethod, Long amount) {
+        /*
+         * 잔액이 충분히 있는지 검사
+         **/
+        PayMoney payMoney = payMoneyValidator.validationOfEnough(userId, payMethod, amount);
+
+        /*
+        * 현재 잔액 추출
+        **/
+        Long currentBalance = payMoney.getBalance();
+
+        /*
+         * 현재잔액에서 사용금액만큼 차감한다.
+         **/
+        Long resultBalance  = currentBalance - amount;
+
+        /*
+         * 남은 금액이 음수인지 검사
+         **/
+        payMoneyValidator.isNegative(resultBalance);
+
+        /*
+         * 남은 금액을 세팅
+         **/
+        payMoney.setBalance(resultBalance);
+
+        /*
+         * DB에 저장
+         **/
+        payMoneyStoreRespository.savePayMoney(payMoney);
+    }
+}

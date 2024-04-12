@@ -23,9 +23,11 @@ public class QPayment extends EntityPathBase<Payment> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final DateTimePath<java.time.LocalDateTime> tran_date = createDateTime("tran_date", java.time.LocalDateTime.class);
+    public final NumberPath<Long> reservationId = createNumber("reservationId", Long.class);
 
-    public final EnumPath<io.hpp.concertreservation.biz.domain.payment.enumclass.TransactionType> tranType = createEnum("tranType", io.hpp.concertreservation.biz.domain.payment.enumclass.TransactionType.class);
+    public final DateTimePath<java.time.LocalDateTime> tranDate = createDateTime("tranDate", java.time.LocalDateTime.class);
+
+    public final EnumPath<TransactionType> tranType = createEnum("tranType", TransactionType.class);
 
     public final NumberPath<Long> userId = createNumber("userId", Long.class);
 

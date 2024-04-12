@@ -15,7 +15,7 @@ public class ScheduleCoreStoreRepository implements IScheduleStoreRepository {
     }
 
     @Override
-    public Schedule writeSchedule(Schedule schedule) {
-        return scheduleJpaRepository.save(schedule);
+    public void saveSchedule(Schedule schedule) {
+        scheduleJpaRepository.save(schedule);
     }
 }

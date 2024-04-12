@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IScheduleLoadRepository {
-    List<Schedule> findConcertsByConcertId(Long concertId);
+    List<Schedule> findSchedulesByConcertId(Long concertId);
 
     Optional<Schedule> findByScheduleId(Long scheduleId);
 }

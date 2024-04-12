@@ -18,7 +18,7 @@ public class ScheduleCoreLoadRepository implements IScheduleLoadRepository {
     }
 
     @Override
-    public List<Schedule> findConcertsByConcertId(Long concertId) {
+    public List<Schedule> findSchedulesByConcertId(Long concertId) {
         return scheduleJpaRepository.findByConcertId(concertId);
     }
 

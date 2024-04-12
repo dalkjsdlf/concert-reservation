@@ -8,10 +8,10 @@ import java.util.Optional;
 
 public interface IReservationLoadRepository {
 
-    List<Reservation> readReservationsByUserId(Long userId);
+    List<Reservation> findReservationsByUserId(Long userId);
 
-    Optional<Reservation> readReservationByScheduleId(Long scheduleId);
-    Optional<Reservation> readReservationById(Long reserveId);
+    Optional<Reservation> findReservationByScheduleId(Long scheduleId);
+    Optional<Reservation> findReservationById(Long reserveId);
 
 
 }

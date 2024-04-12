@@ -40,7 +40,7 @@ public class Reservation{
     private Long totalPrice;
 
     @Setter
-    @Column(nullable = false, length = 1)
+    @Column(nullable = false, length = 4)
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 

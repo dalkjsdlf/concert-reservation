@@ -27,7 +27,7 @@ public class QReservation extends EntityPathBase<Reservation> {
 
     public final NumberPath<Long> scheduleId = createNumber("scheduleId", Long.class);
 
-    public final EnumPath<io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus> status = createEnum("status", io.hpp.concertreservation.biz.domain.reservation.enumclass.PaymentStatus.class);
+    public final EnumPath<PaymentStatus> status = createEnum("status", PaymentStatus.class);
 
     public final NumberPath<Long> totalPrice = createNumber("totalPrice", Long.class);
 

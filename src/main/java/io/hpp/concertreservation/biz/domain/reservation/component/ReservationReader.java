@@ -20,13 +20,13 @@ public class ReservationReader{
     }
 
     public Reservation readReservationById(Long reservationId){
-        Optional<Reservation> optReservation = reservationLoadRepository.readReservationById(reservationId);
+        Optional<Reservation> optReservation = reservationLoadRepository.findReservationById(reservationId);
         return optReservation.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_RESERVATION));
     }
 
     public List<Reservation> readReservationsByUserId(Long userId){
 
-        List<Reservation> reservations = reservationLoadRepository.readReservationsByUserId(userId);
+        List<Reservation> reservations = reservationLoadRepository.findReservationsByUserId(userId);
 
 //        if(reservations.isEmpty()){
 //            throw new ReservationException(ReservationErrorResult.NO_RESERVATION);
