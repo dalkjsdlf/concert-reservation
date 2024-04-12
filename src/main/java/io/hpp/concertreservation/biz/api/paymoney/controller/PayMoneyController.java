@@ -37,10 +37,11 @@ public class PayMoneyController {
     public ResponseEntity<PayMoneyResponseDto> getPayMoneyBalance(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
+            @RequestParam
     ){
 
         return ResponseEntity.ok(
-                getPayMoneyUseCase.ex
+                getPayMoneyUseCase.execute(userId,)
         );
     }
     /*
