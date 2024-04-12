@@ -60,7 +60,7 @@ public class InitData {
         return savedPhsConcert.getId();
     }
 
-    public Long initDataForShcedule(Long phsConcertId){
+    public Long initDataForSchedule(Long phsConcertId){
 
         /**
          * 스케쥴 정보 입력하기

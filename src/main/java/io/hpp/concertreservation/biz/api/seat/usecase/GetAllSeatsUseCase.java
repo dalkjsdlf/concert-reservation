@@ -24,6 +24,7 @@ public class GetAllSeatsUseCase{
                 builder().
                 seatId(seat.getId()).
                 seatNo(seat.getSeatNo()).
+                seatGrade(seat.getSeatGrade()).
                 build()).collect(Collectors.toList());
     }
 }

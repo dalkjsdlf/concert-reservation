@@ -2,9 +2,7 @@ package io.hpp.concertreservation.concert.controller;
 
 
 import com.google.gson.Gson;
-import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
 import io.hpp.concertreservation.biz.api.schedule.controller.ScheduleController;
-import io.hpp.concertreservation.biz.api.schedule.usecase.GetScheduleUseCase;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,15 +16,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDateTime;
-
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("[Concert Controller Test]")
+@DisplayName("[Schedule Controller Test]")
 @SpringBootTest
 public class ScheduleControllerTest {
 
@@ -37,8 +33,6 @@ public class ScheduleControllerTest {
     private final InitData initData;
 
     private Long concertId;
-    private Long scheduleId;
-
 
     public ScheduleControllerTest(@Autowired ScheduleController scheduleController,
                                   @Autowired InitData initData
@@ -73,12 +67,11 @@ public class ScheduleControllerTest {
 
     @DisplayName("[성공] concert 스케쥴 조회 공연들 조회")
     @Test()
-    public void given_whenGetConcerts_thenConcert() throws Exception {
+    public void givenConcertId_whenGetSchedulesByConcertId_thenSchedules() throws Exception {
         // given
         String url = "/api/concerts/" + concertId + "/schedules";
         // when
         ResultActions resultActions = mockMvc.perform(get(url)
-
                 .header(USER_ID_HEADER, 1L)
                 .header(TOKEN_HEADER, "1L")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -95,6 +88,6 @@ public class ScheduleControllerTest {
     private void initDataInput() {
 
         concertId  = initData.initDataForConcert();
-        scheduleId = initData.initDataForShcedule(concertId);
+        initData.initDataForSchedule(concertId);
     }
 }

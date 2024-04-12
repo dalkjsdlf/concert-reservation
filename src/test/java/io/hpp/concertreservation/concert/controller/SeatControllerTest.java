@@ -2,13 +2,14 @@ package io.hpp.concertreservation.concert.controller;
 
 
 import com.google.gson.Gson;
-import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
-import io.hpp.concertreservation.biz.api.schedule.controller.ScheduleController;
+import io.hpp.concertreservation.biz.api.seat.controller.SeatController;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -27,23 +28,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class SeatControllerTest {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(SeatControllerTest.class);
     private MockMvc mockMvc;
 
-    private final ScheduleController scheduleController;
+    private final SeatController seatController;
 
 
     private final InitData initData;
 
     private Long concertId;
     private Long scheduleId;
-
     private Long seatId;
 
-
-    public SeatControllerTest(@Autowired ScheduleController scheduleController,
-                              @Autowired InitData initData
-    ) {
-        this.scheduleController = scheduleController;
+    public SeatControllerTest(@Autowired SeatController seatController,
+                              @Autowired InitData initData) {
+        this.seatController = seatController;
         this.initData = initData;
     }
 
@@ -52,7 +51,7 @@ public class SeatControllerTest {
     @BeforeEach
     public void init() {
         gson = new Gson();
-        mockMvc = MockMvcBuilders.standaloneSetup(scheduleController)
+        mockMvc = MockMvcBuilders.standaloneSetup(seatController)
                 .setControllerAdvice(new ApiControllerAdvice())
                 .build();
 
@@ -67,18 +66,18 @@ public class SeatControllerTest {
         // when
 
         // then
-        assertThat(scheduleController).isNotNull();
+        assertThat(seatController).isNotNull();
 
     }
 
     @DisplayName("[성공] concert 스케쥴의 좌석 조회 ")
     @Test()
-    public void given_whenGetConcerts_thenConcert() throws Exception {
+    public void givenScheduleId_whenGetSeatsByScheduleId_thenSeats() throws Exception {
         // given
         String url = "/api/concerts/" + concertId + "/schedules/" + scheduleId + "/seats";
+
         // when
         ResultActions resultActions = mockMvc.perform(get(url)
-
                 .header(USER_ID_HEADER, 1L)
                 .header(TOKEN_HEADER, "1L")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -93,7 +92,7 @@ public class SeatControllerTest {
     private void initDataInput() {
 
         concertId  = initData.initDataForConcert();
-        scheduleId = initData.initDataForShcedule(concertId);
-        seatId     = initData.initDataForShcedule(scheduleId);
+        scheduleId = initData.initDataForSchedule(concertId);
+        seatId     = initData.initDataForSeat(scheduleId);
     }
 }

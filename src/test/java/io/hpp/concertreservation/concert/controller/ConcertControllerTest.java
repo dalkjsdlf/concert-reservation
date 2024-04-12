@@ -2,7 +2,6 @@ package io.hpp.concertreservation.concert.controller;
 
 import com.google.gson.Gson;
 import io.hpp.concertreservation.biz.api.concert.controller.ConcertController;
-import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +28,9 @@ public class ConcertControllerTest {
 
     private MockMvc mockMvc;
 
-    private ConcertController concertController;
+    private final ConcertController concertController;
 
-    private InitData initData;
+    private final InitData initData;
 
     public ConcertControllerTest(@Autowired ConcertController concertController,
                                  @Autowired InitData initData
@@ -68,10 +67,9 @@ public class ConcertControllerTest {
     @Test()
     public void given_whenGetConcerts_thenConcert() throws Exception {
         // given
-        String url = "/api/concerts/";
+        String url = "/api/concerts";
         // when
         ResultActions resultActions = mockMvc.perform(get(url)
-
                 .header(USER_ID_HEADER, 1L)
                 .header(TOKEN_HEADER, "1L")
                 .contentType(MediaType.APPLICATION_JSON));
