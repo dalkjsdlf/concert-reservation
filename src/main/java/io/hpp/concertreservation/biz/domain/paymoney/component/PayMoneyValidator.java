@@ -18,7 +18,7 @@ public class PayMoneyValidator
         this.payMoneyLoadRepository = payMoneyLoadRepository;
     }
 
-    public PayMoney validationOfEnough(Long userId, PayMethod payMethod, Long price){
+    public PayMoney validateEnoughMoney(Long userId, PayMethod payMethod, Long price){
 
         Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
         PayMoney payMoney = optPayMoney.orElseThrow(()->new ReservationException(ReservationErrorResult.NOT_ENOUGH_MONEY));
@@ -30,6 +30,11 @@ public class PayMoneyValidator
         }
 
         return payMoney;
+    }
+
+    public PayMoney validateExistsPayMoney(Long userId, PayMethod payMethod){
+        Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
+        return optPayMoney.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_PAYMONEY));
     }
 
     public void isNegative(Long amount){

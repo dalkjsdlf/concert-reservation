@@ -46,8 +46,7 @@ public class ReservationController {
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
     ){
-        
-        return ResponseEntity.ok(new ArrayList<ReservationResponseDto>());
+        return ResponseEntity.ok(getAllReservationsUseCase.executor(userId));
     }
 
     /*
@@ -59,17 +58,12 @@ public class ReservationController {
             @RequestHeader(USER_ID_HEADER) Long userId,
             @RequestBody final ReservationRequestDto reservationRequestDto
     ){
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                ReservationResponseDto.
-                        builder().
-                        scheduleId(reservationRequestDto.getScheduleId()).
-                        build()
-        );
+        reserveConcertUseCase.execute(reservationRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     /*
-     * /api/reservations/cancel
+     * /api/reservations/cancel dummy
      * */
     @PostMapping("cancel")
     public ResponseEntity<ReservationResponseDto> cancelConcert(

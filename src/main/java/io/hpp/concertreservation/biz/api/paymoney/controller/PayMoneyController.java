@@ -2,7 +2,10 @@ package io.hpp.concertreservation.biz.api.paymoney.controller;
 
 import io.hpp.concertreservation.biz.api.paymoney.dto.PayMoneyResponseDto;
 
+import io.hpp.concertreservation.biz.api.paymoney.usecase.ChargePayMoneyUseCase;
+import io.hpp.concertreservation.biz.api.paymoney.usecase.GetPayMoneyUseCase;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,16 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 @RestController
 
 public class PayMoneyController {
+
+    private final ChargePayMoneyUseCase chargePayMoneyUseCase;
+    private final GetPayMoneyUseCase getPayMoneyUseCase;
+
+    public PayMoneyController(@Autowired ChargePayMoneyUseCase chargePayMoneyUseCase,
+                              @Autowired GetPayMoneyUseCase getPayMoneyUseCase) {
+        this.chargePayMoneyUseCase = chargePayMoneyUseCase;
+        this.getPayMoneyUseCase = getPayMoneyUseCase;
+    }
+
     /*
      * /api/paymoney/
      * */
@@ -26,14 +39,8 @@ public class PayMoneyController {
             @RequestHeader(USER_ID_HEADER) Long userId
     ){
 
-
         return ResponseEntity.ok(
-                PayMoneyResponseDto.builder()
-                        .userId(userId)
-                        .payMethod(PayMethod.CASH)
-                        .price(10000L)
-                        .reserveId(null)
-                        .build()
+                getPayMoneyUseCase.ex
         );
     }
     /*

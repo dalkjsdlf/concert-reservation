@@ -13,6 +13,5 @@ import lombok.RequiredArgsConstructor;
 public class PayMoneyResponseDto {
     private final Long userId;
     private final PayMethod payMethod;
-    private final Long price;
-    private final Long reserveId;
+    private final Long balance;
 }

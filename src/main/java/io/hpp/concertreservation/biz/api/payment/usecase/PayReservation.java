@@ -40,7 +40,7 @@ public class PayReservation {
         this.paymentModifier = paymentModifier;
     }
 
-    void execute(PaymentRequestDto paymentRequestDto,
+    public void execute(PaymentRequestDto paymentRequestDto,
                  Long userId){
 
         Long reservationId = paymentRequestDto.getReservationId();

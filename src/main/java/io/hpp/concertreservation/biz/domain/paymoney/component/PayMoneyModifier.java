@@ -25,13 +25,7 @@ public class PayMoneyModifier {
 
     public void charge(Long userId, PayMethod payMethod,Long amount) {
         Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
-
-        PayMoney payMoney = optPayMoney.orElseGet(null);
-
-        if(optPayMoney.isEmpty()){
-            payMoney = PayMoney.of(userId, amount, payMethod);
-        }
-
+        PayMoney payMoney = optPayMoney.orElseGet(() -> PayMoney.of(userId, amount, payMethod));
         payMoneyStoreRespository.savePayMoney(payMoney);
     }
 
@@ -39,7 +33,7 @@ public class PayMoneyModifier {
         /*
          * 잔액이 충분히 있는지 검사
          **/
-        PayMoney payMoney = payMoneyValidator.validationOfEnough(userId, payMethod, amount);
+        PayMoney payMoney = payMoneyValidator.validateEnoughMoney(userId, payMethod, amount);
 
         /*
         * 현재 잔액 추출

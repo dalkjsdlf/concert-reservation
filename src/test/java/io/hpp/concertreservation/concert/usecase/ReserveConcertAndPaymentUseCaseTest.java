@@ -1,5 +1,8 @@
 package io.hpp.concertreservation.concert.usecase;
 
+import io.hpp.concertreservation.biz.api.payment.dto.PaymentRequestDto;
+import io.hpp.concertreservation.biz.api.payment.usecase.GetAllPaymentUseCase;
+import io.hpp.concertreservation.biz.api.payment.usecase.PayReservation;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationRequestDto;
 import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import io.hpp.concertreservation.biz.domain.concert.component.ConcertReader;
@@ -7,7 +10,9 @@ import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
 import io.hpp.concertreservation.biz.domain.payment.component.PaymentModifier;
 import io.hpp.concertreservation.biz.domain.payment.component.PaymentReader;
+import io.hpp.concertreservation.biz.domain.payment.model.Payment;
 import io.hpp.concertreservation.biz.domain.paymoney.component.PayMoneyModifier;
+import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationModifier;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationReader;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
@@ -55,13 +60,20 @@ public class ReserveConcertAndPaymentUseCaseTest {
 
     private final PayMoneyModifier payMoneyModifier;
     private final PaymentReader paymentReader;
+
     private final PaymentModifier paymentModifier;
+
+    private final PayReservation payReservation;
+    
+    private final GetAllPaymentUseCase getAllPaymentUseCase;
 
 
     private Long phsConcertScheduleId = 0L;
     private Long phsConcertSecondScheduleId = 0L;
 
     private Long phsConcertSeatId;
+
+    private Long userId = 1L;
 
 
     public ReserveConcertAndPaymentUseCaseTest(@Autowired ReserveConcertUseCase reserveConcertUseCase,
@@ -77,7 +89,10 @@ public class ReserveConcertAndPaymentUseCaseTest {
                                                @Autowired ReservationModifier reservationModifier,
                                                @Autowired PayMoneyModifier payMoneyModifier,
                                                @Autowired PaymentReader paymentReader,
-                                               @Autowired PaymentModifier paymentModifier) {
+                                               @Autowired PaymentModifier paymentModifier,
+                                               @Autowired PayReservation payReservation,
+                                               @Autowired GetAllPaymentUseCase getAllPaymentUseCase
+    ) {
         this.reserveConcertUseCase = reserveConcertUseCase;
         this.scheduleLoadRepository = scheduleLoadRepository;
         this.scheduleStoreRepository = scheduleStoreRepository;
@@ -92,6 +107,8 @@ public class ReserveConcertAndPaymentUseCaseTest {
         this.payMoneyModifier = payMoneyModifier;
         this.paymentReader = paymentReader;
         this.paymentModifier = paymentModifier;
+        this.payReservation = payReservation;
+        this.getAllPaymentUseCase = getAllPaymentUseCase;
     }
 
     @DisplayName("박효신 콘서트 정보 입력, 스케쥴 2023-12-24 17시, 21시 공연 스케쥴 입력, 17시 3석, 21시 2석 입력")
@@ -141,6 +158,11 @@ public class ReserveConcertAndPaymentUseCaseTest {
         seatStoreRepository.saveSeat(seat5);
 
         phsConcertSeatId = savedSeat1.getId();
+
+        /**
+         * 돈 백만원 충전하기
+         * */
+        payMoneyModifier.charge(userId,PayMethod.CASH,1000000L);
     }
     @DisplayName("Not null 체크")
     @Test()
@@ -158,8 +180,6 @@ public class ReserveConcertAndPaymentUseCaseTest {
     @Test()
     public void givenRequestReservation_whenReserve_thenSuccessfullyReserve(){
         // given
-
-        Long userId = 1L;
         List<Seat> seats = seatReader.readSeatsByScheduleId(phsConcertScheduleId);
 
         ReservationRequestDto reservationRequestDto = ReservationRequestDto.
@@ -177,12 +197,10 @@ public class ReserveConcertAndPaymentUseCaseTest {
         assertThat(reservations.size()).isEqualTo(1L);
     }
 
-    @DisplayName("콘서트 예약 결제 하는 테스트")
+    @DisplayName("[성공] 콘서트 예약 결제 하는 테스트")
     @Test()
     public void givenRequestPayment_whenReserve_thenSuccessfullyReserve(){
         // given
-
-        Long userId = 1L;
         List<Seat> seats = seatReader.readSeatsByScheduleId(phsConcertScheduleId);
 
         ReservationRequestDto reservationRequestDto = ReservationRequestDto.
@@ -192,13 +210,28 @@ public class ReserveConcertAndPaymentUseCaseTest {
                 scheduleId(phsConcertScheduleId).
                 build();
         reserveConcertUseCase.execute(reservationRequestDto);
+        
         List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
 
+        Reservation reservation = reservations.get(0);
+
+        PaymentRequestDto paymentRequestDto = PaymentRequestDto.
+                builder().
+                reservationId(reservation.getId()).
+                payMethod(PayMethod.CASH).build();
+
         // when
-
-
+        payReservation.execute(paymentRequestDto, userId);
+        
+        
         // then
-        assertThat(reservations.size()).isEqualTo(1L);
+        List<Payment> paymentHistoryies = paymentReader.readAllPaymentsOfUserId(userId);
+
+
+        assertThat(paymentHistoryies.size()).isEqualTo(1L);
+        Payment result = paymentHistoryies.get(0);
+
+        assertThat(result.getUserId()).isEqualTo(userId);
     }
 
 }
