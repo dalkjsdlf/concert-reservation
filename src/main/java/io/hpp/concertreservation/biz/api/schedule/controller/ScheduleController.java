@@ -13,7 +13,7 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_H
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 
 @RestController
-@RequestMapping("/api/concerts/{concertId}")
+@RequestMapping("/api/concerts/{concertId}/schedules")
 public class ScheduleController {
 
     private final GetAllSchedulesUseCase getAllSchedulesUseCase;
@@ -28,7 +28,7 @@ public class ScheduleController {
     /*
      * /api/concerts/{concertId}/schedules/
      * */
-    @GetMapping("schedules")
+    @GetMapping("")
     public ResponseEntity<List<ScheduleResponseDto>> getAllSchedules(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,
@@ -41,7 +41,7 @@ public class ScheduleController {
     /*
      * /api/concerts/{concertId}/schedules/{ScheduleId}
      * */
-    @GetMapping("schedules/{scheduleId}")
+    @GetMapping("{scheduleId}")
     public ResponseEntity<ScheduleResponseDto> getSchedule(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,

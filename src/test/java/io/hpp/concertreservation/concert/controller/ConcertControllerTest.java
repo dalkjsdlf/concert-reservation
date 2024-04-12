@@ -4,15 +4,19 @@ import com.google.gson.Gson;
 import io.hpp.concertreservation.biz.api.concert.controller.ConcertController;
 import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
+import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,13 +29,15 @@ public class ConcertControllerTest {
 
     private MockMvc mockMvc;
 
-    private final ConcertController concertController;
-    private final GetConcertUseCase getConcertUseCase;
+    private ConcertController concertController;
+
+    private InitData initData;
 
     public ConcertControllerTest(@Autowired ConcertController concertController,
-                                 @Autowired GetConcertUseCase getConcertUseCase) {
+                                 @Autowired InitData initData
+                                 ) {
         this.concertController = concertController;
-        this.getConcertUseCase = getConcertUseCase;
+        this.initData = initData;
     }
 
     private Gson gson;
@@ -42,6 +48,8 @@ public class ConcertControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(concertController)
                 .setControllerAdvice(new ApiControllerAdvice())
                 .build();
+
+        initDataInput();
     }
 
     @DisplayName("[성공] NULL 체크")
@@ -53,6 +61,7 @@ public class ConcertControllerTest {
 
         // then
         assertThat(concertController).isNotNull();
+
     }
 
     @DisplayName("[성공] concert 공연들 조회")
@@ -62,10 +71,18 @@ public class ConcertControllerTest {
         String url = "/api/concerts/";
         // when
         ResultActions resultActions = mockMvc.perform(get(url)
-                .header(USER_ID_HEADER, "1L"));
+
+                .header(USER_ID_HEADER, 1L)
+                .header(TOKEN_HEADER, "1L")
+                .contentType(MediaType.APPLICATION_JSON));
 
         // then
         resultActions.andExpect(status().isOk());
+        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1L));
+        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].concertName").value("박효신 콘서트"));
     }
 
+    private void initDataInput(){
+        initData.initDataForConcert();
+    }
 }

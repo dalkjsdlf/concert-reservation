@@ -1,5 +1,6 @@
 package io.hpp.concertreservation.biz.api.paymoney.controller;
 
+import io.hpp.concertreservation.biz.api.paymoney.dto.PayMoneyRequestDto;
 import io.hpp.concertreservation.biz.api.paymoney.dto.PayMoneyResponseDto;
 
 import io.hpp.concertreservation.biz.api.paymoney.usecase.ChargePayMoneyUseCase;
@@ -36,13 +37,10 @@ public class PayMoneyController {
     @GetMapping("")
     public ResponseEntity<PayMoneyResponseDto> getPayMoneyBalance(
             @RequestHeader(TOKEN_HEADER) String token,
-            @RequestHeader(USER_ID_HEADER) Long userId
-            @RequestParam
+            @RequestHeader(USER_ID_HEADER) Long userId,
+            @RequestParam PayMethod payMethod
     ){
-
-        return ResponseEntity.ok(
-                getPayMoneyUseCase.execute(userId,)
-        );
+        return ResponseEntity.ok(getPayMoneyUseCase.execute(userId,payMethod));
     }
     /*
      * /api/paymoney/histories
@@ -60,15 +58,11 @@ public class PayMoneyController {
     @PatchMapping("charge")
     public ResponseEntity<PayMoneyResponseDto> chargeHistory(
             @RequestHeader(TOKEN_HEADER) String token,
-            @RequestHeader(USER_ID_HEADER) Long userId
+            @RequestHeader(USER_ID_HEADER) Long userId,
+            @RequestBody() PayMoneyRequestDto payMoneyRequestDto
     ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                PayMoneyResponseDto.builder()
-                .userId(userId)
-                .payMethod(PayMethod.CASH)
-                .price(10000L)
-                .reserveId(null)
-                .build());
+        chargePayMoneyUseCase.execute(payMoneyRequestDto, userId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }

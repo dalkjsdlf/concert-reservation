@@ -14,7 +14,7 @@ import java.util.List;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 
-@RequestMapping("/api/concert/{concertId}/schdeule/{scheduleId}")
+@RequestMapping("/api/concert/{concertId}/schdeule/{scheduleId}/seats")
 @RestController
 public class SeatController {
 
@@ -27,7 +27,7 @@ public class SeatController {
     /*
      * /api/concerts/{concertId}/schedules/
      * */
-    @GetMapping("seats")
+    @GetMapping("")
     public ResponseEntity<List<SeatResponseDto>> getAllSeats(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,

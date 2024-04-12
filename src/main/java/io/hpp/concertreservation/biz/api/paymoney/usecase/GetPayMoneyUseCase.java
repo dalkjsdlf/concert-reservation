@@ -19,6 +19,11 @@ public class GetPayMoneyUseCase {
     public PayMoneyResponseDto execute(Long userId, PayMethod payMethod){
         PayMoney payMoney = payMoneyReader.readPaymoney(userId,payMethod);
 
-        PayMoneyResponseDto.builder().userId(payMoney.getUserId()).
+        return PayMoneyResponseDto.
+                builder().
+                userId(payMoney.getUserId()).
+                payMethod(payMoney.getPayMethod()).
+                balance(payMoney.getBalance()).
+                build();
     }
 }
