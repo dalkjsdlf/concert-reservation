@@ -1,6 +1,10 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.repository;
 
 import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitQueue;
+import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitStatus;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface IWaitQueueLoadRepository {
 
@@ -10,5 +14,5 @@ public interface IWaitQueueLoadRepository {
 
     public Long countByStatusWork();
 
-    WaitQueue findByToken(String token);
+    List<WaitQueue> findByToken(String token);
 }

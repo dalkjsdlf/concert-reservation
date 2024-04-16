@@ -79,7 +79,7 @@ public class InitData {
 
         return phsSchedule1;
     }
-    public List<Seat> initDataForSeat(Long phsConcertScheduleId ){
+    public List<Seat> initDataForSeat(Long phsConcertScheduleId){
         /**
          * 좌석 정보 입력하기 1 ~ 50
          * 총 5개 입력하기

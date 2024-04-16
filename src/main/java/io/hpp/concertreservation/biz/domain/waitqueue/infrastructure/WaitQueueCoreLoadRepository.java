@@ -6,6 +6,7 @@ import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueLoadR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -30,8 +31,8 @@ public class WaitQueueCoreLoadRepository implements IWaitQueueLoadRepository {
         return waitJpaRepository.countByToken(token);
     }
     @Override
-    public WaitQueue findByToken(String token){
-        Optional<WaitQueue> optWaitQueue = waitJpaRepository.findByToken(token);
-        return optWaitQueue.orElseGet(null);
+    public List<WaitQueue> findByToken(String token){
+        return waitJpaRepository.findByToken(token);
     }
+
 }

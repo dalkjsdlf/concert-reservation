@@ -31,4 +31,8 @@ public class ReservationReader{
 
         return reservations;
     }
+
+    public List<Reservation> readAllReservation(){
+        return reservationLoadRepository.findAllReservation();
+    }
 }

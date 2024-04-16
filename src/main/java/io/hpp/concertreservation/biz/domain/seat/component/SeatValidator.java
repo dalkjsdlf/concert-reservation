@@ -11,6 +11,7 @@ import java.util.List;
 @Component
 public class SeatValidator {
 
+
     public void validateNoSeat(List<Seat> seats){
         if(seats.isEmpty()){
             throw new ReservationException(ReservationErrorResult.NO_SEATS);
@@ -27,4 +28,6 @@ public class SeatValidator {
         });
         return scheduleId;
     }
+
+
 }

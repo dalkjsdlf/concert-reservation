@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("Reservation Controller Test")
 @SpringBootTest
+@Transactional
 public class ReservationControllerGetTest {
 
     private MockMvc mockMvc;

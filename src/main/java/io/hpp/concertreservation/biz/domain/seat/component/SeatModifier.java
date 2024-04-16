@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class SeatModifier{
@@ -40,9 +42,8 @@ public class SeatModifier{
         /*
          * 이미 있는 좌석에 대해서만 UPDATE 한다.
          * */
-        if(seatLoadRepository.findSeatBySeatId(seatId).isEmpty()){
-            throw new ReservationException(ReservationErrorResult.NO_SEAT);
-        }
+        Optional<Seat> optSeat = seatLoadRepository.findSeatBySeatNoAndScheduleId(seat.getSeatNo(), seat.getScheduleId());
+        optSeat.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_SEAT));
 
         /*
          * 좌석에 예약ID 업데이트

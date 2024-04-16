@@ -9,9 +9,12 @@ import java.util.Optional;
 public interface IReservationLoadRepository {
 
     List<Reservation> findReservationsByUserId(Long userId);
+    List<Reservation> findAllReservation();
 
     Optional<Reservation> findReservationByScheduleId(Long scheduleId);
     Optional<Reservation> findReservationById(Long reserveId);
+
+
 
 
 }

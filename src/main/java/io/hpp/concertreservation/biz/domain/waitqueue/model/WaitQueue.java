@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -28,4 +29,29 @@ public class WaitQueue {
     @Setter
     private LocalDateTime updateTime;
 
+    protected WaitQueue(){};
+
+    private WaitQueue(Long id, String token, WaitStatus status, LocalDateTime updateTime) {
+        this.id = id;
+        this.token = token;
+        this.status = status;
+        this.updateTime = updateTime;
+    }
+
+    public static WaitQueue of(Long id, String token, WaitStatus status, LocalDateTime updateTime){
+        return new WaitQueue(id, token, status, updateTime);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WaitQueue waitQueue = (WaitQueue) o;
+        return Objects.equals(id, waitQueue.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

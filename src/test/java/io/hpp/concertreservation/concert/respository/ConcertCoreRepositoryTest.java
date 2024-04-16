@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("콘서트 정보 조회 테스트")
 @SpringBootTest
+@Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
 public class ConcertCoreRepositoryTest {
 

@@ -188,13 +188,17 @@ public class ReserveConcertAndPaymentUseCaseTest {
                                                                     userId(userId).
                                                                     scheduleId(phsConcertScheduleId).
                                                                     build();
+        int beforeCnt = reservationReader.readReservationsByUserId(userId).size();
 
         // when
         reserveConcertUseCase.execute(seats, userId);
 
+        int afterCnt = beforeCnt + 1;
+
         List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
+
         // then
-        assertThat(reservations.size()).isEqualTo(1L);
+        assertThat(reservations.size()).isEqualTo(afterCnt);
     }
 
     @DisplayName("[성공] 콘서트 예약 결제 하는 테스트")

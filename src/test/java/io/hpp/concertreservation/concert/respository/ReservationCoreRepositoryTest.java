@@ -136,6 +136,7 @@ public class ReservationCoreRepositoryTest {
     public void givenUserId_whenGetReservations_thenReservations(){
         // given
         Long userId = 1L;
+        int beforeSize = reservationLoadRepository.findReservationsByUserId(userId).size();
 
         Reservation reservation = Reservation.of(
                 userId,
@@ -154,12 +155,12 @@ public class ReservationCoreRepositoryTest {
 
         reservationStoreRepository.saveReservation(reservation);
         reservationStoreRepository.saveReservation(reservation2);
-
+        int afterSize = beforeSize + 2;
         // when
         List<Reservation> reservations = reservationLoadRepository.findReservationsByUserId(userId);
 
         // then
-        assertThat(reservations.size()).isEqualTo(2);
+        assertThat(reservations.size()).isEqualTo(afterSize);
 
     }
 }

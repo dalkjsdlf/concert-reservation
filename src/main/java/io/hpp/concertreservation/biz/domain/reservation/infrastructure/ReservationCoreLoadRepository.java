@@ -20,6 +20,11 @@ public class ReservationCoreLoadRepository implements IReservationLoadRepository
     }
 
     @Override
+    public List<Reservation> findAllReservation() {
+        return reservationJpaRepository.findAll();
+    }
+
+    @Override
     public Optional<Reservation> findReservationByScheduleId(Long scheduleId) {
         return reservationJpaRepository.findByScheduleId(scheduleId);
     }

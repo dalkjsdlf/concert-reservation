@@ -16,12 +16,12 @@ public class Seat {
     private Long id;
 
     @Setter
-    @Column(nullable = false)
-    private Long scheduleId;
+    @Column(nullable = false, unique = true)
+    private Long seatNo;
 
     @Setter
     @Column(nullable = false)
-    private Long seatNo;
+    private Long scheduleId;
 
     @Setter
     @Column(nullable = false)

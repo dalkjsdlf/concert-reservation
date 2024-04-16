@@ -3,6 +3,7 @@ package io.hpp.concertreservation.biz.api.concert.controller;
 import io.hpp.concertreservation.biz.api.concert.dto.ConcertResponseDto;
 import io.hpp.concertreservation.biz.api.concert.usecase.GetAllConcertsUseCase;
 import io.hpp.concertreservation.biz.api.concert.usecase.GetConcertUseCase;
+import io.hpp.concertreservation.common.annotation.ValidationToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class ConcertController {
     /*
      * /api/concerts
      * */
-    @GetMapping("")
+    @GetMapping
+    @ValidationToken
     public ResponseEntity<List<ConcertResponseDto>> getAllConcerts(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
@@ -45,7 +47,7 @@ public class ConcertController {
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,
             @PathVariable("concertId") Long concertId){
-
+        log.info("concert controller ID로 조회 접근");
         return ResponseEntity.ok(getConcertUseCase.executor(concertId));
     }
 }
