@@ -3,6 +3,7 @@ package io.hpp.concertreservation.biz.api.schedule.controller;
 import io.hpp.concertreservation.biz.api.schedule.dto.ScheduleResponseDto;
 import io.hpp.concertreservation.biz.api.schedule.usecase.GetAllSchedulesUseCase;
 import io.hpp.concertreservation.biz.api.schedule.usecase.GetScheduleUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +15,11 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 
 @RestController
 @RequestMapping("/api/concerts/{concertId}/schedules")
+@RequiredArgsConstructor
 public class ScheduleController {
 
     private final GetAllSchedulesUseCase getAllSchedulesUseCase;
     private final GetScheduleUseCase getScheduleUseCase;
-
-    public ScheduleController(@Autowired GetAllSchedulesUseCase getAllSchedulesUseCase,
-                              @Autowired GetScheduleUseCase getScheduleUseCase) {
-        this.getAllSchedulesUseCase = getAllSchedulesUseCase;
-        this.getScheduleUseCase = getScheduleUseCase;
-    }
 
     /*
      * /api/concerts/{concertId}/schedules/

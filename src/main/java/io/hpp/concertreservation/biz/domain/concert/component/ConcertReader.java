@@ -4,20 +4,17 @@ import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Component
 public class ConcertReader{
 
     private final IConcertLoadRepository concertLoadRepository;
-
-    public ConcertReader(@Autowired IConcertLoadRepository concertLoadRepository) {
-        this.concertLoadRepository = concertLoadRepository;
-    }
 
     public List<Concert> readAllConcerts(){
         List<Concert> concerts = concertLoadRepository.findAllConcerts();

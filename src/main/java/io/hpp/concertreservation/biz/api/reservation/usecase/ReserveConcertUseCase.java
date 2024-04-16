@@ -11,6 +11,7 @@ import io.hpp.concertreservation.biz.domain.seat.component.SeatModifier;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatSupportor;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-@Transactional()
+@RequiredArgsConstructor
+@Transactional
 public class ReserveConcertUseCase {
 
     private final SeatReader seatReader;
@@ -30,23 +32,7 @@ public class ReserveConcertUseCase {
 
     private final ReservationModifier reservationModifier;
 
-    public ReserveConcertUseCase(@Autowired SeatReader seatReader,
-                                 @Autowired SeatSupportor seatSupportor,
-                                 @Autowired SeatModifier seatModifier,
-                                 @Autowired ReservationModifier reservationModifier) {
-        this.seatReader = seatReader;
-        this.seatSupportor = seatSupportor;
-        this.seatModifier = seatModifier;
-        this.reservationModifier = reservationModifier;
-    }
-
-    public void execute(ReservationRequestDto reservationRequestDto){
-        /**
-         * 요청자 ID
-         * */
-        Long userId        = reservationRequestDto.getUserId();
-        List<Seat> seats   = reservationRequestDto.getSeats();
-
+    public void execute(List<Seat> seats, Long userId){
         /**
          * 좌석목록 정보로부터 스케쥴ID 조회
          * */

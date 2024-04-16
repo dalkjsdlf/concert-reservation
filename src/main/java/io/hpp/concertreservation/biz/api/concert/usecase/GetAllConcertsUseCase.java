@@ -5,6 +5,7 @@ import io.hpp.concertreservation.biz.domain.concert.component.ConcertReader;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,14 +17,11 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 @Slf4j
 public class GetAllConcertsUseCase {
 
     private final ConcertReader concertReader;
-
-    public GetAllConcertsUseCase(@Autowired ConcertReader concertReader) {
-        this.concertReader = concertReader;
-    }
 
     public List<ConcertResponseDto> executor(){
         List<Concert> concerts = new ArrayList<>();

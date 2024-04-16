@@ -4,20 +4,17 @@ import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Component
 public class ReservationReader{
 
     private final IReservationLoadRepository reservationLoadRepository;
-
-    public ReservationReader(@Autowired IReservationLoadRepository reservationLoadRepository) {
-        this.reservationLoadRepository = reservationLoadRepository;
-    }
 
     public Reservation readReservationById(Long reservationId){
         Optional<Reservation> optReservation = reservationLoadRepository.findReservationById(reservationId);

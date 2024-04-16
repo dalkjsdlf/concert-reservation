@@ -190,7 +190,7 @@ public class ReserveConcertAndPaymentUseCaseTest {
                                                                     build();
 
         // when
-        reserveConcertUseCase.execute(reservationRequestDto);
+        reserveConcertUseCase.execute(seats, userId);
 
         List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
         // then
@@ -209,7 +209,7 @@ public class ReserveConcertAndPaymentUseCaseTest {
                 userId(userId).
                 scheduleId(phsConcertScheduleId).
                 build();
-        reserveConcertUseCase.execute(reservationRequestDto);
+        reserveConcertUseCase.execute(seats,userId);
         
         List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
 

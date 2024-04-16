@@ -5,19 +5,17 @@ import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+@RequiredArgsConstructor
 @Component
 public class SeatReader{
 
     private final ISeatLoadRepository seatLoadRepository;
     private final SeatValidator seatValidator;
-    public SeatReader(@Autowired ISeatLoadRepository seatLoadRepository, SeatValidator seatValidator) {
-        this.seatLoadRepository = seatLoadRepository;
-        this.seatValidator = seatValidator;
-    }
 
     public List<Seat> readSeatsByScheduleId(Long scheduleId){
         List<Seat> seats = seatLoadRepository.findSeatsByScheduleId(scheduleId);

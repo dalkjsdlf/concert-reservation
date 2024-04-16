@@ -6,19 +6,15 @@ import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationL
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationStoreRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+@RequiredArgsConstructor
 @Component
 public class ReservationModifier{
 
     private final IReservationStoreRepository reservationStoreRepository;
     private final IReservationLoadRepository reservationLoadRepository;
-
-    public ReservationModifier(@Autowired IReservationStoreRepository reservationStoreRepository, IReservationLoadRepository reservationLoadRepository) {
-        this.reservationStoreRepository = reservationStoreRepository;
-        this.reservationLoadRepository = reservationLoadRepository;
-    }
 
     public Reservation addReservation(Reservation reservation){
 

@@ -3,6 +3,7 @@ package io.hpp.concertreservation.biz.api.payment.controller;
 import io.hpp.concertreservation.biz.api.payment.dto.PaymentRequestDto;
 import io.hpp.concertreservation.biz.api.payment.dto.PaymentResponseDto;
 import io.hpp.concertreservation.biz.api.payment.usecase.PayReservation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +13,10 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_H
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 
 @RequestMapping("/api/payment")
+@RequiredArgsConstructor
 @RestController
 public class PaymentController {
     private final PayReservation payReservation;
-
-    public PaymentController(@Autowired PayReservation payReservation) {
-        this.payReservation = payReservation;
-    }
 
     /*
      * /api/payment/

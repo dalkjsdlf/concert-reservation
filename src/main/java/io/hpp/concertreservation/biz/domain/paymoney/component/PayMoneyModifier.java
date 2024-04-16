@@ -4,10 +4,11 @@ import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyLoadRepository;
 import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyStoreRespository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Component
 public class PayMoneyModifier {
 
@@ -16,12 +17,6 @@ public class PayMoneyModifier {
     private final IPayMoneyLoadRepository payMoneyLoadRepository;
 
     private final PayMoneyValidator payMoneyValidator;
-
-    public PayMoneyModifier(IPayMoneyStoreRespository payMoneyStoreRespository, IPayMoneyLoadRepository payMoneyLoadRepository, PayMoneyValidator payMoneyValidator) {
-        this.payMoneyStoreRespository = payMoneyStoreRespository;
-        this.payMoneyLoadRepository = payMoneyLoadRepository;
-        this.payMoneyValidator = payMoneyValidator;
-    }
 
     public void charge(Long userId, PayMethod payMethod,Long amount) {
         Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);

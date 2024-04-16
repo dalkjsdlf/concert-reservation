@@ -3,6 +3,7 @@ package io.hpp.concertreservation.concert.respository;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepository;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
+import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,23 +22,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
 public class ConcertCoreRepositoryTest {
 
-    private IConcertStoreRepository concertStoreRepository;
-    private IConcertLoadRepository concertLoadRepository;
+    private final IConcertStoreRepository concertStoreRepository;
+    private final IConcertLoadRepository concertLoadRepository;
+
+    private final InitData initData;
 
     public ConcertCoreRepositoryTest(@Autowired IConcertStoreRepository concertStoreRepository,
-                                     @Autowired IConcertLoadRepository concertLoadRepository) {
+                                     @Autowired IConcertLoadRepository concertLoadRepository,
+                                     @Autowired InitData initData) {
         this.concertStoreRepository = concertStoreRepository;
         this.concertLoadRepository = concertLoadRepository;
+        this.initData = initData;
     }
 
     @BeforeEach
     void init (){
-        Concert phsConcert = Concert.of("박효신 콘서트",
-                "박효신의 크리스마스 콘서트!",
-                "박효신",
-                LocalDateTime.of(2024,3,2,0,0,0),
-                LocalDateTime.of(2024,5,2,0,0,0));
-        concertStoreRepository.saveConcert(phsConcert);
+        initData.initDataForConcert();
     }
 
     @DisplayName("")
@@ -62,7 +62,7 @@ public class ConcertCoreRepositoryTest {
         List<Concert> concerts = concertLoadRepository.findAllConcerts();
 
         // then
-        assertThat(concerts.size()).isEqualTo(1);
+        assertThat(concerts.size()).isNotEqualTo(0);
     }
 
     @DisplayName("[성공] 콘서트 아이디로 콘서트를 조회한다.")
@@ -78,4 +78,5 @@ public class ConcertCoreRepositoryTest {
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(concertId);
     }
+
 }

@@ -1,18 +1,15 @@
 package io.hpp.concertreservation.biz.domain.seat.component;
 
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Component
 public class SeatSupportor {
 
     private final SeatValidator seatValidator;
-
-    public SeatSupportor(SeatValidator seatValidator) {
-        this.seatValidator = seatValidator;
-    }
 
     public Long sumTotalPrice(List<Seat> seats){
         /**

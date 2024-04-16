@@ -91,8 +91,8 @@ public class SeatControllerTest {
 
     private void initDataInput() {
 
-        concertId  = initData.initDataForConcert();
-        scheduleId = initData.initDataForSchedule(concertId);
-        seatId     = initData.initDataForSeat(scheduleId);
+        concertId  = initData.initDataForConcert().getId();
+        scheduleId = initData.initDataForSchedule(concertId).getId();
+        seatId     = initData.initDataForSeat(scheduleId).get(0).getId();
     }
 }

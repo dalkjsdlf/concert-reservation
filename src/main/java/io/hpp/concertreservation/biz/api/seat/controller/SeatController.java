@@ -2,6 +2,7 @@ package io.hpp.concertreservation.biz.api.seat.controller;
 
 import io.hpp.concertreservation.biz.api.seat.dto.SeatResponseDto;
 import io.hpp.concertreservation.biz.api.seat.usecase.GetAllSeatsUseCase;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,11 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 
 @RestController
 @RequestMapping("/api/concerts/{concertId}/schedules/{scheduleId}/seats")
+@RequiredArgsConstructor
 @Slf4j
 public class SeatController {
 
     private final GetAllSeatsUseCase getAllSeatsUseCase;
-
-    public SeatController(@Autowired GetAllSeatsUseCase getAllSeatsUseCase) {
-        this.getAllSeatsUseCase = getAllSeatsUseCase;
-    }
 
     /*
      * /api/concerts/{concertId}/schedules/

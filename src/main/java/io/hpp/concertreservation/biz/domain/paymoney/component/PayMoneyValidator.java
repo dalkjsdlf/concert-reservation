@@ -5,18 +5,15 @@ import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Component
 public class PayMoneyValidator
 {
     private final IPayMoneyLoadRepository payMoneyLoadRepository;
-
-    public PayMoneyValidator(IPayMoneyLoadRepository payMoneyLoadRepository) {
-        this.payMoneyLoadRepository = payMoneyLoadRepository;
-    }
 
     public PayMoney validateEnoughMoney(Long userId, PayMethod payMethod, Long price){
 

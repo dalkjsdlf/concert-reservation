@@ -13,6 +13,7 @@ import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationModifier;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationReader;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,25 +21,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @Component
-@Transactional()
+@RequiredArgsConstructor
+@Transactional
 public class PayReservation {
 
     private final ReservationReader reservationReader;
     private final PayMoneyModifier payMoneyModifier;
     private final ReservationModifier reservationModifier;
-
     private final PaymentModifier paymentModifier;
-
-
-    public PayReservation(@Autowired ReservationReader reservationReader,
-                          @Autowired PayMoneyModifier payMoneyModifier,
-                          @Autowired ReservationModifier reservationModifier,
-                          @Autowired PaymentModifier paymentModifier) {
-        this.reservationReader = reservationReader;
-        this.payMoneyModifier = payMoneyModifier;
-        this.reservationModifier = reservationModifier;
-        this.paymentModifier = paymentModifier;
-    }
 
     public void execute(PaymentRequestDto paymentRequestDto,
                  Long userId){

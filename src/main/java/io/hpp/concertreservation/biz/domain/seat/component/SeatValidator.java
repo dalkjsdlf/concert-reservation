@@ -3,10 +3,11 @@ package io.hpp.concertreservation.biz.domain.seat.component;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Component
 public class SeatValidator {
 

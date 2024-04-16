@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="[Concert Controller Test]" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-04-12T13:39:26" hostname="choeyeonhoui-MacBookAir.local" time="0.523">
+<testsuite name="콘서트 정보 조회 테스트" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-04-15T23:53:26" hostname="choeyeonhoui-MacBookAir.local" time="0.536">
   <properties/>
-  <testcase name="[성공] concert 스케쥴의 좌석 조회" classname="io.hpp.concertreservation.concert.controller.SeatControllerTest" time="0.523"/>
-  <system-out><![CDATA[22:39:23.383 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.hpp.concertreservation.concert.controller.SeatControllerTest]: SeatControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-22:39:23.445 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.hpp.concertreservation.ConcertReservationApplication for test class io.hpp.concertreservation.concert.controller.SeatControllerTest
+  <testcase name="[성공] 콘서트 정보를 모두 조회한다." classname="io.hpp.concertreservation.concert.respository.ConcertCoreRepositoryTest" time="0.514"/>
+  <testcase name="[성공] 콘서트 아이디로 콘서트를 조회한다." classname="io.hpp.concertreservation.concert.respository.ConcertCoreRepositoryTest" time="0.013"/>
+  <testcase name="given_when_thenNotnull()" classname="io.hpp.concertreservation.concert.respository.ConcertCoreRepositoryTest" time="0.007"/>
+  <system-out><![CDATA[08:53:23.538 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.hpp.concertreservation.concert.respository.ConcertCoreRepositoryTest]: ConcertCoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:53:23.603 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.hpp.concertreservation.ConcertReservationApplication for test class io.hpp.concertreservation.concert.respository.ConcertCoreRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,66 +15,66 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.4)
 
-2024-04-12T22:39:23.647+09:00  INFO 98455 --- [concert-reservation] [    Test worker] i.h.c.c.controller.SeatControllerTest    : Starting SeatControllerTest using Java 17.0.5 with PID 98455 (started by choeyeonho in /Users/choeyeonho/workspace/StudyProjects/01_JustStudy/concert-reservation)
-2024-04-12T22:39:23.648+09:00  INFO 98455 --- [concert-reservation] [    Test worker] i.h.c.c.controller.SeatControllerTest    : No active profile set, falling back to 1 default profile: "default"
-2024-04-12T22:39:23.648+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.boot.SpringApplication               : Loading source class io.hpp.concertreservation.ConcertReservationApplication
-2024-04-12T22:39:23.665+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@7bde1f3a
-2024-04-12T22:39:24.187+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2024-04-12T22:39:24.188+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2024-04-12T22:39:24.195+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'io.hpp.concertreservation'. Automatic @Repository and @Entity scanning is enabled.
-2024-04-12T22:39:24.210+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.concert.infrastructure.IConcertJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.211+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.payment.infrastructure.IPaymentJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.211+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPayMoneyJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.212+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.reservation.infrastructure.IReservationJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.212+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.schedule.infrastructure.IScheduleJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.212+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.seat.infrastructure.ISeatJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.213+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.userinfo.infrastructure.UserInfoJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.213+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.IWaitJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-12T22:39:24.214+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 0 JDBC repository interfaces.
-2024-04-12T22:39:24.219+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2024-04-12T22:39:24.220+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-12T22:39:24.242+09:00  INFO 98455 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
-2024-04-12T22:39:24.563+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-12T22:39:24.594+09:00  INFO 98455 --- [concert-reservation] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-04-12T22:39:24.611+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-04-12T22:39:24.725+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-04-12T22:39:24.740+09:00  INFO 98455 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-12T22:39:24.865+09:00  INFO 98455 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:~/test user=SA
-2024-04-12T22:39:24.866+09:00  INFO 98455 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-12T22:39:25.331+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-04-12T22:39:25.340+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:23.801+09:00  INFO 5766 --- [concert-reservation] [    Test worker] i.h.c.c.r.ConcertCoreRepositoryTest      : Starting ConcertCoreRepositoryTest using Java 17.0.5 with PID 5766 (started by choeyeonho in /Users/choeyeonho/workspace/StudyProjects/01_JustStudy/concert-reservation)
+2024-04-16T08:53:23.802+09:00  INFO 5766 --- [concert-reservation] [    Test worker] i.h.c.c.r.ConcertCoreRepositoryTest      : No active profile set, falling back to 1 default profile: "default"
+2024-04-16T08:53:23.802+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.boot.SpringApplication               : Loading source class io.hpp.concertreservation.ConcertReservationApplication
+2024-04-16T08:53:23.824+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@26dcd8c0
+2024-04-16T08:53:24.350+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-16T08:53:24.350+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-04-16T08:53:24.357+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'io.hpp.concertreservation'. Automatic @Repository and @Entity scanning is enabled.
+2024-04-16T08:53:24.371+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.concert.infrastructure.IConcertJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.372+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.payment.infrastructure.IPaymentJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.372+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.paymoney.infrastructure.IPayMoneyJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.373+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.reservation.infrastructure.IReservationJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.373+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.schedule.infrastructure.IScheduleJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.374+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.seat.infrastructure.ISeatJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.374+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.userinfo.infrastructure.UserInfoJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.375+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.IWaitJpaRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-04-16T08:53:24.375+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2024-04-16T08:53:24.380+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-16T08:53:24.381+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-16T08:53:24.409+09:00  INFO 5766 --- [concert-reservation] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 8 JPA repository interfaces.
+2024-04-16T08:53:24.734+09:00  INFO 5766 --- [concert-reservation] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-16T08:53:24.768+09:00  INFO 5766 --- [concert-reservation] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-04-16T08:53:24.785+09:00  INFO 5766 --- [concert-reservation] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-04-16T08:53:24.899+09:00  INFO 5766 --- [concert-reservation] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-16T08:53:24.914+09:00  INFO 5766 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-16T08:53:25.033+09:00  INFO 5766 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:~/test user=SA
+2024-04-16T08:53:25.034+09:00  INFO 5766 --- [concert-reservation] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-16T08:53:25.528+09:00  INFO 5766 --- [concert-reservation] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-16T08:53:25.536+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists concert cascade 
 Hibernate: 
     drop table if exists concert cascade 
-2024-04-12T22:39:25.342+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.539+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists payment cascade 
 Hibernate: 
     drop table if exists payment cascade 
-2024-04-12T22:39:25.343+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.540+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists pay_money cascade 
 Hibernate: 
     drop table if exists pay_money cascade 
-2024-04-12T22:39:25.344+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.540+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists reservation cascade 
 Hibernate: 
     drop table if exists reservation cascade 
-2024-04-12T22:39:25.344+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.541+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists schedule cascade 
 Hibernate: 
     drop table if exists schedule cascade 
-2024-04-12T22:39:25.344+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.542+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists seat cascade 
 Hibernate: 
     drop table if exists seat cascade 
-2024-04-12T22:39:25.345+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.543+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists user_info cascade 
 Hibernate: 
     drop table if exists user_info cascade 
-2024-04-12T22:39:25.345+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.543+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     drop table if exists wait_queue cascade 
 Hibernate: 
     drop table if exists wait_queue cascade 
-2024-04-12T22:39:25.348+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.546+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table concert (
         end_date timestamp(6),
         id bigint generated by default as identity,
@@ -92,7 +94,7 @@ Hibernate:
         conert_desc varchar(1000),
         primary key (id)
     )
-2024-04-12T22:39:25.351+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.549+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table payment (
         amount bigint,
         id bigint generated by default as identity,
@@ -112,7 +114,7 @@ Hibernate:
         tran_type varchar(255) check (tran_type in ('CHARGE','USE')),
         primary key (id)
     )
-2024-04-12T22:39:25.352+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.550+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table pay_money (
         balance bigint,
         id bigint generated by default as identity,
@@ -128,7 +130,7 @@ Hibernate:
         pay_method varchar(255) check (pay_method in ('CARD','POINT','CASH')),
         primary key (id)
     )
-2024-04-12T22:39:25.353+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.552+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table reservation (
         num_of_seats integer not null,
         status varchar(4) not null check (status in ('WAIT','COMPLETE')),
@@ -150,7 +152,7 @@ Hibernate:
         user_id bigint not null,
         primary key (id)
     )
-2024-04-12T22:39:25.354+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.554+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table schedule (
         concert_id bigint not null,
         id bigint generated by default as identity,
@@ -164,7 +166,7 @@ Hibernate:
         perform_date timestamp(6) not null,
         primary key (id)
     )
-2024-04-12T22:39:25.355+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.555+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table seat (
         id bigint generated by default as identity,
         price bigint not null,
@@ -184,7 +186,7 @@ Hibernate:
         seat_grade varchar(255) not null check (seat_grade in ('VIP','R','S','A')),
         primary key (id)
     )
-2024-04-12T22:39:25.356+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.557+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table user_info (
         id bigint generated by default as identity,
         user_name varchar(50),
@@ -196,7 +198,7 @@ Hibernate:
         user_name varchar(50),
         primary key (id)
     )
-2024-04-12T22:39:25.357+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:25.558+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     create table wait_queue (
         id bigint generated by default as identity,
         update_time timestamp(6) not null,
@@ -212,16 +214,16 @@ Hibernate:
         status varchar(255) not null check (status in ('WORK','WAIT','DONE')),
         primary key (id)
     )
-2024-04-12T22:39:25.359+09:00  INFO 98455 --- [concert-reservation] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-12T22:39:25.790+09:00  WARN 98455 --- [concert-reservation] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-12T22:39:25.911+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 20 mappings in 'requestMappingHandlerMapping'
-2024-04-12T22:39:25.988+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**, /api/explorer/**] in 'resourceHandlerMapping'
-2024-04-12T22:39:26.021+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-04-12T22:39:26.046+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 3 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-04-12T22:39:26.175+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 3 @ExceptionHandler, 0 ResponseBodyAdvice
-2024-04-12T22:39:26.565+09:00  WARN 98455 --- [concert-reservation] [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-2024-04-12T22:39:26.584+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 0 endpoint(s) beneath base path '/actuator'
-2024-04-12T22:39:26.632+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
+2024-04-16T08:53:25.562+09:00  INFO 5766 --- [concert-reservation] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-16T08:53:26.039+09:00  WARN 5766 --- [concert-reservation] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-16T08:53:26.183+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 20 mappings in 'requestMappingHandlerMapping'
+2024-04-16T08:53:26.252+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**, /api/explorer/**] in 'resourceHandlerMapping'
+2024-04-16T08:53:26.294+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-04-16T08:53:26.316+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 3 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-04-16T08:53:26.430+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 3 @ExceptionHandler, 0 ResponseBodyAdvice
+2024-04-16T08:53:26.815+09:00  WARN 5766 --- [concert-reservation] [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-16T08:53:26.836+09:00  INFO 5766 --- [concert-reservation] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 0 endpoint(s) beneath base path '/actuator'
+2024-04-16T08:53:26.885+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -2423,16 +2425,10 @@ Unconditional classes:
 
 
 
-2024-04-12T22:39:26.647+09:00  INFO 98455 --- [concert-reservation] [    Test worker] i.h.c.c.controller.SeatControllerTest    : Started SeatControllerTest in 3.132 seconds (process running for 3.697)
-2024-04-12T22:39:26.674+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2024-04-12T22:39:26.676+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2024-04-12T22:39:26.984+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 1 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
-2024-04-12T22:39:26.985+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-04-12T22:39:26.985+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-04-12T22:39:26.989+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2024-04-12T22:39:26.989+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-04-12T22:39:26.990+09:00  INFO 98455 --- [concert-reservation] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2024-04-12T22:39:27.004+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:26.897+09:00  INFO 5766 --- [concert-reservation] [    Test worker] i.h.c.c.r.ConcertCoreRepositoryTest      : Started ConcertCoreRepositoryTest in 3.226 seconds (process running for 3.78)
+2024-04-16T08:53:26.930+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2024-04-16T08:53:26.931+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2024-04-16T08:53:27.317+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         concert
@@ -2446,90 +2442,78 @@ Hibernate:
         (artist, concert_name, conert_desc, end_date, start_date, id) 
     values
         (?, ?, ?, ?, ?, default)
-2024-04-12T22:39:27.028+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        schedule
-        (concert_id, perform_date, id) 
-    values
-        (?, ?, default)
-Hibernate: 
-    insert 
-    into
-        schedule
-        (concert_id, perform_date, id) 
-    values
-        (?, ?, default)
-2024-04-12T22:39:27.030+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-Hibernate: 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-2024-04-12T22:39:27.032+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-Hibernate: 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-2024-04-12T22:39:27.032+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-Hibernate: 
-    insert 
-    into
-        seat
-        (price, reserve_id, schedule_id, seat_grade, seat_no, id) 
-    values
-        (?, ?, ?, ?, ?, default)
-2024-04-12T22:39:27.044+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.hpp.concertreservation.biz.api.seat.controller.SeatController#getAllSeats(String, Long, Long, Long)
-2024-04-12T22:39:27.053+09:00  INFO 98455 --- [concert-reservation] [    Test worker] i.h.c.b.a.s.controller.SeatController    : scheduleId [1]
-2024-04-12T22:39:27.113+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+2024-04-16T08:53:27.420+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
     select
-        s1_0.id,
-        s1_0.price,
-        s1_0.reserve_id,
-        s1_0.schedule_id,
-        s1_0.seat_grade,
-        s1_0.seat_no 
+        c1_0.id,
+        c1_0.artist,
+        c1_0.concert_name,
+        c1_0.conert_desc,
+        c1_0.end_date,
+        c1_0.start_date 
     from
-        seat s1_0 
-    where
-        s1_0.schedule_id=?
+        concert c1_0
 Hibernate: 
     select
-        s1_0.id,
-        s1_0.price,
-        s1_0.reserve_id,
-        s1_0.schedule_id,
-        s1_0.seat_grade,
-        s1_0.seat_no 
+        c1_0.id,
+        c1_0.artist,
+        c1_0.concert_name,
+        c1_0.conert_desc,
+        c1_0.end_date,
+        c1_0.start_date 
     from
-        seat s1_0 
+        concert c1_0
+2024-04-16T08:53:27.459+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2024-04-16T08:53:27.464+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.artist,
+        c1_0.concert_name,
+        c1_0.conert_desc,
+        c1_0.end_date,
+        c1_0.start_date 
+    from
+        concert c1_0 
     where
-        s1_0.schedule_id=?
-2024-04-12T22:39:27.143+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-04-12T22:39:27.144+09:00 DEBUG 98455 --- [concert-reservation] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[io.hpp.concertreservation.biz.api.seat.dto.SeatResponseDto@2b0061b7, io.hpp.concertreservation.biz. (truncated)...]
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.artist,
+        c1_0.concert_name,
+        c1_0.conert_desc,
+        c1_0.end_date,
+        c1_0.start_date 
+    from
+        concert c1_0 
+    where
+        c1_0.id=?
+2024-04-16T08:53:27.473+09:00 DEBUG 5766 --- [concert-reservation] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        concert
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        concert
+        (artist, concert_name, conert_desc, end_date, start_date, id) 
+    values
+        (?, ?, ?, ?, ?, default)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

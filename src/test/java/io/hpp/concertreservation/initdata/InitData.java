@@ -2,6 +2,8 @@ package io.hpp.concertreservation.initdata;
 
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
+import io.hpp.concertreservation.biz.domain.reservation.model.PaymentStatus;
+import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationLoadRepository;
 import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationStoreRepository;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
@@ -11,10 +13,14 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.biz.domain.seat.model.SeatGrade;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
 public class InitData {
@@ -26,9 +32,9 @@ public class InitData {
     private final ISeatStoreRepository seatStoreRepository;
     private final ISeatLoadRepository seatLoadRepository;
 
-    private IReservationLoadRepository reservationLoadRepository;
+    private final IReservationLoadRepository reservationLoadRepository;
 
-    private IReservationStoreRepository reservationStoreRepository;
+    private final IReservationStoreRepository reservationStoreRepository;
 
     public InitData(@Autowired IScheduleLoadRepository scheduleLoadRepository,
                                          @Autowired IScheduleStoreRepository scheduleStoreRepository,
@@ -46,7 +52,7 @@ public class InitData {
         this.reservationStoreRepository = reservationStoreRepository;
     }
 
-    public Long initDataForConcert(){
+    public Concert initDataForConcert(){
         /**
          * 콘서트 정보 입력하기
          * */
@@ -57,10 +63,11 @@ public class InitData {
                 LocalDateTime.of(2023,12,25,0,0,0));
 
         Concert savedPhsConcert = concertStoreRepository.saveConcert(phsConcert);
-        return savedPhsConcert.getId();
+
+        return savedPhsConcert;
     }
 
-    public Long initDataForSchedule(Long phsConcertId){
+    public Schedule initDataForSchedule(Long phsConcertId){
 
         /**
          * 스케쥴 정보 입력하기
@@ -70,9 +77,9 @@ public class InitData {
                 LocalDateTime.of(2023,12,24,17,0,0));
         scheduleStoreRepository.saveSchedule(phsSchedule1);
 
-        return  phsSchedule1.getId();
+        return phsSchedule1;
     }
-    public Long initDataForSeat(Long phsConcertScheduleId ){
+    public List<Seat> initDataForSeat(Long phsConcertScheduleId ){
         /**
          * 좌석 정보 입력하기 1 ~ 50
          * 총 5개 입력하기
@@ -86,14 +93,26 @@ public class InitData {
         seatStoreRepository.saveSeat(seat2);
         seatStoreRepository.saveSeat(seat3);
 
-        return savedSeat1.getId();
+        return List.of(seat1,seat2,seat3);
     }
 
-    public void initDataForReserve(){
+    public Reservation initDataForReserve(Long userId, Long scheduleId){
+        Reservation reservation = Reservation.of(
+                userId,
+                scheduleId,
+                LocalDateTime.now(),
+                1,
+                240000L,
+                PaymentStatus.WAIT);
 
+        // when
+        Reservation result = reservationStoreRepository.saveReservation(reservation);
+
+        return reservation;
     }
 
     public void initDataForCharge(){
 
     }
+
 }

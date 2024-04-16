@@ -13,7 +13,9 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.biz.domain.seat.model.SeatGrade;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
+import io.hpp.concertreservation.initdata.InitData;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,16 +46,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ReservationCoreRepositoryTest {
 
 
-    private final IScheduleLoadRepository scheduleLoadRepository;
     private final IScheduleStoreRepository scheduleStoreRepository;
     private final IConcertStoreRepository concertStoreRepository;
 
     private final ISeatStoreRepository seatStoreRepository;
     private final ISeatLoadRepository seatLoadRepository;
 
-    private IReservationLoadRepository reservationLoadRepository;
+    private final IReservationLoadRepository reservationLoadRepository;
 
-    private IReservationStoreRepository reservationStoreRepository;
+    private final IReservationStoreRepository reservationStoreRepository;
+
+    public final InitData initData;
 
     public ReservationCoreRepositoryTest(@Autowired IScheduleLoadRepository scheduleLoadRepository,
                                          @Autowired IScheduleStoreRepository scheduleStoreRepository,
@@ -61,64 +64,30 @@ public class ReservationCoreRepositoryTest {
                                          @Autowired ISeatStoreRepository seatStoreRepository,
                                          @Autowired ISeatLoadRepository seatLoadRepository,
                                          @Autowired IReservationLoadRepository reservationLoadRepository,
-                                         @Autowired IReservationStoreRepository reservationStoreRepository) {
-        this.scheduleLoadRepository = scheduleLoadRepository;
+                                         @Autowired IReservationStoreRepository reservationStoreRepository,
+                                         @Autowired InitData initData) {
         this.scheduleStoreRepository = scheduleStoreRepository;
         this.concertStoreRepository = concertStoreRepository;
         this.seatStoreRepository = seatStoreRepository;
         this.seatLoadRepository = seatLoadRepository;
         this.reservationLoadRepository = reservationLoadRepository;
         this.reservationStoreRepository = reservationStoreRepository;
+        this.initData                   = initData;
     }
 
     private Long phsConcertScheduleId = 0L;
     private Long phsConcertSecondScheduleId = 0L;
 
+    private Long concertId = 0L;
+
+    private List<Seat> seats = List.of();
+
     @DisplayName("박효신 콘서트 정보 입력, 스케쥴 2023-12-24 17시, 21시 공연 스케쥴 입력, 17시 3석, 21시 2석 입력")
     @BeforeEach
     void init(){
-        /**
-         * 콘서트 정보 입력하기
-         * */
-        Concert phsConcert = Concert.of("박효신 콘서트",
-                "박효신의 크리스마스 콘서트!",
-                "박효신",
-                LocalDateTime.of(2023,12,24,0,0,0),
-                LocalDateTime.of(2023,12,25,0,0,0));
-
-        Concert savedPhsConcert = concertStoreRepository.saveConcert(phsConcert);
-        Long phsConcertId   = savedPhsConcert.getId();
-
-        /**
-         * 스케쥴 정보 입력하기
-         * */
-        Schedule phsSchedule1 = Schedule.of(
-                phsConcertId,
-                LocalDateTime.of(2023,12,24,17,0,0));
-        scheduleStoreRepository.saveSchedule(phsSchedule1);
-
-        Schedule phsSchedule2 = Schedule.of(
-                phsConcertId,
-                LocalDateTime.of(2023,12,24,21,0,0));
-        scheduleStoreRepository.saveSchedule(phsSchedule2);
-        phsConcertScheduleId       = phsSchedule1.getId();
-        phsConcertSecondScheduleId = phsSchedule2.getId();
-        /**
-         * 좌석 정보 입력하기 1 ~ 50
-         * 총 5개 입력하기
-         * 박효신 콘서트 17시 공연 3석, 21시 공연 2석
-         * */
-        Seat seat1 = Seat.of(phsConcertScheduleId,1L, SeatGrade.VIP,240000L,-1L);
-        Seat seat2 = Seat.of(phsConcertScheduleId,2L, SeatGrade.R,120000L,-1L);
-        Seat seat3 = Seat.of(phsConcertScheduleId,3L, SeatGrade.R,120000L,-1L);
-        Seat seat4 = Seat.of(phsConcertSecondScheduleId,1L, SeatGrade.VIP,250000L,-1L);
-        Seat seat5 = Seat.of(phsConcertSecondScheduleId,2L, SeatGrade.R,120000L,-1L);
-
-        seatStoreRepository.saveSeat(seat1);
-        seatStoreRepository.saveSeat(seat2);
-        seatStoreRepository.saveSeat(seat3);
-        seatStoreRepository.saveSeat(seat4);
-        seatStoreRepository.saveSeat(seat5);
+        concertId = initData.initDataForConcert().getId();
+        phsConcertScheduleId = initData.initDataForSchedule(concertId).getId();
+        seats = initData.initDataForSeat(phsConcertScheduleId);
     }
 
     @DisplayName("Not null 체크")
@@ -130,7 +99,6 @@ public class ReservationCoreRepositoryTest {
 
         // then
 
-        assertThat(scheduleLoadRepository).isNotNull();
         assertThat(scheduleStoreRepository).isNotNull();
         assertThat(concertStoreRepository).isNotNull();
         assertThat(seatStoreRepository).isNotNull();

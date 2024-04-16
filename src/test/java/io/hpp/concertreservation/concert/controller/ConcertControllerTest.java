@@ -39,11 +39,9 @@ public class ConcertControllerTest {
         this.initData = initData;
     }
 
-    private Gson gson;
-
     @BeforeEach
     public void init(){
-        gson = new Gson();
+        Gson gson = new Gson();
         mockMvc = MockMvcBuilders.standaloneSetup(concertController)
                 .setControllerAdvice(new ApiControllerAdvice())
                 .build();

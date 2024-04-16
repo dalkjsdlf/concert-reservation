@@ -6,6 +6,7 @@ import io.hpp.concertreservation.biz.domain.payment.component.PaymentReader;
 import io.hpp.concertreservation.biz.domain.payment.model.Payment;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationReader;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,19 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GetAllPaymentUseCase {
 
     private final PaymentReader paymentReader;
     private final ReservationReader reservationReader;
     private final ConcertReader concertReader;
-
-
-    public GetAllPaymentUseCase(PaymentReader paymentReader, ReservationReader reservationReader, ConcertReader concertReader) {
-        this.paymentReader = paymentReader;
-        this.reservationReader = reservationReader;
-        this.concertReader = concertReader;
-    }
 
     public List<PaymentResponseDto> execute(Long userId){
 
