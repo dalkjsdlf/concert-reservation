@@ -6,6 +6,7 @@ import jakarta.persistence.LockModeType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +18,8 @@ public class SeatCoreLoadRepository implements ISeatLoadRepository {
     private final ISeatJpaRepository seatJpaRepository;
 
     @Override
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select s from Seat s where s.scheduleId=:scheduleId")
+    @Lock(LockModeType.PESSIMISTIC_READ)
     public List<Seat> findSeatsByScheduleId(Long scheduleId) {
         return seatJpaRepository.findByScheduleId(scheduleId);
     }

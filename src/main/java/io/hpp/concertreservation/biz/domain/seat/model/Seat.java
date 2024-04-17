@@ -16,7 +16,7 @@ public class Seat {
     private Long id;
 
     @Setter
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Long seatNo;
 
     @Setter

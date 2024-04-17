@@ -66,7 +66,7 @@ public class SimultaneityTest {
         List<Seat> seats = seatReader.readSeatsByScheduleId(scheduleId);
 
         int threadCount = 10;
-        ExecutorService executorService = Executors.newFixedThreadPool(26);
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
 
         CountDownLatch latch = new CountDownLatch(threadCount);
 
@@ -87,6 +87,8 @@ public class SimultaneityTest {
         latch.await();
 
         int cnt = reservationReader.readAllReservation().size();
+
+        //Seat쪽에서 예외 터지고 예약 1건 입력
 
         assertThat(cnt).isEqualTo(1);
     }
