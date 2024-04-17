@@ -18,8 +18,6 @@ public class SeatCoreLoadRepository implements ISeatLoadRepository {
     private final ISeatJpaRepository seatJpaRepository;
 
     @Override
-    @Query("select s from Seat s where s.scheduleId=:scheduleId")
-    @Lock(LockModeType.PESSIMISTIC_READ)
     public List<Seat> findSeatsByScheduleId(Long scheduleId) {
         return seatJpaRepository.findByScheduleId(scheduleId);
     }
