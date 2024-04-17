@@ -20,7 +20,7 @@ public class WaitQueueMapLoadRepository implements IWaitQueueLoadRepository {
 
     @Override
     public Long countAll() {
-        return null;
+        return waitQueueMapStorage.getWaitQueueSize();
     }
 
     @Override
@@ -53,4 +53,5 @@ public class WaitQueueMapLoadRepository implements IWaitQueueLoadRepository {
 
         return resultList;
     }
+
 }

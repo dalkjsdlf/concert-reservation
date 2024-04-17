@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-@Transactional
+@Transactional(isolation = Isolation.READ_COMMITTED)
 @Slf4j
 public class ReserveConcertUseCase {
 
@@ -32,7 +33,6 @@ public class ReserveConcertUseCase {
     private final SeatSupportor seatSupportor;
     private final SeatModifier seatModifier;
     private final ReservationModifier reservationModifier;
-
     public void execute(List<Seat> seats, Long userId){
         log.info("ReserveConcertUseCase   userId [{}]",userId);
 

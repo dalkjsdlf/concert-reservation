@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -14,15 +15,9 @@ public class WaitQueueTokenValidator {
 
     private final WaitQueueReader waitQueueReader;
 
+    private final Long CONST_LIMIT = 100L;
     public boolean valiation(String token){
         WaitQueue workingQueue = waitQueueReader.readWaitQueuePassed(token);
-
-        if(workingQueue == null){
-            log.info("인증 실패");
-            return false;
-        }else{
-            log.info("인증 성공");
-            return true;
-        }
+        return Optional.of(workingQueue).isPresent();
     }
 }

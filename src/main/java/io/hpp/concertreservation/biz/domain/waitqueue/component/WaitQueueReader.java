@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type Wait queue reader.
+ */
 @Component
 public class WaitQueueReader {
 
@@ -21,6 +24,12 @@ public class WaitQueueReader {
         this.waitQueueLoadRepository = waitQueueLoadRepository;
     }
 
+
+    /**
+     * @Name   : 입장이 가능한 상태를 조회한다.
+     * @param  :  token
+     * @return : WaitQueue
+     */
     public WaitQueue readWaitQueuePassed(String token){
          List<WaitQueue> waitQueues = waitQueueLoadRepository.findByToken(token);
 
@@ -35,5 +44,9 @@ public class WaitQueueReader {
         }else{
             return null;
         }
+    }
+
+    public Long readCountAll(){
+        return waitQueueLoadRepository.countAll();
     }
 }

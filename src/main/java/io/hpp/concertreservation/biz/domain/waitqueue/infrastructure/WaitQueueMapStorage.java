@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class WaitQueueMapStorage {
     private static Map<String, WaitQueue> waitQueueMap = new HashMap<String, WaitQueue>();
-
+    private static int waitQueueSize = 0;
     public WaitQueueMapStorage(){
         String token = "token1";
         waitQueueMap.put("token1",WaitQueue.of(1L,token, WaitStatus.WORK, LocalDateTime.now()));
@@ -28,5 +28,14 @@ public class WaitQueueMapStorage {
 
     public void addWaitQueue(String key, WaitQueue waitQueue){
         waitQueueMap.put(key,waitQueue);
+    }
+
+    public void renewQueueSize(){
+        waitQueueSize = waitQueueMap.size();
+    }
+
+    public long getWaitQueueSize(){
+        renewQueueSize();
+        return (long)waitQueueSize;
     }
 }
