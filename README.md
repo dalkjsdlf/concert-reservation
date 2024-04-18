@@ -41,6 +41,39 @@ Supportor -> Reader,Modifier -> Validator
 
 ![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/23ac8c30-2ef3-4af4-b401-007e43b85f63)
 
+## 2. 인터셉터 미적용 문제
+
+* 문제
+
+Token값을 검증하는 인터셉터인 TokenValidationInterceptor가 Runtime시 적용되지가 않음 (Request시 인터셉터를 무시)
+
+* 원인
+
+TokenValidationInterceptor는 빈등록 하였고 WebMvcConfigurer 구현체에는 new로 객체생성하여 사용함
+
+* 해결 
+
+@RequeiredArgsConstructor로 객체 주입하여 해결
+
+## 3. 테스트 코드에서 LOMBOK 사용하기
+
+* 문제
+
+테스트 코드에서는 SpringBootTest로 테스트하여도 Slf4j가 사용이 안됨
+
+
+* 원인
+
+테스트코드에서는 lombok에 대하여 별도의 dependency가 필요함
+
+* 해결 
+
+Gradle에 아래 내용 추가하고 사용
+```
+testCompileOnly 'org.projectlombok:lombok'
+testAnnotationProcessor 'org.projectlombok:lombok'
+```
+
 
 ## ✔ SWAGGER
 ### 1)
