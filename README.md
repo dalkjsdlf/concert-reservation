@@ -1,7 +1,7 @@
 # concert-reservation
 항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
 
-## 트러블 슈팅
+## ✔ 트러블 슈팅
 
 ### 1. 순환참조
 
@@ -42,7 +42,7 @@ Supportor -> Reader,Modifier -> Validator
 ![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/23ac8c30-2ef3-4af4-b401-007e43b85f63)
 
 
-## SWAGGER
+## ✔ SWAGGER
 ### 1)
 ![스웨거 캡쳐1](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/10bc6b6d-2135-4ea0-aefb-79625b6bc36a)
 
