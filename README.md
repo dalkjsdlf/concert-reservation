@@ -41,7 +41,7 @@ Supportor -> Reader,Modifier -> Validator
 
 ![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/23ac8c30-2ef3-4af4-b401-007e43b85f63)
 
-## 2. 인터셉터 미적용 문제
+### 2. 인터셉터 미적용 문제
 
 * 문제
 
@@ -55,7 +55,7 @@ TokenValidationInterceptor는 빈등록 하였고 WebMvcConfigurer 구현체에�
 
 @RequeiredArgsConstructor로 객체 주입하여 해결
 
-## 3. 테스트 코드에서 LOMBOK 사용하기
+### 3. 테스트 코드에서 LOMBOK 사용하기
 
 * 문제
 
