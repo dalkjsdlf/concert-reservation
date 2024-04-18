@@ -49,11 +49,14 @@ Token값을 검증하는 인터셉터인 TokenValidationInterceptor가 Runtime�
 
 * 원인
 
-TokenValidationInterceptor는 빈등록 하였고 WebMvcConfigurer 구현체에는 new로 객체생성하여 사용함
+TokenValidationInterceptor는 @Component로 정의하여 사용하면서 
+
+WebMvcConfigurer 구현체인 WebConfig 클래스에는 addInterceptor에서 적용할 때는 new로 객체생성하여 사용함
 
 * 해결 
 
-@RequeiredArgsConstructor로 객체 주입하여 해결
+WebConfig클래스에 @RequeiredArgsConstructor를 통해 TokenValidationInterceptor객체를 생성자 주입으로 적용하여 해결
+
 
 ### 3. 테스트 코드에서 LOMBOK 사용하기
 
