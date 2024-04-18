@@ -16,7 +16,9 @@ UseCase에서 책임을 최소화 하기 위하여 간단한 값에 대한 검�
 
 데이터의 값에 대한 검사를 진행하는 SeatValidator와 SeatReader간 상호 참조형태
 
-SeatValidator와 SeatReader의 책임과 역할이 불분명 하여 서로 참조하는 형태로 구현이 진행되었었음
+SeatValidator에서 좌석 데이터를 조회한다는 이유로 SeatReader를 사용하는 불상사가 발생
+
+SeatValidator와 SeatReader의 책임과 역할이 불분명 하였으며, 참조방향을 정해놓고 개발하지 않아 서로 참조하는 형태가 되버림.
 
 ![image](https://github.com/dalkjsdlf/concert-reservation/assets/38232007/6f9a491e-e2b2-4c26-91c2-910c469c6ffa)
 
