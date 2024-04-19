@@ -14,4 +14,5 @@ public class PayMoneyResponseDto {
     private final Long userId;
     private final PayMethod payMethod;
     private final Long balance;
+
 }

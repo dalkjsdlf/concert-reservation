@@ -76,6 +76,7 @@ public class ConcertCoreRepositoryTest {
         // when
         Optional<Concert> optResult = concertLoadRepository.findConcert(concertId);
         Concert result = optResult.orElseGet(null);
+
         // then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(concertId);

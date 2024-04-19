@@ -22,6 +22,11 @@ public class WaitQueue {
 
     @Column(nullable = false)
     @Setter
+    private Long userId;
+
+
+    @Column(nullable = false)
+    @Setter
     @Enumerated(EnumType.STRING)
     private WaitStatus status;
 
@@ -31,15 +36,15 @@ public class WaitQueue {
 
     protected WaitQueue(){};
 
-    private WaitQueue(Long id, String token, WaitStatus status, LocalDateTime updateTime) {
-        this.id = id;
+    private WaitQueue(String token, Long userId, WaitStatus status, LocalDateTime updateTime) {
         this.token = token;
+        this.userId = userId;
         this.status = status;
         this.updateTime = updateTime;
     }
 
-    public static WaitQueue of(Long id, String token, WaitStatus status, LocalDateTime updateTime){
-        return new WaitQueue(id, token, status, updateTime);
+    public static WaitQueue of(String token, Long userId, WaitStatus status, LocalDateTime updateTime){
+        return new WaitQueue(token, userId, status, updateTime);
     }
 
     @Override

@@ -27,6 +27,8 @@ public class QWaitQueue extends EntityPathBase<WaitQueue> {
 
     public final DateTimePath<java.time.LocalDateTime> updateTime = createDateTime("updateTime", java.time.LocalDateTime.class);
 
+    public final NumberPath<Long> userId = createNumber("userId", Long.class);
+
     public QWaitQueue(String variable) {
         super(WaitQueue.class, forVariable(variable));
     }

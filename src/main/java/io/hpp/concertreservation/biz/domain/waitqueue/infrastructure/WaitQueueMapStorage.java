@@ -14,8 +14,9 @@ public class WaitQueueMapStorage {
     private static Map<String, WaitQueue> waitQueueMap = new HashMap<String, WaitQueue>();
     private static int waitQueueSize = 0;
     public WaitQueueMapStorage(){
+
         String token = "token1";
-        waitQueueMap.put("token1",WaitQueue.of(1L,token, WaitStatus.WORK, LocalDateTime.now()));
+        waitQueueMap.put("token1",WaitQueue.of(token, 1L, WaitStatus.WORK, LocalDateTime.now()));
     }
 
     public Map<String, WaitQueue> getWaitQueues(){

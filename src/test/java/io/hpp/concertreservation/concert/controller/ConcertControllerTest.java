@@ -79,6 +79,21 @@ public class ConcertControllerTest {
         resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].concertName").value("박효신 콘서트"));
     }
 
+    @DisplayName("[성공] concert 조회시 토큰 검증")
+    @Test()
+    public void given_whenCheckToken_thenIsNotNull() throws Exception {
+        // given
+        String url = "/api/concerts";
+        // when
+        ResultActions resultActions = mockMvc.perform(get(url)
+                .header(USER_ID_HEADER, 1L)
+                .header(TOKEN_HEADER, "1L")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        // then
+        resultActions.andExpect(status().isOk());
+    }
+
     private void initDataInput(){
         initData.initDataForConcert();
     }
