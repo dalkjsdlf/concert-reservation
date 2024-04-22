@@ -48,7 +48,7 @@ public class ChargeUsecaseTest {
     }
 
 
-    @DisplayName("특정 사용자의 충전금액을 충전할 시 충전한 만큼 추가되는지 확인")
+    @DisplayName("특정 사용자의 충전금액을 충전할 시 충전한 만큼 추가되는지 확인.")
     @Test()
     public void givenUserIdAndChargeAmount_whenChargeAndGet_thenChargedAmount(){
         //given
