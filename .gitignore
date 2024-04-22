@@ -1,4 +1,6 @@
 .gradle
 .idea
+
+# 빌드결과 제외
 build/
 out/
