@@ -32,6 +32,7 @@ public class GetAllConcertsUseCase {
                 log.info("콘서트조회가 0건입니다.");
             }
         }
+	//
         return concerts.stream().map(concert->ConcertResponseDto.
                 builder().
                 id(concert.getId()).

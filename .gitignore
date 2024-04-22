@@ -1,5 +1,6 @@
 .gradle
 .idea
+auto-commit.sh
 
 # 빌드결과 제외
 build/
