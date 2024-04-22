@@ -33,7 +33,7 @@ public class ChargeUsecaseTest {
 
     private Long userId = 1L;
 
-    @DisplayName("NotNull Test2")
+    @DisplayName("NotNull Test224")
     @Test()
     public void given_whenNotNullCheck_then(){
         //given
