@@ -1,5 +1,25 @@
 # concert-reservation
 항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
+## ✔ 깃 브랜치 전략
+
+### 🎯 main    : 운영(Production) 배포 소스, 최신화 소스
+
+#### -> 개발시 DEVELOP으로 BRANCH, RELEASE로 부터 MERGING
+
+### 🎯 release : QA(Staging) 개발이 완료되어 MERGING된 소스, 운영 반영전 QA TEST시 사용
+
+#### -> DEVELOP으로 부터 MERGING, MAIN으로 MERGING
+
+### 🎯 develop : 개발(Development) 
+
+#### -> 개발시 MAIN으로부터 BRANCH, FEATURE로 부터 MERGING, RELEASE로 MERGING
+
+### 🎯 feature : 개발 기능 단위로 FEATURE 브랜치로 개발
+
+#### branch 명칭 --> feature/#[number]_[feature명칭]  ex) feature/#1_login
+
+#### -> 개발시 DEVELOP으로부터 BRANCH, DEVELOP으로 MERGING
+
 
 ## ✔ 트러블 슈팅
 
