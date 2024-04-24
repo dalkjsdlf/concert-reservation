@@ -45,9 +45,9 @@ public class WaitQueueRepositoryTest {
         tokenForUser2 = tokenGenerator.generateToken(user2Id,2L);
         tokenForUser3 = tokenGenerator.generateToken(user3Id,3L);
 
-        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser1, WaitStatus.WORK, LocalDateTime.now()));
-        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser2, WaitStatus.WORK, LocalDateTime.now()));
-        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser3, WaitStatus.WAIT, LocalDateTime.now()));
+        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser1, user1Id, WaitStatus.WORK, LocalDateTime.now()));
+        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser2, user2Id, WaitStatus.WORK, LocalDateTime.now()));
+        waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser3, user3Id, WaitStatus.WAIT, LocalDateTime.now()));
 
     }
     @DisplayName("Not Null 검사")
