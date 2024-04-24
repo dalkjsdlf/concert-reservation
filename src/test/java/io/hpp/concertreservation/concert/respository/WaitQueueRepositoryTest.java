@@ -50,7 +50,7 @@ public class WaitQueueRepositoryTest {
         waitQueueStoreRepository.addQueue(WaitQueue.of(tokenForUser3, user3Id, WaitStatus.WAIT, LocalDateTime.now()));
 
     }
-    @DisplayName("Not Null 검사")
+    @DisplayName("Not Null 검사 ")
     @Test()
     public void given_when_thenNotNull(){
         //given
