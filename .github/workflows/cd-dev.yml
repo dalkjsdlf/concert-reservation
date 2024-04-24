@@ -24,7 +24,7 @@
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
 
-name: ConsertReservation Deploy to ECS of Amazon
+name: ConcertReservation Deploy to ECS of Amazon for development
 
 on:
   push:
@@ -39,6 +39,7 @@ env:
                                                        # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: service-dev                          # set this to the name of the container in the
                                                        # containerDefinitions section of your task definition
+  ACTIVE_PROFILE: dev_profile
                                                
 jobs:
 

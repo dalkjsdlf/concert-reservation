@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: dev_profile
+  datasource:
+    url: jdbc:mysql://localhost:3306/lecture
+    username: dorris
+    password: dusghchl3891
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        hibernate.default_batch_fetch_size: 100
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+  sql:
+    init:
+      mode: always
