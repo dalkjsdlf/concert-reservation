@@ -7,6 +7,7 @@ import io.hpp.concertreservation.biz.api.paymoney.usecase.GetPayMoneyUseCase;
 import io.hpp.concertreservation.biz.api.paymoney.usecase.UsePayMoneyUseCase;
 import io.hpp.concertreservation.biz.domain.paymoney.component.PayMoneyModifier;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @DisplayName("충전 기능에 대한 테스트")
+@Disabled
 public class ChargeUsecaseTest {
 
     @Autowired

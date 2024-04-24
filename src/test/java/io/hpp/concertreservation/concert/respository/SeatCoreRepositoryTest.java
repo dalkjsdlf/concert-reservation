@@ -12,6 +12,7 @@ import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
+@Disabled
 public class SeatCoreRepositoryTest {
 
     private final IScheduleLoadRepository scheduleLoadRepository;

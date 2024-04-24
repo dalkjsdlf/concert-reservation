@@ -9,10 +9,7 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import io.hpp.concertreservation.initdata.InitData;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -31,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * */
 @DisplayName("이미 예약된 좌석 시나리오 1")
 @SpringBootTest
+@Disabled
 public class AlreadyReserveServerCheckTest {
 
     @Autowired

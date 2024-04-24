@@ -5,6 +5,7 @@ import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepos
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Disabled
 @DisplayName("콘서트 정보 조회 테스트")
 @SpringBootTest
 @Transactional

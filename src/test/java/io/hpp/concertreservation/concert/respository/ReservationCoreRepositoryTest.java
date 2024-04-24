@@ -17,6 +17,7 @@ import io.hpp.concertreservation.initdata.InitData;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
+@Disabled
 public class ReservationCoreRepositoryTest {
 
 

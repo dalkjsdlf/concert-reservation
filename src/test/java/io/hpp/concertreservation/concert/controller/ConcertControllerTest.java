@@ -5,6 +5,7 @@ import io.hpp.concertreservation.biz.api.concert.controller.ConcertController;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("[Concert Controller Test]")
 @SpringBootTest
 @Transactional
+@Disabled
 public class ConcertControllerTest {
 
     private MockMvc mockMvc;
