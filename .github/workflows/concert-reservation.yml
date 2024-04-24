@@ -67,7 +67,11 @@ jobs:
       run: echo $CREATE_SECRET | base64 --decode > $CREATE_SECRET_DIR/$CREATE_SECRET_DIR_FILE_NAME
 
     - name: Build with Gradle
-      run: ./gradlew build
+      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      with:
+        arguments: clean build
+      env:
+        SPRING_PROFILES_ACTIVE: ${{ env.ACTIVE_PROFILE }}
         
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
