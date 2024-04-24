@@ -1,4 +1,4 @@
-FROM openjdk:17 AS builder   #베이스 이미지 별칭
+FROM openjdk:17              #베이스 이미지 별칭
 COPY gradle gradle           # gradle 복사
 COPY gradlew .	             # gradlew 복사
 COPY build.gradle .          # build.gradle 복사
