@@ -11,5 +11,6 @@ FROM openjdk:17
 LABEL authors="choeyeonho"
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
+
 EXPOSE 8500
 ENTRYPOINT ["java","-jar","/app.jar"]
