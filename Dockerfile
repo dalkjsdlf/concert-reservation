@@ -1,5 +1,5 @@
-FROM openjdk:17              #베이스 이미지 별칭
-COPY gradle gradle           # gradle 복사
+FROM openjdk:17          
+COPY gradle gradle
 COPY gradlew .	             # gradlew 복사
 COPY build.gradle .          # build.gradle 복사
 COPY src src                 # 웹 어플리케이션 소스 복사
