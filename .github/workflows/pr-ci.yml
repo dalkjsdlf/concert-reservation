@@ -10,13 +10,16 @@
 
       steps:
         - uses: actions/checkout@v3
-
+        
         - name: Set up JDK 17
           uses: actions/setup-java@v3
           with:
             java-version: '17'
             distribution: 'corretto'
-
+        
+        ###########################################    
+        ## 캐시 액션
+        ###########################################
         - name: Cache Gradle packages
           uses: actions/cache@v3
           with:
@@ -24,15 +27,22 @@
             key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle/build.gradle') }}
             restore-keys: |
               ~/.gradle/caches-*.zip
-
+        
+        ###########################################
+        ## Java Checkstyle
+        ###########################################
+        - name: Run checkstyle
+          uses: nikitasavinov/checkstyle-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            reporter: github-pr-check
+            tool_name: 'checkstyle'
+            
+        ###########################################  
+        ## 테스트전 사전 빌드
+        ###########################################
         - name: Grant execute permission for gradlew
           run: chmod +x gradlew
-
-        - name: Copy Secret
-          env:
-            CREATE_SECRET_DIR: src/main/resources
-            CREATE_SECRET_DIR_FILE_NAME: application.yml
-          run: echo $CREATE_SECRET | base64 --decode > $CREATE_SECRET_DIR/$CREATE_SECRET_DIR_FILE_NAME
 
         - name: Build with Gradle
           uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
@@ -40,6 +50,23 @@
             arguments: clean build
           env:
             SPRING_PROFILES_ACTIVE: ${{ env.ACTIVE_PROFILE }}
-
+            
+        ###########################################
+        ## 테스트
+        ###########################################
         - name: Build and test with Gradle
           run: ./gradle test
+          
+        ###########################################  
+        ## 테스트 커버리지
+        ###########################################
+        - name: Add coverage to PR
+          id: jacoco
+          uses: madrapps/jacoco-report@v1.6.1
+          with:
+            paths: |
+              ${{ github.workspace }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
+              ${{ github.workspace }}/**/build/reports/jacoco/**/debugCoverage.xml
+            token: ${{ secrets.GITHUB_TOKEN }}
+            min-coverage-overall: 40
+            min-coverage-changed-files: 60
