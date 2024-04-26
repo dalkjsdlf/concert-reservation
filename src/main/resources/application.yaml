@@ -24,8 +24,9 @@ server:
 spring:
   profiles:
     group:
+      local: local_profile
       dev: dev_profile
-      test: test_profile
+      cbt: cbt_profile
       prod: prod_profile
 default:
   string: default property
