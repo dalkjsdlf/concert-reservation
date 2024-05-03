@@ -1,5 +1,7 @@
 # concert-reservation
 항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
+## ✔ 동시성 이슈에 대한 분석
+ https://thoracic-catamaran-22f.notion.site/de17237568694b2386a43715543aa4f1?pvs=4
 ## ✔ 깃 브랜치 전략
 
 ### 🎯 main    : 운영(Production) 배포 소스, 최신화 소스
