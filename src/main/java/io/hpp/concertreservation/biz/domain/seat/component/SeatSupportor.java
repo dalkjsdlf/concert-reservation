@@ -4,11 +4,13 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class SeatSupportor {
 
     private final SeatValidator seatValidator;
@@ -28,7 +30,7 @@ public class SeatSupportor {
 
     public void checkAlreadyReservedSeatOfSeats(List<Seat> seats){
         for(Seat seat : seats){
-            Seat seatForCheck = seatReader.findSeatBySeatNoAndScheduleId(seat.getSeatNo(), seat.getScheduleId());
+            Seat seatForCheck = seatReader.readSeatBySeatNoAndScheduleId(seat.getSeatNo(), seat.getScheduleId());
             if(!seatForCheck.getReserveId().equals(-1L)){
                 throw new ReservationException(ReservationErrorResult.ALREADY_SEAT_RESERVED);
             }

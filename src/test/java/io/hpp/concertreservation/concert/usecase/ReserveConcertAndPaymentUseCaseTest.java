@@ -38,9 +38,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("콘서트를 예약 및 결제 유스케이스 테스트")
 @SpringBootTest
 @Transactional
-@Disabled
 public class ReserveConcertAndPaymentUseCaseTest {
 
     private ReserveConcertUseCase reserveConcertUseCase;
@@ -76,7 +76,6 @@ public class ReserveConcertAndPaymentUseCaseTest {
     private Long phsConcertSeatId;
 
     private Long userId = 1L;
-
 
     public ReserveConcertAndPaymentUseCaseTest(@Autowired ReserveConcertUseCase reserveConcertUseCase,
                                                @Autowired IScheduleLoadRepository scheduleLoadRepository,
@@ -182,8 +181,14 @@ public class ReserveConcertAndPaymentUseCaseTest {
     @Test()
     public void givenRequestReservation_whenReserve_thenSuccessfullyReserve(){
         // given
+        /**
+         * 특정 스케쥴에 해당하는 좌석조회
+         * */
         List<Seat> seats = seatReader.readSeatsByScheduleId(phsConcertScheduleId);
 
+        /**
+         * 해당 좌석에 예약하기 위한 예약 객체 생성
+         * */
         ReservationRequestDto reservationRequestDto = ReservationRequestDto.
                                                                     builder().
                                                                     seats(seats).
@@ -192,14 +197,23 @@ public class ReserveConcertAndPaymentUseCaseTest {
                                                                     build();
         int beforeCnt = reservationReader.readReservationsByUserId(userId).size();
 
+        /**
+         * 예약 UseCase 실행
+         * */
         // when
         reserveConcertUseCase.execute(seats, userId);
 
         int afterCnt = beforeCnt + 1;
 
-        List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
 
         // then
+        /**
+         * 예약이 잘 되었는지 확인하기 위해 Reservation 정보 조회
+         * */
+        List<Reservation> reservations = reservationReader.readReservationsByUserId(userId);
+        /**
+         * 예약 객체가 추가되었기 때문에 count가 +1됨을 확인
+         * */
         assertThat(reservations.size()).isEqualTo(afterCnt);
     }
 

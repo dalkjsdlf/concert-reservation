@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ISeatJpaRepository extends JpaRepository<Seat, Long> {
-    @Query("select s from Seat s where s.scheduleId=:scheduleId")
-    @Lock(LockModeType.PESSIMISTIC_READ)
+
+
     List<Seat> findByScheduleId(Long scheduleId);
 
+    @Query("select s from Seat as s where s.scheduleId=:scheduleId and s.seatNo=:seatNo")
+    @Lock(LockModeType.PESSIMISTIC_READ)
     Optional<Seat> findBySeatNoAndScheduleId(Long seatNo, Long scheduleId);
 }

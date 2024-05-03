@@ -24,7 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
-@Disabled
 public class ScheduleCoreRepositoryTest {
 
     private final IScheduleLoadRepository scheduleLoadRepository;

@@ -33,7 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Reservation Controller Test")
 @SpringBootTest
 @Transactional
-@Disabled
 public class ReservationControllerReserveTest {
 
     private static Logger logger = LoggerFactory.getLogger(ReservationControllerReserveTest.class);

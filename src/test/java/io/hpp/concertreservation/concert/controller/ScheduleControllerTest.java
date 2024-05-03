@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("[Schedule Controller Test]")
 @SpringBootTest
 @Transactional
-@Disabled
 public class ScheduleControllerTest {
 
     private MockMvc mockMvc;

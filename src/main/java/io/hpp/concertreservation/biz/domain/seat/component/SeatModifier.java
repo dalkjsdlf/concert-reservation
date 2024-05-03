@@ -48,8 +48,7 @@ public class SeatModifier{
         /*
          * 좌석에 예약ID 업데이트
          * */
-        seat.setReserveId(reservationId);
-        seatStoreRepository.saveSeat(seat);
+        seatStoreRepository.updateReservationId(seat, reservationId);
     }
 
 }

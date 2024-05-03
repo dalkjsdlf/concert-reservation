@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @DisplayName("전체 시나리오 통합 테스트")
 @SpringBootTest
 @Transactional
-@Disabled
 public class TotalSenarioTest {
 
 }

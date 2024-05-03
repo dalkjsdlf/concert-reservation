@@ -5,6 +5,7 @@ import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitQueue;
 import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitStatus;
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueLoadRepository;
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueStoreRepository;
+import jakarta.transaction.Transactional;
 import net.sf.jsqlparser.statement.select.Wait;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -19,9 +20,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 @DisplayName("대기열 저장소 테스트")
 @SpringBootTest
+
 public class WaitQueueRepositoryTest {
 
     @Autowired

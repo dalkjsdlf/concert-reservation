@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@Disabled
 @DisplayName("콘서트 정보 조회 테스트")
 @SpringBootTest
 @Transactional
@@ -76,7 +75,7 @@ public class ConcertCoreRepositoryTest {
 
         // when
         Optional<Concert> optResult = concertLoadRepository.findConcert(concertId);
-        Concert result = optResult.orElseGet(null);
+        Concert result = optResult.orElse(null);
 
         // then
         assertThat(result).isNotNull();

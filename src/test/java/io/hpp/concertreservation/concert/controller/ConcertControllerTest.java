@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("[Concert Controller Test]")
 @SpringBootTest
 @Transactional
-@Disabled
 public class ConcertControllerTest {
 
     private MockMvc mockMvc;
@@ -62,7 +61,6 @@ public class ConcertControllerTest {
 
         // then
         assertThat(concertController).isNotNull();
-
     }
 
     @DisplayName("[성공] concert 공연들 조회")

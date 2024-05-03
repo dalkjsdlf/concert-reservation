@@ -3,12 +3,16 @@ package io.hpp.concertreservation.concert.reservefail;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
 import io.hpp.concertreservation.biz.api.reservation.usecase.GetAllReservationsUseCase;
 import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
+import io.hpp.concertreservation.biz.api.seat.dto.SeatRequestDto;
 import io.hpp.concertreservation.biz.api.seat.dto.SeatResponseDto;
 import io.hpp.concertreservation.biz.api.seat.usecase.GetAllSeatsUseCase;
+import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import io.hpp.concertreservation.initdata.InitData;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * */
 @DisplayName("이미 예약된 좌석 시나리오 1")
 @SpringBootTest
-@Disabled
+@Slf4j
+@Transactional
 public class AlreadyReserveServerCheckTest {
 
     @Autowired
@@ -42,6 +47,9 @@ public class AlreadyReserveServerCheckTest {
 
     @Autowired
     private GetAllReservationsUseCase getAllReservationsUseCase;
+
+    @Autowired
+    private SeatReader seatReader;
 
     private Long scheduleId;
 
@@ -139,32 +147,14 @@ public class AlreadyReserveServerCheckTest {
         /*
          * 1,2,3 번 좌석이 조회됨
          * **/
-        List<SeatResponseDto> resultSeats = getAllSeatsUseCase.executor(scheduleId);
+        List<Seat> resultSeats = seatReader.readSeatsByScheduleId(scheduleId);
+
 
         /*
          * 실제로는 조회된 1,2,3 좌석중 1,2번 좌석을 예약할 것이라고 가정
          * **/
-
-        SeatResponseDto seat1 = resultSeats.get(0);
-        SeatResponseDto seat2 = resultSeats.get(1);
-
-        /*
-         * 첫 번째 좌석 선택 (좌석번호1)
-         * **/
-        Seat selectedSeat1 = Seat.of(scheduleId,
-                seat1.getSeatNo(),
-                seat1.getSeatGrade(),
-                seat1.getPrice(),
-                seat1.getReserveId());
-
-        /*
-         * 두 번째 좌석 선택 (좌석번호2)
-         * **/
-        Seat selectedSeat2 = Seat.of(scheduleId,
-                seat2.getSeatNo(),
-                seat2.getSeatGrade(),
-                seat2.getPrice(),
-                seat2.getReserveId());
+        Seat selectedSeat1 = resultSeats.get(0);
+        Seat selectedSeat2 = resultSeats.get(1);
 
         firstUserGetSeats = List.of(selectedSeat1, selectedSeat2);
 
@@ -177,6 +167,22 @@ public class AlreadyReserveServerCheckTest {
          * 두 번째 사용자가 USER 1이 선택한 동일한 좌석을 먼저 예약한다.
          * */
         ReservationException reservationException = assertThrows(ReservationException.class, () -> reserveConcertUseCase.execute(firstUserGetSeats,firstUserId));
+
+        /*
+        흠...
+        단계를 보자면
+        1. 두 번째 사용자 좌석검사
+          --> 같은 스케쥴의 좌석이 3건 조회될 것임
+        2. 두 번째 사용자 예약 insert
+        3. 두 번째 사용자 좌석 update
+        4. 첫 번째 사용자 좌석검사
+        5. 이미 예약된 좌석 exception
+        에러는 seat가 2개이상 조회되서 에러났다는 건데 그 말은 두 번째 사용자가 좌석 검사할 때부터 문제가 되었어야 하는데 로그를 한번 찍어보자
+        log 계획
+          좌석 검사하는 component 기준으로 전 후 로그 찍을 예정
+          [{}]가 좌석 검사하기 전, userId
+          "[{}]가 좌석 검사한 후 조회된 좌석 개수 [{}]", userId, seats.size();
+        * **/
 
         // then
         assertThat(reservationException.getErrorResult()).isEqualTo(ReservationErrorResult.ALREADY_SEAT_RESERVED);

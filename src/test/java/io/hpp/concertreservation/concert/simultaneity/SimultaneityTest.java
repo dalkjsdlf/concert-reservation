@@ -26,9 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("콘서트 예약 동시성 테스트")
 @SpringBootTest
-@Transactional
 @Slf4j
-@Disabled
+@Transactional
 public class SimultaneityTest {
 
     //private final static Logger logger = LoggerFactory.getLogger(SimultaneityTest.class);
@@ -78,7 +77,6 @@ public class SimultaneityTest {
             Long finalUserIdSeq = userIdSeq;
             executorService.submit(() -> {
                 try {
-                    log.info("Thread ID [{}],   userId >>>[{}]",Thread.currentThread().getId(), finalUserIdSeq);
                     reserveConcertUseCase.execute(seats, finalUserIdSeq);
                 }finally {
                     latch.countDown();
@@ -91,7 +89,6 @@ public class SimultaneityTest {
         int cnt = reservationReader.readAllReservation().size();
 
         //Seat쪽에서 예외 터지고 예약 1건 입력
-
         assertThat(cnt).isEqualTo(1);
     }
 

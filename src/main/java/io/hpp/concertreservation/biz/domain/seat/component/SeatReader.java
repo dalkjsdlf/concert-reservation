@@ -4,10 +4,8 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -59,7 +57,7 @@ public class SeatReader{
         return optSeat.orElseThrow(()->new ReservationException(ReservationErrorResult.NO_SEAT));
     }
 
-    public Seat findSeatBySeatNoAndScheduleId(Long seatNo,Long scheduleId){
+    public Seat readSeatBySeatNoAndScheduleId(Long seatNo,Long scheduleId){
         Optional<Seat> optSeat = seatLoadRepository.findSeatBySeatNoAndScheduleId(seatNo, scheduleId);
         return optSeat.orElseThrow(()-> new ReservationException(ReservationErrorResult.NO_SEAT));
     }
