@@ -10,20 +10,19 @@ import java.util.Objects;
 @Entity
 @Table
 @Getter
-public class WaitQueue {
+public class WaitMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false)
     @Setter
     private String token;
 
     @Column(nullable = false)
     @Setter
     private Long userId;
-
 
     @Column(nullable = false)
     @Setter
@@ -34,25 +33,25 @@ public class WaitQueue {
     @Setter
     private LocalDateTime updateTime;
 
-    protected WaitQueue(){};
+    protected WaitMember(){};
 
-    private WaitQueue(String token, Long userId, WaitStatus status, LocalDateTime updateTime) {
+    private WaitMember(String token, Long userId, WaitStatus status, LocalDateTime updateTime) {
         this.token = token;
         this.userId = userId;
         this.status = status;
         this.updateTime = updateTime;
     }
 
-    public static WaitQueue of(String token, Long userId, WaitStatus status, LocalDateTime updateTime){
-        return new WaitQueue(token, userId, status, updateTime);
+    public static WaitMember of(String token, Long userId, WaitStatus status, LocalDateTime updateTime){
+        return new WaitMember(token, userId, status, updateTime);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        WaitQueue waitQueue = (WaitQueue) o;
-        return Objects.equals(id, waitQueue.id);
+        WaitMember waitMember = (WaitMember) o;
+        return Objects.equals(id, waitMember.id);
     }
 
     @Override

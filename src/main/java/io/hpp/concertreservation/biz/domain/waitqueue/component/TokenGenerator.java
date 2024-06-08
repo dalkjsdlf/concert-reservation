@@ -2,19 +2,17 @@ package io.hpp.concertreservation.biz.domain.waitqueue.component;
 
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Component
 public class TokenGenerator {
-    ReentrantLock reentrantLock = new ReentrantLock();
-    public String generateToken(Long userId, Long sortNo){
-        reentrantLock.lock();
+
+    public static String generateToken(){
         StringBuffer sb = new StringBuffer();
-        String token = sb.append(userId)
-                            .append(sortNo)
+        return sb.append(UUID.randomUUID())
                             .append(System.currentTimeMillis())
                             .toString();
-        reentrantLock.unlock();
-        return token;
     }
+
 }

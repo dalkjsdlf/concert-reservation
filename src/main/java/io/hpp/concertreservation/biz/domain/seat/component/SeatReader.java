@@ -58,7 +58,9 @@ public class SeatReader{
     }
 
     public Seat readSeatBySeatNoAndScheduleId(Long seatNo,Long scheduleId){
+        log.info("[{}] 쓰레드 : Repository 조석 조회 전 조건 : seatNo = [{}], scheduleId = [{}]",Thread.currentThread().getName(), seatNo, scheduleId);
         Optional<Seat> optSeat = seatLoadRepository.findSeatBySeatNoAndScheduleId(seatNo, scheduleId);
+        log.info("[{}] 쓰레드 : Repository 조석 조회 후",Thread.currentThread().getName());
         return optSeat.orElseThrow(()-> new ReservationException(ReservationErrorResult.NO_SEAT));
     }
 

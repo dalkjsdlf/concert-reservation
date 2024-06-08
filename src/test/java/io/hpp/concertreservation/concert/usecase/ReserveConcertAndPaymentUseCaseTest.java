@@ -40,7 +40,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("콘서트를 예약 및 결제 유스케이스 테스트")
 @SpringBootTest
-@Transactional
 public class ReserveConcertAndPaymentUseCaseTest {
 
     private ReserveConcertUseCase reserveConcertUseCase;

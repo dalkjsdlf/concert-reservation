@@ -1,32 +1,36 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.infrastructure;
 
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitQueue;
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitStatus;
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueStoreRepository;
+import io.hpp.concertreservation.common.constants.AppConst;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
 @Component
 public class WaitQueueCoreStoreRepository implements IWaitQueueStoreRepository {
 
-    private final IWaitJpaRepository waitJpaRepository;
+    private final RedisTemplate<String, String> redisTemplate;
 
-    public WaitQueueCoreStoreRepository(IWaitJpaRepository waitJpaRepository) {
-        this.waitJpaRepository = waitJpaRepository;
+    public WaitQueueCoreStoreRepository(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
-    public WaitQueue addQueue(WaitQueue waitQueue) {
-        return waitJpaRepository.save(waitQueue);
+    public void insertToken(String token) {
+        ZSetOperations<String, String> zSetOperations = redisTemplate.opsForZSet();
+        long newScore = System.currentTimeMillis();
+        zSetOperations.add(AppConst.WAIT_QUEUE_KEY,token, newScore);
     }
 
     @Override
-    public WaitQueue updateQueueStatus(WaitQueue waitQueue, WaitStatus waitStatus) {
-        waitQueue.setStatus(waitStatus);
-        return waitJpaRepository.save(waitQueue);
+    public void deleteTokenByToken(String token) {
+        ZSetOperations<String, String> zSetOperations = redisTemplate.opsForZSet();
+        zSetOperations.remove(AppConst.WAIT_QUEUE_KEY,token);
     }
 
     @Override
-    public void deleteQueue(Long waitQueueId) {
-        waitJpaRepository.deleteById(waitQueueId);
+    public void deleteAllTokens() {
+        ZSetOperations<String, String> zSetOperations = redisTemplate.opsForZSet();
+        zSetOperations.removeRange(AppConst.WAIT_QUEUE_KEY,0,-1);
     }
 }

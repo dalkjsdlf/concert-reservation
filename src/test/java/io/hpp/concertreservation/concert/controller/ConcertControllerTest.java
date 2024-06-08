@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("[Concert Controller Test]")
 @SpringBootTest
-@Transactional
 public class ConcertControllerTest {
 
     private MockMvc mockMvc;

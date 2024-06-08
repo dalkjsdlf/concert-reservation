@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
 	implementation 'org.springframework.kafka:spring-kafka'
+	implementation group: 'org.redisson', name: 'redisson-spring-boot-starter', version: '3.19.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'

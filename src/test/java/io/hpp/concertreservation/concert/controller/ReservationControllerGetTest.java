@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("Reservation Controller Test")
 @SpringBootTest
-@Transactional
 public class ReservationControllerGetTest {
 
     private MockMvc mockMvc;

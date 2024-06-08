@@ -27,7 +27,7 @@ public class GetConcertUseCase{
                 id(concert.getId()).
                 artist(concert.getArtist()).
                 concertName(concert.getConcertName()).
-                conertDesc(concert.getConertDesc()).
+                conertDesc(concert.getConcertDesc()).
                 startDate(concert.getStartDate()).
                 endDate(concert.getEndDate()).
                 build();

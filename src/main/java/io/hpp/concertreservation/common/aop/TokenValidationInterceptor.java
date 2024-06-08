@@ -1,7 +1,8 @@
 package io.hpp.concertreservation.common.aop;
 
-import io.hpp.concertreservation.biz.domain.waitqueue.component.WaitQueueTokenValidator;
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitQueue;
+import io.hpp.concertreservation.biz.domain.waitqueue.component.TokenGenerator;
+import io.hpp.concertreservation.biz.domain.waitqueue.component.QueueAppender;
+import io.hpp.concertreservation.biz.domain.waitqueue.component.QueueTokenValidator;
 import io.hpp.concertreservation.common.annotation.ValidationToken;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,9 +21,12 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID
 @Component
 public class TokenValidationInterceptor implements HandlerInterceptor {
 
-    private final WaitQueueTokenValidator waitQueueTokenValidator;
+    private final QueueTokenValidator waitQueueTokenValidator;
+    private final QueueAppender waitQueueAppender;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         log.info("================================  Begin Interceptor ================================");
 
         if (handler instanceof ResourceHttpRequestHandler) {
@@ -43,7 +47,31 @@ public class TokenValidationInterceptor implements HandlerInterceptor {
             log.info("userId : [{}]                                       ", userId);
             log.info("===================================================="        );
 
-            return waitQueueTokenValidator.valiation(token);
+            /*
+             * TOKEN이 NULL 일 때
+             * */
+            if(waitQueueTokenValidator.isTokenEmpty(token)){
+                /**
+                 * 토큰 생성
+                 * */
+                token = TokenGenerator.generateToken();
+                log.debug("Generated Token Value [{}]",token);
+            }else{
+                /**
+                 * TOKEN 검증
+                 * */
+                if(waitQueueTokenValidator.isValidated(token)) return true;
+                if(waitQueueTokenValidator.isAlreadyInWaitQueue(token)) return true;
+            }
+
+            /**
+             * TOKEN 추가
+             * Active Queue에 추가 시도
+             * Wait Queue에 추가 시도
+             * */
+            waitQueueAppender.addQueue(token);
+
+            return true;
         }
 
         log.info("================================  No Annotaion ================================");

@@ -29,8 +29,11 @@ public class SeatSupportor {
     }
 
     public void checkAlreadyReservedSeatOfSeats(List<Seat> seats){
+        log.info("[{}] 쓰레드 : seatSupportor.checkAlreadReservedSeat 메서드 진입",Thread.currentThread().getName());
         for(Seat seat : seats){
+            log.info("[{}] 쓰레드 : 좌석 번호 [{}] read 전",Thread.currentThread().getName(),seat.getSeatNo());
             Seat seatForCheck = seatReader.readSeatBySeatNoAndScheduleId(seat.getSeatNo(), seat.getScheduleId());
+            log.info("[{}] 쓰레드 : 좌석 번호 [{}] read 후",Thread.currentThread().getName(),seatForCheck.getSeatNo());
             if(!seatForCheck.getReserveId().equals(-1L)){
                 throw new ReservationException(ReservationErrorResult.ALREADY_SEAT_RESERVED);
             }

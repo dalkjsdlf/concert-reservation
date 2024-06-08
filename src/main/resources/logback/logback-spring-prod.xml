@@ -1,0 +1,29 @@
+<included>
+
+    <property resource="logback-variables.properties"/>
+    <appender name="REQUEST" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <file>
+           ${LOG_DIR}/request.log
+       </file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO </level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${LOG_DIR}/request-%d{yyyy-MM-dd}_%i.log
+            </fileNamePattern>
+            <maxFileSize>1KB</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                ${LOG_PATTERN}
+            </pattern>
+            <outputPatternAsHeader>true</outputPatternAsHeader>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="REQUEST"/>
+    </root>
+</included>

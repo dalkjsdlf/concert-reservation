@@ -4,7 +4,10 @@ import io.hpp.concertreservation.biz.domain.paymoney.model.PayMethod;
 import io.hpp.concertreservation.biz.domain.paymoney.model.PayMoney;
 import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyLoadRepository;
 import io.hpp.concertreservation.biz.domain.paymoney.repository.IPayMoneyStoreRespository;
+import io.hpp.concertreservation.common.exception.ReservationErrorResult;
+import io.hpp.concertreservation.common.exception.ReservationException;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.dialect.lock.OptimisticEntityLockException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -19,9 +22,14 @@ public class PayMoneyModifier {
     private final PayMoneyValidator payMoneyValidator;
 
     public void charge(Long userId, PayMethod payMethod,Long amount) {
-        Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
-        PayMoney payMoney = optPayMoney.orElseGet(() -> PayMoney.of(userId, amount, payMethod));
-        payMoneyStoreRespository.savePayMoney(payMoney);
+
+        try{
+            Optional<PayMoney> optPayMoney = payMoneyLoadRepository.findByUserIdAndPayMethod(userId, payMethod);
+            PayMoney payMoney = optPayMoney.orElseGet(() -> PayMoney.of(userId, amount, payMethod));
+            payMoneyStoreRespository.savePayMoney(payMoney);
+        }catch(OptimisticEntityLockException e){
+            throw new ReservationException(ReservationErrorResult.IN_PROGRESS);
+        }
     }
 
     public void use(Long userId, PayMethod payMethod, Long amount) {

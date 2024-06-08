@@ -3,7 +3,7 @@ spring:
     activate:
       on-profile: dev_profile
   datasource:
-    url: jdbc:mysql://localhost:3306/lecture
+    url: jdbc:mysql://localhost:3306/reservation
     username: dorris
     password: dusghchl3891
     driver-class-name: com.mysql.cj.jdbc.Driver

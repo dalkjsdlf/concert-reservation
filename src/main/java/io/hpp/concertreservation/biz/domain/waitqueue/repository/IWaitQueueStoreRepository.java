@@ -1,12 +1,21 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.repository;
 
-import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreLoadRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitQueue;
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitStatus;
+import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitMember;
 
 public interface IWaitQueueStoreRepository {
 
-    public WaitQueue addQueue(WaitQueue waitQueue);
-    public WaitQueue updateQueueStatus(WaitQueue waitQueue, WaitStatus waitStatus);
-    public void deleteQueue(Long waitQueueId);
+    /**
+     * 대기큐에 토큰을 추가한다.
+     */
+    public void insertToken(String token);
+
+    /**
+     * 대기큐에 토큰을 삭제한다.
+     */
+    public void deleteTokenByToken(String token);
+
+    /**
+     * 대기큐의 모든 토큰을 삭제한다.
+     */
+    public void deleteAllTokens();
 }

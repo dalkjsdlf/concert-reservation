@@ -14,7 +14,7 @@ public interface ISeatJpaRepository extends JpaRepository<Seat, Long> {
 
     List<Seat> findByScheduleId(Long scheduleId);
 
-    @Query("select s from Seat as s where s.scheduleId=:scheduleId and s.seatNo=:seatNo")
-    @Lock(LockModeType.PESSIMISTIC_READ)
+//    @Query("select s from Seat as s where s.scheduleId=:scheduleId and s.seatNo=:seatNo")
+//    @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Seat> findBySeatNoAndScheduleId(Long seatNo, Long scheduleId);
 }

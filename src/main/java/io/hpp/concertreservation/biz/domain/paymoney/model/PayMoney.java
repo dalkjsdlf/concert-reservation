@@ -28,6 +28,9 @@ public class PayMoney {
     @Enumerated(EnumType.STRING)
     private PayMethod payMethod;
 
+    @Version
+    private Long version;
+
     protected PayMoney(){};
 
     private PayMoney(Long userId, Long balance, PayMethod payMethod) {

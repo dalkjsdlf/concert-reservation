@@ -27,7 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("콘서트 예약 동시성 테스트")
 @SpringBootTest
 @Slf4j
-@Transactional
 public class SimultaneityTest {
 
     //private final static Logger logger = LoggerFactory.getLogger(SimultaneityTest.class);
@@ -91,5 +90,4 @@ public class SimultaneityTest {
         //Seat쪽에서 예외 터지고 예약 1건 입력
         assertThat(cnt).isEqualTo(1);
     }
-
 }

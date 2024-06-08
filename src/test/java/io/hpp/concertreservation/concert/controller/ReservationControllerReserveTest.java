@@ -30,9 +30,8 @@ import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_H
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("Reservation Controller Test")
+@DisplayName("예약 컨트롤러 테스트")
 @SpringBootTest
-@Transactional
 public class ReservationControllerReserveTest {
 
     private static Logger logger = LoggerFactory.getLogger(ReservationControllerReserveTest.class);
@@ -67,23 +66,35 @@ public class ReservationControllerReserveTest {
         initDataInput();
     }
 
-    @DisplayName("[성공] 예약내역 조회")
+    @DisplayName("[성공] 예약")
     @Test()
     public void givenUserId_whenGetReservations_thenReservation() throws Exception {
         // given
         Long userId = 1L;
         String url = "/api/reservations";
 
+        /**
+         * 예약 할 좌석 정보 받아보기
+         * */
         List<Seat> seats = seatReader.readSeatsByScheduleId(scheduleId);
 
-        String s = gson.toJson(ReservationRequestDto.builder().seats(seats).build());
+        /**
+         * 입력할 JSON 데이터 생성
+         * */
+        String reservationJsonData = gson.toJson(ReservationRequestDto.builder().seats(seats).build());
+
         // when
+        /**
+         * Mock Mvc로 Request 생성
+         * */
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post(url)
                 .header(USER_ID_HEADER, 1L)
                 .header(TOKEN_HEADER, "1L")
-                .content(gson.toJson(ReservationRequestDto.builder().seats(seats).build()))
+                .content(reservationJsonData)
                 .contentType(MediaType.APPLICATION_JSON));
-        logger.info("json >> {}" , s);
+
+        logger.info("json >> {}" , reservationJsonData);
+
         // then
         resultActions.andExpect(status().isCreated());
         //resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].reservationId").value(1L));

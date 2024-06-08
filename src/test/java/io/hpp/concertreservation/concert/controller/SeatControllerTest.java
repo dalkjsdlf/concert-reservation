@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("[Concert Controller Test]")
 @SpringBootTest
-@Transactional
 public class SeatControllerTest {
 
     private final Logger LOGGER = LoggerFactory.getLogger(SeatControllerTest.class);

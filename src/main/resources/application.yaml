@@ -10,6 +10,9 @@ logging:
     io.hpp.concertreservation : debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.internal: trace
+    org.springframework.beans.factory.support.DefaultListableBeanFactory: ERROR
+    org.springframework.boot.autoconfigure: ERROR
+
 
 spring:
   application:

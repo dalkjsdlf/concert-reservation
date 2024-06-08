@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @DisplayName("충전 기능에 대한 테스트")
-@Transactional
 public class ChargeUsecaseTest {
 
     @Autowired

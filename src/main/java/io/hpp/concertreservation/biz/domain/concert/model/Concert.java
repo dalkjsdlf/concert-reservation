@@ -22,7 +22,7 @@ public class Concert {
 
     @Setter
     @Column(nullable = true, length = 1000)
-    private String conertDesc;
+    private String concertDesc;
 
     @Setter
     @Column(nullable = true, length = 50)
@@ -37,9 +37,9 @@ public class Concert {
     private LocalDateTime endDate;
 
     protected Concert(){};
-    private Concert(String concertName, String conertDesc, String artist, LocalDateTime startDate, LocalDateTime endDate) {
+    private Concert(String concertName, String concertDesc, String artist, LocalDateTime startDate, LocalDateTime endDate) {
         this.concertName = concertName;
-        this.conertDesc = conertDesc;
+        this.concertDesc = concertDesc;
         this.artist = artist;
         this.startDate = startDate;
         this.endDate = endDate;

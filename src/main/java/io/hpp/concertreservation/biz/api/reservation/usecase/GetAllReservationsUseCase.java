@@ -54,7 +54,7 @@ public class GetAllReservationsUseCase{
                     ReservationResponseDto.
                             builder().
                             concertName(reservedConcert.getConcertName()).
-                            concertDesc(reservedConcert.getConertDesc()).
+                            concertDesc(reservedConcert.getConcertDesc()).
                             reservationId(reservation.getId()).
                             numOfSeats(reservation.getNumOfSeats()).
                             performData(reservedSchedule.getPerformDate()).

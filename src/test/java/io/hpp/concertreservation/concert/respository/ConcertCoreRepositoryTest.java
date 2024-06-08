@@ -3,25 +3,25 @@ package io.hpp.concertreservation.concert.respository;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepository;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
+import io.hpp.concertreservation.common.exception.ReservationErrorResult;
+import io.hpp.concertreservation.common.exception.ReservationException;
 import io.hpp.concertreservation.initdata.InitData;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("콘서트 정보 조회 테스트")
 @SpringBootTest
-@Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
+@Slf4j
 public class ConcertCoreRepositoryTest {
 
     private final IConcertStoreRepository concertStoreRepository;
@@ -42,7 +42,7 @@ public class ConcertCoreRepositoryTest {
         initData.initDataForConcert();
     }
 
-    @DisplayName("")
+    @DisplayName("[성공] NOT NULL인지 검사하는 테스트")
     @Test()
     public void given_when_thenNotnull(){
         // given
@@ -65,6 +65,9 @@ public class ConcertCoreRepositoryTest {
 
         // then
         assertThat(concerts.size()).isNotEqualTo(0);
+        concerts.forEach(concert->{
+           log.info("concert Id [{}] , concert Name [{}]",concert.getId(), concert.getConcertName());
+        });
     }
 
     @DisplayName("[성공] 콘서트 아이디로 콘서트를 조회한다.")
@@ -74,9 +77,9 @@ public class ConcertCoreRepositoryTest {
         Long concertId = 1L;
 
         // when
-        Optional<Concert> optResult = concertLoadRepository.findConcert(concertId);
-        Concert result = optResult.orElse(null);
-
+        Optional<Concert> optResult = concertLoadRepository.findConcert(1L);
+        Concert result = optResult.orElseThrow(()->new ReservationException(ReservationErrorResult.NOT_FOUND_CONCERT));
+        log.info("result : [{}]",result.getId());
         // then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(concertId);

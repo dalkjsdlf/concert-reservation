@@ -31,9 +31,9 @@ public class SeatDupTest {
 
     @BeforeEach
     void init(){
-        //Long concertId = initData.initDataForConcert().getId();
-        //Long scheduleId = initData.initDataForSchedule(concertId).getId();
-        //seats = initData.initDataForSeat(scheduleId);
+        Long concertId = initData.initDataForConcert().getId();
+        Long scheduleId = initData.initDataForSchedule(concertId).getId();
+        seats = initData.initDataForSeat(scheduleId);
     }
 
     @DisplayName("Not null")
@@ -61,5 +61,18 @@ public class SeatDupTest {
 
         //then
         assertThat(foundSeat.getScheduleId()).isEqualTo(2L);
+    }
+
+    @DisplayName("init date 테스트")
+    @Test
+    public void givenInitData_whenCheck_then(){
+        //given
+
+
+        //when
+
+
+        //then
+        assertThat(seats.size()).isEqualTo(3);
     }
 }

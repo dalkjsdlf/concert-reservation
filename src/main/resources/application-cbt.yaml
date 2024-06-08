@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: cbt_profile
   datasource:
-    url: jdbc:mysql://localhost:3306/lecture
+    url: jdbc:mysql://localhost:3306/concert
     username: dorris
-    password: dusghchl3891
+    password: dusghchl3891!
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     defer-datasource-initialization: true

@@ -119,7 +119,7 @@ public class SeatCoreRepositoryTest {
         assertThat(seatStoreRepository).isNotNull();
     }
 
-    @DisplayName("[성공] 박효신 콘서트 17시 콘서트 좌석 조회 : 예상 결과값 3")
+    @DisplayName("[성공] 박효신 콘서트 17시 콘서트 좌석들 개수 조회 : 예상 결과값 3")
     @Test()
     public void givenScheduleId_whenGetAllSeat_thenSeats(){
         // given
@@ -133,7 +133,7 @@ public class SeatCoreRepositoryTest {
         assertThat(seats.get(0).getScheduleId()).isEqualTo(phsConcertScheduleId);
     }
 
-    @DisplayName("[성공] 박효신 콘서트 21시 콘서트 좌석 조회 : 예상 결과값 2")
+    @DisplayName("[성공] 박효신 콘서트 21시 콘서트 좌석들 개수 조회 : 예상 결과값 2")
     @Test()
     public void givenSecondScheduleId_whenGetAllSeat_thenSeats(){
         // given
@@ -163,5 +163,21 @@ public class SeatCoreRepositoryTest {
         // then
         assertThat(savedSeat).isNotNull();
         assertThat(savedSeat.getReserveId()).isEqualTo(reservationId);
+    }
+
+    @DisplayName("[성공] 박효신 콘서트 17시 콘서트 1번 좌석 조회 : 예상 결과값 Not Null true")
+    @Test()
+    public void givenSeatNoAndScheduleId_whenSeat_thenSeat(){
+        // given
+        // phsConcertScheduleId
+
+        // when
+        Optional<Seat> optSeats = seatLoadRepository.findSeatBySeatNoAndScheduleId(1L, phsConcertScheduleId);
+
+        Seat seat = optSeats.orElseGet(null);
+        // then
+        assertThat(seat).isNotNull();
+        assertThat(seat.getSeatNo()).isEqualTo(1L);
+
     }
 }
