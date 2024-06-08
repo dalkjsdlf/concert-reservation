@@ -1,5 +1,8 @@
 # concert-reservation
 항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
+
+## ✔ 인덱스 설계를 위한 쿼리 및 데이터 패턴 조사
+ https://thoracic-catamaran-22f.notion.site/4bcf9632b896492d89b20041ec69abce?pvs=4
 ## ✔ 동시성 이슈에 대한 분석
  https://thoracic-catamaran-22f.notion.site/de17237568694b2386a43715543aa4f1?pvs=4
 ## ✔ 깃 브랜치 전략
