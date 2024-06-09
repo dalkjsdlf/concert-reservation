@@ -5,6 +5,7 @@ import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
 import io.hpp.concertreservation.biz.api.reservation.usecase.GetAllReservationsUseCase;
 import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
+import io.hpp.concertreservation.common.annotation.ValidationToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class ReservationController {
      * /api/reservations/status
      * */
     @GetMapping("status")
+    @ValidationToken
     public ResponseEntity<List<ReservationResponseDto>> getReservationStatusOfUser(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
@@ -42,6 +44,7 @@ public class ReservationController {
      * /api/reservations/
      * */
     @GetMapping("")
+    @ValidationToken
     public ResponseEntity<List<ReservationResponseDto>> getReservationsOfUser(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId
@@ -53,6 +56,7 @@ public class ReservationController {
      * /api/reservations
      * */
     @PostMapping("")
+    @ValidationToken
     public ResponseEntity<ReservationResponseDto> reserveConcert(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,
@@ -71,6 +75,7 @@ public class ReservationController {
      * /api/reservations/cancel dummy
      * */
     @PostMapping("cancel")
+    @ValidationToken
     public ResponseEntity<ReservationResponseDto> cancelConcert(
             @RequestHeader(TOKEN_HEADER) String token,
             @RequestHeader(USER_ID_HEADER) Long userId,

@@ -45,6 +45,10 @@ public class QueueTokenValidator {
         return workingSize.compareTo(maxWorkingCount) < 0;
     }
 
+    public Long getSizeWorkingQueueAvailable(){
+        return maxWorkingCount - workingQueueLoadRepository.countAllTokens();
+    }
+
     public boolean isAlreadyInWaitQueue(String token){
         Optional<String> optWaitMember = waitQueueLoadRepository.findTokenByToken(token);
         return optWaitMember.isPresent();

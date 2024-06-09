@@ -74,7 +74,7 @@ public class TokenValidationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        log.info("================================  No Annotaion ================================");
+        log.info("================================  No Annotation ================================");
         return true;
     }
 

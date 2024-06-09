@@ -18,5 +18,7 @@ public interface IWorkingQueueStoreRepository {
      * 워킹큐에 모든 토큰을 삭제한다.
      * */
     public void deleteAllTokens();
+
+    public void deleteTokenByRange(int start, int end);
 }
 

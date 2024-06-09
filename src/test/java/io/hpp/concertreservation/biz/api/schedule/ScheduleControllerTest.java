@@ -1,4 +1,4 @@
-package io.hpp.concertreservation.concert.controller;
+package io.hpp.concertreservation.biz.api.schedule;
 
 
 import com.google.gson.Gson;
@@ -6,17 +6,16 @@ import io.hpp.concertreservation.biz.api.schedule.controller.ScheduleController;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
@@ -26,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("[Schedule Controller Test]")
 @SpringBootTest
+@ActiveProfiles("local")
 public class ScheduleControllerTest {
 
     private MockMvc mockMvc;

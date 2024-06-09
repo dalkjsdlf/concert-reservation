@@ -1,6 +1,6 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.repository;
 
-import io.hpp.concertreservation.biz.domain.waitqueue.model.WaitMember;
+import java.util.List;
 
 public interface IWaitQueueStoreRepository {
 
@@ -18,4 +18,6 @@ public interface IWaitQueueStoreRepository {
      * 대기큐의 모든 토큰을 삭제한다.
      */
     public void deleteAllTokens();
+
+    public List<String> deleteTokenByRange(int startIdx, int endIdx);
 }

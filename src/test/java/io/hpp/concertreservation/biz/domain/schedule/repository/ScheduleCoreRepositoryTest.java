@@ -1,18 +1,15 @@
-package io.hpp.concertreservation.concert.respository;
+package io.hpp.concertreservation.biz.domain.schedule.repository;
 
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
 import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
-import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleLoadRepository;
-import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleStoreRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -24,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
+@ActiveProfiles("local")
 public class ScheduleCoreRepositoryTest {
 
     private final IScheduleLoadRepository scheduleLoadRepository;

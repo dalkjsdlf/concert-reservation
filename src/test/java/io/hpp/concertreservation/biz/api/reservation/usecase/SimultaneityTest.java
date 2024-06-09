@@ -1,21 +1,16 @@
-package io.hpp.concertreservation.concert.simultaneity;
+package io.hpp.concertreservation.biz.api.reservation.usecase;
 
-import io.hpp.concertreservation.biz.api.reservation.usecase.GetAllReservationsUseCase;
-import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import io.hpp.concertreservation.biz.domain.reservation.component.ReservationReader;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.initdata.InitData;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -27,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("콘서트 예약 동시성 테스트")
 @SpringBootTest
 @Slf4j
+@ActiveProfiles("local")
 public class SimultaneityTest {
 
     //private final static Logger logger = LoggerFactory.getLogger(SimultaneityTest.class);
@@ -65,8 +61,8 @@ public class SimultaneityTest {
         // given
         List<Seat> seats = seatReader.readSeatsByScheduleId(scheduleId);
 
-        int threadCount = 10;
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        int threadCount = 150;
+        ExecutorService executorService = Executors.newFixedThreadPool(300);
 
         CountDownLatch latch = new CountDownLatch(threadCount);
 
