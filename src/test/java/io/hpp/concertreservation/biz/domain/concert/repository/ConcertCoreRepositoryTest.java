@@ -1,8 +1,6 @@
-package io.hpp.concertreservation.concert.respository;
+package io.hpp.concertreservation.biz.domain.concert.repository;
 
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
-import io.hpp.concertreservation.biz.domain.concert.repository.IConcertLoadRepository;
-import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import io.hpp.concertreservation.initdata.InitData;
@@ -13,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
 @Slf4j
+@ActiveProfiles("local")
 public class ConcertCoreRepositoryTest {
 
     private final IConcertStoreRepository concertStoreRepository;
@@ -39,7 +39,7 @@ public class ConcertCoreRepositoryTest {
 
     @BeforeEach
     void init (){
-        initData.initDataForConcert();
+        //initData.initDataForConcert();
     }
 
     @DisplayName("[성공] NOT NULL인지 검사하는 테스트")

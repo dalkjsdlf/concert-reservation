@@ -1,14 +1,12 @@
-package io.hpp.concertreservation.concert.controller;
+package io.hpp.concertreservation.biz.api.reservation.controller;
 
 import com.google.gson.Gson;
-import io.hpp.concertreservation.biz.api.reservation.controller.ReservationController;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationRequestDto;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("예약 컨트롤러 테스트")
 @SpringBootTest
+@ActiveProfiles("local")
 public class ReservationControllerReserveTest {
 
     private static Logger logger = LoggerFactory.getLogger(ReservationControllerReserveTest.class);

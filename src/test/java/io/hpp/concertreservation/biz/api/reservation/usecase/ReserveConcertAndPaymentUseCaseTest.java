@@ -1,10 +1,9 @@
-package io.hpp.concertreservation.concert.usecase;
+package io.hpp.concertreservation.biz.api.reservation.usecase;
 
 import io.hpp.concertreservation.biz.api.payment.dto.PaymentRequestDto;
 import io.hpp.concertreservation.biz.api.payment.usecase.GetAllPaymentUseCase;
 import io.hpp.concertreservation.biz.api.payment.usecase.PayReservation;
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationRequestDto;
-import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import io.hpp.concertreservation.biz.domain.concert.component.ConcertReader;
 import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
@@ -25,13 +24,12 @@ import io.hpp.concertreservation.biz.domain.seat.model.Seat;
 import io.hpp.concertreservation.biz.domain.seat.model.SeatGrade;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,6 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("콘서트를 예약 및 결제 유스케이스 테스트")
 @SpringBootTest
+@ActiveProfiles("local")
 public class ReserveConcertAndPaymentUseCaseTest {
 
     private ReserveConcertUseCase reserveConcertUseCase;
@@ -76,22 +75,23 @@ public class ReserveConcertAndPaymentUseCaseTest {
 
     private Long userId = 1L;
 
-    public ReserveConcertAndPaymentUseCaseTest(@Autowired ReserveConcertUseCase reserveConcertUseCase,
-                                               @Autowired IScheduleLoadRepository scheduleLoadRepository,
-                                               @Autowired IScheduleStoreRepository scheduleStoreRepository,
-                                               @Autowired IConcertStoreRepository concertStoreRepository,
-                                               @Autowired ISeatLoadRepository seatLoadRepository,
-                                               @Autowired ISeatStoreRepository seatStoreRepository,
-                                               @Autowired ConcertReader concertReader,
-                                               @Autowired ScheduleReader scheduleReader,
-                                               @Autowired SeatReader seatReader,
-                                               @Autowired ReservationReader reservationReader,
-                                               @Autowired ReservationModifier reservationModifier,
-                                               @Autowired PayMoneyModifier payMoneyModifier,
-                                               @Autowired PaymentReader paymentReader,
-                                               @Autowired PaymentModifier paymentModifier,
-                                               @Autowired PayReservation payReservation,
-                                               @Autowired GetAllPaymentUseCase getAllPaymentUseCase
+    @Autowired
+    public ReserveConcertAndPaymentUseCaseTest( ReserveConcertUseCase reserveConcertUseCase,
+                                                IScheduleLoadRepository scheduleLoadRepository,
+                                                IScheduleStoreRepository scheduleStoreRepository,
+                                                IConcertStoreRepository concertStoreRepository,
+                                                ISeatLoadRepository seatLoadRepository,
+                                                ISeatStoreRepository seatStoreRepository,
+                                                ConcertReader concertReader,
+                                                ScheduleReader scheduleReader,
+                                                SeatReader seatReader,
+                                                ReservationReader reservationReader,
+                                                ReservationModifier reservationModifier,
+                                                PayMoneyModifier payMoneyModifier,
+                                                PaymentReader paymentReader,
+                                                PaymentModifier paymentModifier,
+                                                PayReservation payReservation,
+                                                GetAllPaymentUseCase getAllPaymentUseCase
     ) {
         this.reserveConcertUseCase = reserveConcertUseCase;
         this.scheduleLoadRepository = scheduleLoadRepository;

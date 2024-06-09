@@ -1,28 +1,22 @@
-package io.hpp.concertreservation.concert.respository;
+package io.hpp.concertreservation.biz.domain.reservation.repository;
 
-import io.hpp.concertreservation.biz.domain.concert.model.Concert;
 import io.hpp.concertreservation.biz.domain.concert.repository.IConcertStoreRepository;
 import io.hpp.concertreservation.biz.domain.reservation.model.PaymentStatus;
 import io.hpp.concertreservation.biz.domain.reservation.model.Reservation;
-import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationLoadRepository;
-import io.hpp.concertreservation.biz.domain.reservation.repository.IReservationStoreRepository;
-import io.hpp.concertreservation.biz.domain.schedule.model.Schedule;
 import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleLoadRepository;
 import io.hpp.concertreservation.biz.domain.schedule.repository.IScheduleStoreRepository;
 import io.hpp.concertreservation.biz.domain.seat.model.Seat;
-import io.hpp.concertreservation.biz.domain.seat.model.SeatGrade;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatLoadRepository;
 import io.hpp.concertreservation.biz.domain.seat.repository.ISeatStoreRepository;
 import io.hpp.concertreservation.initdata.InitData;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,6 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @ComponentScan(basePackages = {"io.hpp.concertreservation.biz.domain"})
+@ActiveProfiles("local")
 public class ReservationCoreRepositoryTest {
 
 

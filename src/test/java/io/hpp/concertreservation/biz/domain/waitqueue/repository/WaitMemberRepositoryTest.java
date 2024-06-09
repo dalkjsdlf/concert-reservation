@@ -1,11 +1,7 @@
-package io.hpp.concertreservation.concert.respository;
+package io.hpp.concertreservation.biz.domain.waitqueue.repository;
 
 import io.hpp.concertreservation.biz.domain.waitqueue.component.TokenGenerator;
 import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreLoadRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueLoadRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueStoreRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWorkingQueueLoadRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWorkingQueueStoreRepository;
 import io.hpp.concertreservation.common.exception.ReservationErrorResult;
 import io.hpp.concertreservation.common.exception.ReservationException;
 import lombok.extern.slf4j.Slf4j;

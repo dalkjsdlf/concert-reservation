@@ -1,8 +1,6 @@
-package io.hpp.concertreservation.concert.reservefail;
+package io.hpp.concertreservation.biz.api.reservation.usecase;
 
 import io.hpp.concertreservation.biz.api.reservation.dto.ReservationResponseDto;
-import io.hpp.concertreservation.biz.api.reservation.usecase.GetAllReservationsUseCase;
-import io.hpp.concertreservation.biz.api.reservation.usecase.ReserveConcertUseCase;
 import io.hpp.concertreservation.biz.api.seat.dto.SeatResponseDto;
 import io.hpp.concertreservation.biz.api.seat.usecase.GetAllSeatsUseCase;
 import io.hpp.concertreservation.biz.domain.seat.component.SeatReader;
@@ -17,6 +15,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
@@ -34,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("이미 예약된 좌석 시나리오 1")
 @SpringBootTest
 @Slf4j
+@ActiveProfiles("local")
 public class AlreadyReserveServerCheckTest {
 
     @Autowired

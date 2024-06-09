@@ -1,12 +1,9 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.validationTest;
 
 import io.hpp.concertreservation.biz.domain.waitqueue.component.*;
-import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreLoadRepository;
-import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreStoreRepository;
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueLoadRepository;
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWorkingQueueLoadRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,22 +26,23 @@ public class ScheduleTest {
 
     private final QueueTokenValidator  queueTokenValidator;
     private final QueueAppender queueAppender;
-    private final QueueReader queueReader;
     private final QueueRemover queueRemover;
     private final QueueActiveToken queueActiveToken;
-    private final IWaitQueueLoadRepository waitQueueCoreLoadRepository;
+    private final IWaitQueueLoadRepository waitQueueLoadRepository;
     private final IWorkingQueueLoadRepository workingQueueLoadRepository;
-    @Autowired
-    private WaitQueueCoreStoreRepository waitQueueCoreStoreRepository;
 
     @Autowired
-    public ScheduleTest(QueueTokenValidator queueTokenValidator, QueueAppender queueAppender, QueueReader queueReader, QueueRemover queueRemover, QueueActiveToken queueActiveToken, IWaitQueueLoadRepository waitQueueCoreLoadRepository, IWorkingQueueLoadRepository workingQueueLoadRepository) {
+    public ScheduleTest(QueueTokenValidator queueTokenValidator,
+                        QueueAppender queueAppender,
+                        QueueRemover queueRemover,
+                        QueueActiveToken queueActiveToken,
+                        IWaitQueueLoadRepository waitQueueLoadRepository,
+                        IWorkingQueueLoadRepository workingQueueLoadRepository) {
         this.queueTokenValidator = queueTokenValidator;
         this.queueAppender = queueAppender;
-        this.queueReader = queueReader;
         this.queueRemover = queueRemover;
         this.queueActiveToken = queueActiveToken;
-        this.waitQueueCoreLoadRepository = waitQueueCoreLoadRepository;
+        this.waitQueueLoadRepository = waitQueueLoadRepository;
         this.workingQueueLoadRepository = workingQueueLoadRepository;
     }
 
@@ -78,6 +76,9 @@ public class ScheduleTest {
     * */
     @BeforeEach
     public void before() {
+        queueRemover.removeWorkingQueueByRange(0,-1);
+        queueRemover.removeWaitQueueByRange(0,-1);
+
         Long maxCount = QueueTokenValidator.getMaxWorkingCount();
         log.debug("#1 CHECK : GetMaxworkingCount [{}]", maxCount);
         // 100명 Working 큐에 넣기
@@ -128,27 +129,63 @@ public class ScheduleTest {
         int startIdx = 0;
         int endIdx = 1;
 
-        Long beforeSize = queueTokenValidator.getSizeWorkingQueueAvailable();
-        log.debug("#2 CHECK >>> Before Size workingQueue 개수 [{}] waitQueue개수 [{}]", workingQueueLoadRepository.countAllTokens(), waitQueueCoreLoadRepository.countAllTokens());
-        log.debug("#3 CHECK >>> Before Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", beforeSize, waitQueueCoreLoadRepository.countAllTokens());
+        Long beforeAvailableSize = queueTokenValidator.getSizeWorkingQueueAvailable();
+        Long beforeWaitSize      = waitQueueLoadRepository.countAllTokens();
+
+        log.debug("#2 CHECK >>> Before Size workingQueue 개수 [{}] waitQueue개수 [{}]", workingQueueLoadRepository.countAllTokens(), waitQueueLoadRepository.countAllTokens());
+        log.debug("#3 CHECK >>> Before Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", beforeAvailableSize, waitQueueLoadRepository.countAllTokens());
 
         int size = endIdx - startIdx + 1;
         queueRemover.removeWorkingQueueByRange(startIdx, endIdx);
 
-
         //when
+        log.debug("#4 CHECK >>> 대기열 이동 컴포넌트 수행");
         //대기열 추가하는 컴포넌트 수행
         queueActiveToken.moveQueue();
 
-        Long afterSize = queueTokenValidator.getSizeWorkingQueueAvailable();
+        Long afterAvailableSize = queueTokenValidator.getSizeWorkingQueueAvailable();
 
         //then
-        log.debug("#4 CHECK >>> After Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", afterSize, waitQueueCoreLoadRepository.countAllTokens());
+        log.debug("#5 CHECK >>> After Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", afterAvailableSize, waitQueueLoadRepository.countAllTokens());
         //workingqueue 맥스인지 확인
         //이전 waitqueue개수와 지금 waitqueue개수가 다른지확인
 
         assertThat(queueTokenValidator.isWorkingQueueAvailable()).isEqualTo(false);
-        //assertThat(waitQueueCoreLoadRepository.countAllTokens()).isEqualTo(beforeSize - size);
+        assertThat(waitQueueLoadRepository.countAllTokens()).isEqualTo(beforeWaitSize - size);
+    }
+
+    @DisplayName("[성공] 대기큐와 워키큐에 아무것도 없을 때 아무 동작도 하지 않는지 확인 테스트")
+    @Test
+    public void givenNothing_whenSchedule_thenNothingHappen(){
+        //given
+        queueRemover.removeWorkingQueueByRange(0,-1);
+        queueRemover.removeWaitQueueByRange(0,-1);
+
+        //when
+        queueActiveToken.moveQueue();
+
+        //then
+
+        assertThat(waitQueueLoadRepository.countAllTokens()).isEqualTo(0);
+        assertThat(workingQueueLoadRepository.countAllTokens()).isEqualTo(0);
+
+    }
+
+    @DisplayName("[성공] 워킹큐에는 토큰이 존재하지만 대기큐에는 아무 토큰값도 없을 때 아무 동작도 하지 않는지 확인")
+    @Test
+    public void givenNothingWait_whenSchedule_thenNothingHappen(){
+        //given
+        queueRemover.removeWorkingQueueByRange(0,49);
+        queueRemover.removeWaitQueueByRange(0,-1);
+
+        //when
+        queueActiveToken.moveQueue();
+
+        //then
+
+        assertThat(waitQueueLoadRepository.countAllTokens()).isEqualTo(0);
+        assertThat(workingQueueLoadRepository.countAllTokens()).isEqualTo(50);
+
     }
 
     @AfterEach

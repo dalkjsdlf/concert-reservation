@@ -1,35 +1,39 @@
-package io.hpp.concertreservation.concert.controller;
+package io.hpp.concertreservation.biz.api.seat;
 
 
 import com.google.gson.Gson;
-import io.hpp.concertreservation.biz.api.reservation.controller.ReservationController;
+import io.hpp.concertreservation.biz.api.seat.controller.SeatController;
 import io.hpp.concertreservation.common.exception.ApiControllerAdvice;
 import io.hpp.concertreservation.initdata.InitData;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 
 import static io.hpp.concertreservation.common.constants.WebApiConstants.TOKEN_HEADER;
 import static io.hpp.concertreservation.common.constants.WebApiConstants.USER_ID_HEADER;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("Reservation Controller Test")
+@DisplayName("[Concert Controller Test]")
 @SpringBootTest
-public class ReservationControllerGetTest {
+@ActiveProfiles("local")
+public class SeatControllerTest {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(SeatControllerTest.class);
     private MockMvc mockMvc;
 
-    private final ReservationController reservationController;
+    private final SeatController seatController;
 
 
     private final InitData initData;
@@ -37,32 +41,42 @@ public class ReservationControllerGetTest {
     private Long concertId;
     private Long scheduleId;
     private Long seatId;
-    private Long reservationId;
 
-    private Long userId = 1L;
-    private Gson gson;
-    public ReservationControllerGetTest(@Autowired ReservationController reservationController,
-                                        @Autowired InitData initData) {
-        this.reservationController = reservationController;
+    public SeatControllerTest(@Autowired SeatController seatController,
+                              @Autowired InitData initData) {
+        this.seatController = seatController;
         this.initData = initData;
     }
+
+    private Gson gson;
 
     @BeforeEach
     public void init() {
         gson = new Gson();
-        mockMvc = MockMvcBuilders.standaloneSetup(reservationController)
+        mockMvc = MockMvcBuilders.standaloneSetup(seatController)
                 .setControllerAdvice(new ApiControllerAdvice())
                 .build();
 
         initDataInput();
     }
 
-    @DisplayName("[성공] 예약내역 조회")
+    @DisplayName("[성공] NULL 체크")
     @Test()
-    public void givenUserId_whenGetReservations_thenReservation() throws Exception {
+    public void givenNothing_whenNothing_thenNotNull() {
         // given
-        Long userId = 1L;
-        String url = "/api/reservations";
+
+        // when
+
+        // then
+        assertThat(seatController).isNotNull();
+
+    }
+
+    @DisplayName("[성공] concert 스케쥴의 좌석 조회 ")
+    @Test()
+    public void givenScheduleId_whenGetSeatsByScheduleId_thenSeats() throws Exception {
+        // given
+        String url = "/api/concerts/" + concertId + "/schedules/" + scheduleId + "/seats";
 
         // when
         ResultActions resultActions = mockMvc.perform(get(url)
@@ -72,15 +86,15 @@ public class ReservationControllerGetTest {
 
         // then
         resultActions.andExpect(status().isOk());
-        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].reservationId").value(reservationId));
-        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].concertName").value("박효신 콘서트"));
-        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].concertName").value("박효신 콘서트"));
+        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].seatId").value(seatId));
+        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].seatNo").value(1L));
+        resultActions.andExpect(MockMvcResultMatchers.jsonPath("$[0].seatGrade").value("VIP"));
     }
 
     private void initDataInput() {
-        concertId     = initData.initDataForConcert().getId();
-        scheduleId    = initData.initDataForSchedule(concertId).getId();
-        seatId        = initData.initDataForSeat(scheduleId).get(0).getId();
-        reservationId = initData.initDataForReserve(userId, scheduleId).getId();
+
+        concertId  = initData.initDataForConcert().getId();
+        scheduleId = initData.initDataForSchedule(concertId).getId();
+        seatId     = initData.initDataForSeat(scheduleId).get(0).getId();
     }
 }
