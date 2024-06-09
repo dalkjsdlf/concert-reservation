@@ -9,11 +9,7 @@
 
 ### 🎯 main    : 운영(Production) 배포 소스, 최신화 소스
 
-#### -> 개발시 DEVELOP으로 BRANCH, RELEASE로 부터 MERGING
-
-### 🎯 release : QA(Staging) 개발이 완료되어 MERGING된 소스, 운영 반영전 QA TEST시 사용
-
-#### -> DEVELOP으로 부터 MERGING, MAIN으로 MERGING
+#### -> 개발시 DEVELOP으로 BRANCH로 부터 MERGING
 
 ### 🎯 develop : 개발(Development) 
 
