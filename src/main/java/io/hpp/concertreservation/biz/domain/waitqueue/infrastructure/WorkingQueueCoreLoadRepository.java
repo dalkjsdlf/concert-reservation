@@ -2,6 +2,8 @@ package io.hpp.concertreservation.biz.domain.waitqueue.infrastructure;
 
 import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWorkingQueueLoadRepository;
 import io.hpp.concertreservation.common.constants.AppConst;
+import io.hpp.concertreservation.common.exception.ReservationErrorResult;
+import io.hpp.concertreservation.common.exception.ReservationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;

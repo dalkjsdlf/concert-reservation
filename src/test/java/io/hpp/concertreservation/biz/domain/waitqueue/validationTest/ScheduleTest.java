@@ -1,16 +1,25 @@
 package io.hpp.concertreservation.biz.domain.waitqueue.validationTest;
 
-import io.hpp.concertreservation.biz.domain.waitqueue.component.QueueAppender;
-import io.hpp.concertreservation.biz.domain.waitqueue.component.QueueReader;
-import io.hpp.concertreservation.biz.domain.waitqueue.component.QueueTokenValidator;
-import io.hpp.concertreservation.biz.domain.waitqueue.component.TokenGenerator;
+import io.hpp.concertreservation.biz.domain.waitqueue.component.*;
+import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreLoadRepository;
+import io.hpp.concertreservation.biz.domain.waitqueue.infrastructure.WaitQueueCoreStoreRepository;
+import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWaitQueueLoadRepository;
+import io.hpp.concertreservation.biz.domain.waitqueue.repository.IWorkingQueueLoadRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.annotation.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.util.StopWatch;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest
 @ActiveProfiles("local")
@@ -21,13 +30,22 @@ public class ScheduleTest {
     private final QueueTokenValidator  queueTokenValidator;
     private final QueueAppender queueAppender;
     private final QueueReader queueReader;
+    private final QueueRemover queueRemover;
+    private final QueueActiveToken queueActiveToken;
+    private final IWaitQueueLoadRepository waitQueueCoreLoadRepository;
+    private final IWorkingQueueLoadRepository workingQueueLoadRepository;
+    @Autowired
+    private WaitQueueCoreStoreRepository waitQueueCoreStoreRepository;
 
-public ScheduleTest(@Autowired QueueTokenValidator queueTokenValidator,
-                    @Autowired QueueAppender queueAppender,
-                    @Autowired QueueReader queueReader) {
+    @Autowired
+    public ScheduleTest(QueueTokenValidator queueTokenValidator, QueueAppender queueAppender, QueueReader queueReader, QueueRemover queueRemover, QueueActiveToken queueActiveToken, IWaitQueueLoadRepository waitQueueCoreLoadRepository, IWorkingQueueLoadRepository workingQueueLoadRepository) {
         this.queueTokenValidator = queueTokenValidator;
         this.queueAppender = queueAppender;
         this.queueReader = queueReader;
+        this.queueRemover = queueRemover;
+        this.queueActiveToken = queueActiveToken;
+        this.waitQueueCoreLoadRepository = waitQueueCoreLoadRepository;
+        this.workingQueueLoadRepository = workingQueueLoadRepository;
     }
 
     /*
@@ -61,7 +79,7 @@ public ScheduleTest(@Autowired QueueTokenValidator queueTokenValidator,
     @BeforeEach
     public void before() {
         Long maxCount = QueueTokenValidator.getMaxWorkingCount();
-
+        log.debug("#1 CHECK : GetMaxworkingCount [{}]", maxCount);
         // 100명 Working 큐에 넣기
         for (int i = 0; i < maxCount; i++) {
             queueAppender.addWorkingQueue(TokenGenerator.generateToken());
@@ -76,20 +94,66 @@ public ScheduleTest(@Autowired QueueTokenValidator queueTokenValidator,
         //waitqueue에 50명 입성
     }
 
+    @DisplayName("[ 성공 ] working queue에 token이 100개 있는지 확인한다.")
+    @Test
+    public void givenNothing_whenCheck100OfTokensExists_thenHas100(){
+        //given
+
+        //when
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        Long size = workingQueueLoadRepository.countAllTokens();
+
+        stopWatch.stop();
+
+        stopWatch.prettyPrint(TimeUnit.MILLISECONDS);
+        stopWatch.getTotalTimeMillis();
+        //then
+        // working의 사이즈 입니다.
+        log.debug(" #2 CHECK : Working queue size [{}]", size);
+
+        assertThat(size).isEqualTo(100);
+
+    }
 
     @DisplayName("[성공] Working 하나 빠지면 하나 추가테스트(은행원식)")
     @Test
     public void givenFullWorkingQueue_whenMoveTokenFromWaitToWorking_thenSuccess(){
 
         //given
-        // wokringqueue 젤 앞에놈 하나 빠짐
+        // wokringqueue 젤 앞에놈 두 놈 빠짐
         // waitqueue 개수확인
+
+        int startIdx = 0;
+        int endIdx = 1;
+
+        Long beforeSize = queueTokenValidator.getSizeWorkingQueueAvailable();
+        log.debug("#2 CHECK >>> Before Size workingQueue 개수 [{}] waitQueue개수 [{}]", workingQueueLoadRepository.countAllTokens(), waitQueueCoreLoadRepository.countAllTokens());
+        log.debug("#3 CHECK >>> Before Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", beforeSize, waitQueueCoreLoadRepository.countAllTokens());
+
+        int size = endIdx - startIdx + 1;
+        queueRemover.removeWorkingQueueByRange(startIdx, endIdx);
+
 
         //when
         //대기열 추가하는 컴포넌트 수행
+        queueActiveToken.moveQueue();
+
+        Long afterSize = queueTokenValidator.getSizeWorkingQueueAvailable();
 
         //then
+        log.debug("#4 CHECK >>> After Size 진입 가능한 workingQueue 개수 [{}] waitQueue개수 [{}]", afterSize, waitQueueCoreLoadRepository.countAllTokens());
         //workingqueue 맥스인지 확인
         //이전 waitqueue개수와 지금 waitqueue개수가 다른지확인
+
+        assertThat(queueTokenValidator.isWorkingQueueAvailable()).isEqualTo(false);
+        //assertThat(waitQueueCoreLoadRepository.countAllTokens()).isEqualTo(beforeSize - size);
+    }
+
+    @AfterEach
+    public void after() {
+        queueRemover.removeWorkingQueueByRange(0,-1);
+        queueRemover.removeWaitQueueByRange(0,-1);
     }
 }

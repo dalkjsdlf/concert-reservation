@@ -28,7 +28,8 @@ public enum ReservationErrorResult {
     SEATS_DOES_NOT_HAVE_SAME_SCHEDULE_ID(HttpStatus.INTERNAL_SERVER_ERROR, "seats doesn't have the same scheduleId"),
     NO_PAYMONEY(HttpStatus.INTERNAL_SERVER_ERROR,"There is no paymoney info"),
     VALUE_IS_EMPTY(HttpStatus.BAD_REQUEST,"The Value is empty"),
-    IN_PROGRESS(HttpStatus.INTERNAL_SERVER_ERROR, "InProgress...");
+    IN_PROGRESS(HttpStatus.INTERNAL_SERVER_ERROR, "InProgress..."),
+    WRONG_TOKEN_SIZE(HttpStatus.INTERNAL_SERVER_ERROR, "Wrong token size"),;
 
     private final HttpStatus httpStatus;
     private final String message;
