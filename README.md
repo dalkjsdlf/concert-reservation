@@ -1,5 +1,7 @@
 # concert-reservation
-항해플러스 chapter2 서버구축 챕터 프로젝트 [콘서트예약]
+항해플러스 서버구축 프로젝트 [콘서트예약]
+ - 동시성 이슈
+ - 대기열 시스템(REDIS)
 
 ## ✔ 인덱스 설계를 위한 쿼리 및 데이터 패턴 조사
  https://thoracic-catamaran-22f.notion.site/4bcf9632b896492d89b20041ec69abce?pvs=4
